@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1253" ?>
+<project  xmlns="ClassGenerator3" 
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  xsi:schemaLocation="ClassGenerator3 http://www.netu.com.cy/wp-content/themes/netu/Devs/xsds/ClassGenerator3.xsd">
+
+	<GeneratorVersion>3</GeneratorVersion>
+	<projectName>mygym services</projectName>
+	<outputDir>../mygym-model/src/main/java</outputDir>
+  
+	<junitProjectOutputDir>../mygym-model/src/test/java</junitProjectOutputDir>
+	<junitPackage>com.mygym.model</junitPackage>
+	<junitClassName>TestMyGymModel</junitClassName>
+	<ColumnCustomizer>com.mygym.model.generator.ColumnCustomizerAndGenerator</ColumnCustomizer>
+	<!--dbConnectionString>jdbc:mysql://qv08fxqff2yfycaj:p2mp7move0hyv30c@localhost:3306/vrv7s17lfgmhud3t?useSSL=false&amp;amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true&amp;serverTimezone=UTC</dbConnectionString-->
+	<dbConnectionString>jdbc:mysql://drpskrhz840bqf1w:b7s9lu10yaqy7w4a@zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/e6edpymv83gonwa5?useSSL=false&amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true&amp;serverTimezone=UTC</dbConnectionString>
+	<DBType>MYSQL</DBType>	
+	
+	<addJsonAnnotations>1</addJsonAnnotations>
+	<!--fileComponentProvider>org.codegen.angular.AngularRestFileProvider</fileComponentProvider-->
+	<modelBaseClass>com.mygym.model.base.JsonModelObject</modelBaseClass>
+	
+	<tables>
+				
+		<table>
+			<name>exercise_type</name>
+			<package>com.mygym.model</package> 
+		</table>
+		<table>
+			<name>exercise_type_link</name>
+			<package>com.mygym.model</package> 
+		</table>
+		
+		<table>
+			<name>body_part_exercise</name>
+			<package>com.mygym.model</package> 
+		</table>
+		
+		<table>
+			<name>exercise_definition</name>
+			<package>com.mygym.model</package> 
+		</table>
+		
+		<table>
+			<name>body_part</name>
+			<package>com.mygym.model</package> 
+		</table>
+	</tables>
+</project>
+

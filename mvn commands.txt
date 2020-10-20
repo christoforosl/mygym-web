@@ -1,0 +1,37 @@
+mvn deploy:deploy-file -Durl=file:///$HOME/GitProjects/marbyl-repo/web/repo 
+	-Dfile=/Users/christoforosl/GitProjects/marbyl-repo/web/target/dependency/DBUpdater-1.1.04.jar 
+	-DgroupId=netu -DartifactId=DBUpdater -Dpackaging=jar -Dversion=1.1.04
+	
+
+mvn deploy:deploy-file -Durl=file:///%USERPROFILE%\GitProjects\marbyl-repo\web\repo -Dfile=%USERPROFILE%/GitProjects/marbyl-repo/web/target/dependency/DBUpdater-1.1.06.jar  -DgroupId=netu -DartifactId=DBUpdater -Dpackaging=jar -Dversion=1.1.06
+
+copy %USERPROFILE%\.m2\repository\netu\netulibs\4.0.68\netulibs-4.0.68.jar  %USERPROFILE%
+
+mvn deploy:deploy-file -Durl=file:///%USERPROFILE%/Documents/BitBucket/marbyl-repo/web/repo -Dfile=%USERPROFILE%\netulibs-4.0.68.jar -DgroupId=netu -DartifactId=netulibs -Dpackaging=jar -Dversion=4.0.68	
+
+mvn deploy:deploy-file -Durl=file:///%USERPROFILE%/Documents/BitBucket/marbyl-repo/web/repo -Dfile=%USERPROFILE%\Documents\BitBucket\marbyl-repo\web\marbyl-parentPom\pom.xml -DgroupId=treegoat -DartifactId=marbylParent -Dpackaging=pom -Dversion=1.0
+mvn deploy:deploy-file -Durl=file:///%USERPROFILE%/Documents/BitBucket/marbyl-repo/web/repo -Dfile=%USERPROFILE%\Documents\BitBucket\marbyl-repo\web\marbyl-model\target\marbyl-model-1.0.jar -DgroupId=treegoat -DartifactId="marbyl-model" -Dpackaging=jar -Dversion=1.0
+
+
+
+mvn deploy:deploy-file -Durl=file:////Users/christoforosl/herocu/marbyl-services-79649/repo -Dfile=~/.m2/repository/netu/netulibs/4.0.68/netulibs-4.0.68.jar -DgroupId=netu -DartifactId=netulibs -Dpackaging=jar -Dversion=4.0.68	:w
+
+
+copy %USERPROFILE%\.m2\repository\netu\netulibs\4.0.75\netulibs-4.0.75.jar  %USERPROFILE%
+mvn deploy:deploy-file -Durl=file:///%USERPROFILE%/Documents/BitBucket/marbyl-repo/web/repo -Dfile=%USERPROFILE%\netulibs-4.0.75.jar -DgroupId=netu -DartifactId=netulibs -Dpackaging=jar -Dversion=4.0.75	
+
+
+cp /Users/christoforosl/GitProjects/PropertyUtils/target/PropertyUtils-1.0.1.jar  $HOME
+mvn deploy:deploy-file \
+	-Durl=file:///$HOME/GitProjects/GenericHerokuServices/repo \
+	-Dfile=$HOME/PropertyUtils-1.0.1.jar \
+	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0
+	
+
+
+ mvn deploy:deploy-file \
+	-Durl=file:///$HOME/GitProjects/GenericHerokuServices/api-services/repo \
+	-Dfile=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
+	-Dsources=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
+	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0.2
+

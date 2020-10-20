@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>netu</groupId>
+  <artifactId>PropertyUtils</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.2-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20201020102137</lastUpdated>
+  </versioning>
+</metadata>
