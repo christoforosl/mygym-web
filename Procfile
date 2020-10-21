@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp iic-services/target/classes:iic-services/target/dependency/* org.iic.web.IICServicesApp
+web: java $JAVA_OPTS -cp mygym-services/target/classes:mygym-services/target/dependency/* org.common.api.web.ApiServicesApp

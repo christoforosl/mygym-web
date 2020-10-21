@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>generic-api-server</groupId>
-	<artifactId>mygym-api-server</artifactId>
+	<artifactId>mygym-services</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0.1</version>
-	<name>mygym-api-server</name>
+	<name>mygym-services</name>
 	
 	<parent>
 		<groupId>mygym</groupId>

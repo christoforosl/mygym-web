@@ -3,8 +3,9 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export DIR
 echo DIR: $DIR
+export PROJECT_CODE=mygym
+export APPNAME=$PROJECT_CODE-services
 
-export APPNAME=iic-services
 echo Heroku appname is: $APPNAME
 
 export COMMIT_MESSAGE=$1
@@ -21,7 +22,7 @@ echo get latest version of code in $DIR
 cd $DIR
 git pull -X theirs
 
-rm -rf $HOME/herocu/$APPNAME/iic-model/  $HOME/herocu/$APPNAME/iic-parentPom/  $HOME/herocu/$APPNAME/iic-services/
+rm -rf $HOME/herocu/$APPNAME/$PROJECT_CODE-model/  $HOME/herocu/$APPNAME/$PROJECT_CODE-parentPom/  $HOME/herocu/$APPNAME/$PROJECT_CODE-services/
 
 # before copy from $DIR, change to heroku dir and pull resolving with theirs
 cd $HOME/herocu/$APPNAME
@@ -48,23 +49,23 @@ pwd
 
 export appdir=repo
 copyDir
-export appdir=iic-services
+export appdir=$PROJECT_CODE-services
 copyDir
-export appdir=iic-model
+export appdir=$PROJECT_CODE-model
 copyDir
 
 echo "change to directory $HOME/herocu/$APPNAME/"
 cd $HOME/herocu/$APPNAME/
 
-echo "now copy everything from iic-admin-web/src. This makes iic-admin-web part of the project"
-if [ -d  $HOME/herocu/$APPNAME/iic-services/src/main/webapp/iic-admin-web ]; then
-	rm -rf $HOME/herocu/$APPNAME/iic-services/src/main/webapp/iic-admin-web
+echo "now copy everything from $PROJECT_CODE-admin-web/src. This makes $PROJECT_CODE-admin-web part of the project"
+if [ -d  $HOME/herocu/$APPNAME/$PROJECT_CODE-services/src/main/webapp/$PROJECT_CODE-admin-web ]; then
+	rm -rf $HOME/herocu/$APPNAME/$PROJECT_CODE-services/src/main/webapp/$PROJECT_CODE-admin-web
 fi
-mkdir $HOME/herocu/$APPNAME/iic-services/src/main/webapp/iic-admin-web
-cp -rf $DIR/iic-admin-web/src/* $HOME/herocu/$APPNAME/iic-services/src/main/webapp/iic-admin-web
+mkdir $HOME/herocu/$APPNAME/$PROJECT_CODE-services/src/main/webapp/$PROJECT_CODE-admin-web
+cp -rf $DIR/$PROJECT_CODE-admin-web/src/* $HOME/herocu/$APPNAME/$PROJECT_CODE-services/src/main/webapp/$PROJECT_CODE-admin-web
 
 #
-# echo "//file produced by herokyDeploy.sh\nvar GLOBALS={};GLOBALS.apiServicesRoot=\"https://$APPNAME.herokuapp.com\";" > $HOME/herocu/$APPNAME/iic-services/src/main/webapp/iic-admin-web/globals.js
+# echo "//file produced by herokyDeploy.sh\nvar GLOBALS={};GLOBALS.apiServicesRoot=\"https://$APPNAME.herokuapp.com\";" > $HOME/herocu/$APPNAME/$PROJECT_CODE-services/src/main/webapp/$PROJECT_CODE-admin-web/globals.js
 #
 
 cp -rf $DIR/Procfile $HOME/herocu/$APPNAME
@@ -74,8 +75,8 @@ cp -rf $DIR/pom.xml $HOME/herocu/$APPNAME
 #rm -rf $HOME/herocu/$APPNAME/repo
 #cp -rf $DIR/repo/ $HOME/herocu/$APPNAME/repo/
 
-rm -rf $HOME/herocu/$APPNAME/iic-services/target
-rm -rf $HOME/herocu/$APPNAME/iic-model/target
+rm -rf $HOME/herocu/$APPNAME/$PROJECT_CODE-services/target
+rm -rf $HOME/herocu/$APPNAME/$PROJECT_CODE-model/target
 find $HOME/herocu/$APPNAME/ -name '*.tmp' -delete
 find $HOME/herocu/$APPNAME/ -name '.DS_Store' -delete
 
