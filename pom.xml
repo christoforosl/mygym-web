@@ -10,7 +10,7 @@
 	
 	<modules>
 	 <module>mygym-model</module>
-	 <module>api-services</module>
+	 <module>mygym-api-server</module>
 	</modules>
 	
 	<repositories>
