@@ -2,6 +2,7 @@ package org.common.api.base;
 
 import com.mygym.model.base.JsonModelObject;
 import com.netu.lib.ApplicationService;
+import com.netu.lib.Encryptor2;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +18,11 @@ import org.reflections.scanners.SubTypesScanner;
  * @author christoforosl
  */
 public class ServicesRegister {
+	
+	public static void main(String ... args) {
+		System.err.println( new Encryptor2().encrypt("jdbc:mysql://drpskrhz840bqf1w:b7s9lu10yaqy7w4a@zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/e6edpymv83gonwa5"));	
+	}
+	
 	
 	private static final Logger logger = Logger.getLogger(ServicesRegister.class.getName());
 	private static final String MODEL_BASE = "ModelBase";

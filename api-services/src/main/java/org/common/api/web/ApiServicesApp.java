@@ -1,5 +1,6 @@
 package org.common.api.web;
 
+import com.netu.lib.Encryptor2;
 import com.netu.lib.db.ConnectionPool;
 import com.netu.lib.db.IConnectionProvider;
 import com.netu.lib.db.JDBCPooledConnProvider;
@@ -76,7 +77,7 @@ public class ApiServicesApp {
 		context.addEventListener(new org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap());
 		context.setWelcomeFiles(new String[]{ "index.html" }); 
 		
-		final String appsConnString = props.getMandatoryProperty("jdbcurl");
+		final String appsConnString = new Encryptor2().decrypt( props.getMandatoryProperty("jdbcurl"));
 		final String appsConnDriver = props.getMandatoryProperty("jdbcurl.driver");
 		
 		JDBCPooledConnProvider.setSystemJdbcDriver(appsConnDriver); 
