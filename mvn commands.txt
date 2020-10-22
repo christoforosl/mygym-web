@@ -35,3 +35,40 @@ mvn deploy:deploy-file \
 	-Dsources=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
 	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0.2
 
+
+ mvn deploy:deploy-file \
+	-Durl=file:///$HOME/GitProjects/GenericHerokuServices/api-services/repo \
+	-Dfile=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
+	-Dsources=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
+	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0.2
+
+
+
+mvn deploy:deploy-file \
+	-Durl=file://.projects/mygym-web/repo \
+	-Dfile=./netulibs-4.0.79.jar \
+	-Dsources=./netulibs-4.0.79-sources.jar \
+	-DgroupId=netu -DartifactId=netulibs -Dpackaging=jar -Dversion=4.0.79
+
+
+rm -rf ~\.m2\repository\netu
+
+export artifactId=DBUpdater
+export version=1.1.10
+
+export artifactId=netulibs
+export version=4.0.79
+
+export artifactId=jsonModelObject
+export version=1.0.0
+
+export artifactId=PropertyUtils
+export version=1.0.2
+
+mvn deploy:deploy-file \
+	-Durl=file:///$USERPROFILE/java/projects/mygym-web/repo \
+	-Dfile=./$artifactId-$version.jar \
+	-Dsources=./$artifactId-$version-sources.jar \
+	-DgroupId=netu -DartifactId=$artifactId -Dpackaging=jar -Dversion=$version
+	
+	

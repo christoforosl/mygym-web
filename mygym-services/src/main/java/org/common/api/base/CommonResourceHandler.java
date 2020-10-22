@@ -1,10 +1,10 @@
 package org.common.api.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mygym.model.base.JsonModelObject;
-import com.netu.lib.ApplicationService;
 
 import com.netu.lib.DBUtils;
+import com.netu.lib.JsonModelObject;
+
 import com.netu.lib.db.ConnectionPool;
 import com.netu.lib.rest.CrudApiResults;
 import com.netu.lib.rest.EnumRestResultStatus;
@@ -15,10 +15,8 @@ import org.common.api.query.QueryCriteria;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -34,11 +32,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
-import org.common.api.web.ApiServicesApp;
-
-
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
 
 /**
  *

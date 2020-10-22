@@ -1,9 +1,9 @@
 package org.common.api.base;
 
-import com.mygym.model.base.JsonModelObject;
 import com.netu.lib.ApplicationService;
 
 import com.netu.lib.DBUtils;
+import com.netu.lib.JsonModelObject;
 import com.netu.lib.Model.ModelObject;
 import com.netu.lib.Model.ModelObjectList;
 import com.netu.lib.Model.annotations.ManagedModelObject;

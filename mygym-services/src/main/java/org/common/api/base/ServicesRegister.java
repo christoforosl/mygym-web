@@ -1,8 +1,9 @@
 package org.common.api.base;
 
-import com.mygym.model.base.JsonModelObject;
+
 import com.netu.lib.ApplicationService;
 import com.netu.lib.Encryptor2;
+import com.netu.lib.JsonModelObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

@@ -25,13 +25,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table body_part_exercise ",
-        date = "Tue Oct 20 21:24:13 EEST 2020"
+        date = "Thu Oct 22 12:40:06 EEST 2020"
     )
 @DefaultMapper(mapperclass=BodyPartExerciseDBMapper.class)
 @ManagedDatabaseTable(		tableName="body_part_exercise" , 
 							modelObjectIdentifyBy=EnumModelObjectIdentifyBy.INTEGER_PRIMARY_KEY	)
 @JsonIgnoreProperties(value = {"stale","loading","children","parents","initialKeyValue","allowIdChange","empty","keyFieldIndex","validators","selfOrRelatedDirty"},ignoreUnknown = true)
-public class BodyPartExerciseModelBase extends com.mygym.model.base.JsonModelObject  {
+public class BodyPartExerciseModelBase extends com.netu.lib.JsonModelObject  {
 	
 	public static final String STR_FLD_BODY_PART_EXERCISE_ID = "BodyPartExerciseId";
 	public static final String STR_FLD_BODY_PART_ID = "BodyPartId";

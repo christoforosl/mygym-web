@@ -8,10 +8,10 @@
     <packaging>jar</packaging>
 	
 	<parent>
-		<groupId>iic</groupId>
-		<artifactId>iic-parent</artifactId>
+		<groupId>mygym</groupId>
+		<artifactId>mygym-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../marbyl-parentPom/pom.xml</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
     <dependencies>
