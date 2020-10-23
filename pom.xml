@@ -12,6 +12,7 @@
         <module>mygym-model</module>
         <module>mygym-services</module>
     </modules>
+    <!-- mvn -s$USERPROFILE/.m2/settings.plain.xml -DskipTests clean dependency:list install -->
     
     <dependencyManagement>
         <dependencies>
