@@ -63,11 +63,11 @@
             <artifactId>jcodec</artifactId>
             <version>0.2.3</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>netu</groupId>
             <artifactId>DBUpdater</artifactId>
             <type>jar</type>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>netu</groupId>
             <artifactId>jsonModelObject</artifactId>
