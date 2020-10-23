@@ -257,12 +257,6 @@
                         
         </dependency>
 		
-        
-        <dependency>
-            <groupId>netu</groupId>
-            <artifactId>DBUpdater</artifactId>
-			
-        </dependency>
         <dependency>
             <groupId>netu</groupId>
             <artifactId>PropertyUtils</artifactId>
