@@ -12,48 +12,11 @@
         <module>mygym-model</module>
         <module>mygym-services</module>
     </modules>
-	
-    <!--    <repositories>
-        other repositories if any
-        <repository>
-            <id>project.local</id>
-            <name>project</name>
-            <url>file://repo</url>
-        </repository>
-    </repositories>-->
-	
-    <repositories>
-        <repository>
-            <id>project.local</id>
-            <name>project</name>
-            <url>${project.baseUri}../repo</url><!-- leave this to point to parent's "repo" dir. For each child project, 
-                    it will cause it to look in the parent dir which is actually the "repo" dir in the SAME DIR as the POM file -->
-        </repository>
-    </repositories>
+    
     <dependencyManagement>
         <dependencies>
 			
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>3.0.1</version>
-                <type>jar</type>
-            </dependency>
-			
-            <dependency>
-                <groupId>netu</groupId>
-                <artifactId>Generator-api</artifactId>
-                <version>1.0.16</version>
-                <type>jar</type>
-            </dependency>
-			
-            <dependency>
-                <groupId>netu</groupId>
-                <artifactId>Generator-Impl</artifactId>
-                <version>4.0.58</version>
-                <type>jar</type>
-            </dependency>
-				
+           			
             <dependency>
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
