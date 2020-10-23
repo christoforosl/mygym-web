@@ -67,8 +67,8 @@ export version=1.0.2
 
 mvn deploy:deploy-file \
 	-Durl=file:///$USERPROFILE/java/projects/mygym-web/repo \
-	-Dfile=./$artifactId-$version.jar \
-	-Dsources=./$artifactId-$version-sources.jar \
+	-Dfile=$USERPROFILE/java/projects/$artifactId-$version.jar \
+	-Dsources=$USERPROFILE/java/projects/$artifactId-$version-sources.jar \
 	-DgroupId=netu -DartifactId=$artifactId -Dpackaging=jar -Dversion=$version
 	
 	
