@@ -45,7 +45,8 @@ public class ApiServicesApp {
 		LOGGER.info(String.format("SERVICES API STARTING, ENVIRONMENT: %s , HEROKU_RELEASE_VERSION:\"%s\"", 
 				System.getenv(KEY_ENVIRONMENT), HEROKU_RELEASE_VERSION));
 		
-		String jettyPort = props.getProperty("jetty.port");
+		final String herokuAssignedPort = System.getenv("PORT"); // t turns our Heroku assigns a random port number to the app at startup, which must be passed on to Jetty like this
+		final String jettyPort =  StringUtils.isBlank( herokuAssignedPort) ? props.getProperty("jetty.port"): herokuAssignedPort;
 		int port =  StringUtils.isBlank( jettyPort )  ? 80 : Integer.valueOf(jettyPort);
 		final Server jettyServer = getJettyServer(port);
 		
