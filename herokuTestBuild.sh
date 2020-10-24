@@ -11,7 +11,9 @@ cd $PROJECT_NAME.testrun
 
 mvn -B -DskipTests clean dependency:list install -s/Users/christoforosl/.m2/settings.plain.xml -Dmaven.repo.local=$HOME/.m2.$PROJECT_NAME.testrun
 
+cd $HOME/GitProjects
 rm -rf $HOME/.m2.$PROJECT_NAME.testrun
+rm -rf $PROJECT_NAME.testrun
 
 
 
