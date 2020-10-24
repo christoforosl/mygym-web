@@ -10,6 +10,7 @@
             </goals>
             <properties>
                 <skipTests>true</skipTests>
+                
             </properties>
         </action>
         <action>
@@ -35,6 +36,19 @@
                 <goal>install</goal>
             </goals>
             <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-Build For Heroku</actionName>
+            <displayName>Build For Heroku</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>dependency:list</goal>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <maven.repo.local>localm2-${artifactId}.testrun</maven.repo.local>
                 <skipTests>true</skipTests>
             </properties>
         </action>

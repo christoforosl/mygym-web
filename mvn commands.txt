@@ -21,26 +21,7 @@ copy %USERPROFILE%\.m2\repository\netu\netulibs\4.0.75\netulibs-4.0.75.jar  %USE
 mvn deploy:deploy-file -Durl=file:///%USERPROFILE%/Documents/BitBucket/marbyl-repo/web/repo -Dfile=%USERPROFILE%\netulibs-4.0.75.jar -DgroupId=netu -DartifactId=netulibs -Dpackaging=jar -Dversion=4.0.75	
 
 
-cp /Users/christoforosl/GitProjects/PropertyUtils/target/PropertyUtils-1.0.1.jar  $HOME
-mvn deploy:deploy-file \
-	-Durl=file:///$HOME/GitProjects/GenericHerokuServices/repo \
-	-Dfile=$HOME/PropertyUtils-1.0.1.jar \
-	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0
-	
-
-
- mvn deploy:deploy-file \
-	-Durl=file:///$HOME/GitProjects/GenericHerokuServices/api-services/repo \
-	-Dfile=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
-	-Dsources=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
-	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0.2
-
-
- mvn deploy:deploy-file \
-	-Durl=file:///$HOME/GitProjects/GenericHerokuServices/api-services/repo \
-	-Dfile=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
-	-Dsources=$HOME/GitProjects/PropertyUtils/target/PropertyUtils-1.0.2-SNAPSHOT.jar \
-	-DgroupId=netu -DartifactId=PropertyUtils -Dpackaging=jar -Dversion=1.0.2
+mvn deploy:deploy-file -Durl=file:///$HOME/GitProjects/mygym-web/repo -Dfile=/Users/christoforosl/GitProjects/mygym-web/jdbc-12.1.0.2.0.jar -DgroupId=com.oracle -DartifactId=jdbc -Dpackaging=jar -Dversion=12.0.0.0	
 
 
 

@@ -16,14 +16,14 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>project.local</id>
             <name>project</name>
-            <url>${project.baseUri}../repo</url><!-- leave this to point to parent's "repo" dir. For each child project, 
-                    it will cause it to look in the parent dir which is actually the "repo" dir in the SAME DIR as the POM file -->
+            <url>${project.baseUri}../repo</url> leave this to point to parent's "repo" dir. For each child project, 
+                    it will cause it to look in the parent dir which is actually the "repo" dir in the SAME DIR as the POM file 
         </repository>
-    </repositories>
+    </repositories>-->
     
     <build>
         <plugins>
@@ -257,6 +257,12 @@
                         
         </dependency>
 		
+        
+        <dependency>
+            <groupId>netu</groupId>
+            <artifactId>DBUpdater</artifactId>
+			
+        </dependency>
         <dependency>
             <groupId>netu</groupId>
             <artifactId>PropertyUtils</artifactId>

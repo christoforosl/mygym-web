@@ -12,14 +12,14 @@
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>project.local</id>
             <name>project</name>
-            <url>${project.baseUri}../repo</url><!-- leave this to point to parent's "repo" dir. For each child project, 
-                    it will cause it to look in the parent dir which is actually the "repo" dir in the SAME DIR as the POM file -->
+            <url>${project.baseUri}../repo</url> leave this to point to parent's "repo" dir. For each child project, 
+                    it will cause it to look in the parent dir which is actually the "repo" dir in the SAME DIR as the POM file 
         </repository>
-    </repositories>
+    </repositories>-->
     <dependencies>
 		
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
@@ -63,11 +63,11 @@
             <artifactId>jcodec</artifactId>
             <version>0.2.3</version>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>netu</groupId>
             <artifactId>DBUpdater</artifactId>
             <type>jar</type>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>netu</groupId>
             <artifactId>jsonModelObject</artifactId>
