@@ -1,2 +1,2 @@
-drop table if exists iic_qrcode;
+drop table if exists mygym-web_qrcode;
 /

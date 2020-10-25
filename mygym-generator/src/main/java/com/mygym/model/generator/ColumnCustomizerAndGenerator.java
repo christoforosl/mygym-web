@@ -16,7 +16,7 @@ import org.codegen.iface.ITable;
 import org.json.JSONObject;
 
 /**
- * org.iic.model.ColumnCustomizerAndGenerator
+ * com.mygym.model.generator.ColumnCustomizerAndGenerator
  * @author christoforosl
  */
 public class ColumnCustomizerAndGenerator implements IColumnCustomizer {

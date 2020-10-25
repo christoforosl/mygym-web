@@ -45,7 +45,7 @@ public class ApiServicesApp {
 		LOGGER.info(String.format("SERVICES API STARTING, ENVIRONMENT: %s , HEROKU_RELEASE_VERSION:\"%s\"", 
 				System.getenv(KEY_ENVIRONMENT), HEROKU_RELEASE_VERSION));
 		
-		final String herokuAssignedPort = System.getenv("PORT"); // t turns our Heroku assigns a random port number to the app at startup, which must be passed on to Jetty like this
+		final String herokuAssignedPort = System.getenv("PORT"); // it turns our Heroku assigns a random port number to the app at startup, which must be passed on to Jetty like this
 		final String jettyPort =  StringUtils.isBlank( herokuAssignedPort) ? props.getProperty("jetty.port"): herokuAssignedPort;
 		int port =  StringUtils.isBlank( jettyPort )  ? 80 : Integer.valueOf(jettyPort);
 		final Server jettyServer = getJettyServer(port);
@@ -56,9 +56,9 @@ public class ApiServicesApp {
 	static Server getJettyServer (int port) throws Exception {
 		
 		final String current = new java.io.File(".").getCanonicalPath();
-		LOGGER.log(Level.INFO, "Current dir:{0}", current);
+		LOGGER.log(Level.INFO, "-------- Current dir:{0}", current);
 		String currentDir = System.getProperty("user.dir");
-		LOGGER.log(Level.INFO, "Current dir using System:{0}", currentDir);
+		LOGGER.log(Level.INFO, "---------- Current dir using System:{0}", currentDir);
 
 		if (LOGGER.isLoggable(Level.FINE)) {
 			
@@ -70,7 +70,7 @@ public class ApiServicesApp {
 			}
 		}
 		final String resourceBase =  new File( props.getMandatoryProperty("resource.base") ).getAbsolutePath();
-		
+		LOGGER.log(Level.INFO, "---------- resourceBase:{0}", resourceBase);
 		final ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 		context.setContextPath("/");
 		context.setResourceBase( resourceBase );
