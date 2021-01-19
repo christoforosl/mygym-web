@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table body_part ",
-        date = "Thu Oct 22 12:40:06 EEST 2020"
+        date = "Tue Jan 19 17:57:29 EET 2021"
     )
 @DefaultMapper(mapperclass=BodyPartDBMapper.class)
 @ManagedDatabaseTable(		tableName="body_part" , 
@@ -37,6 +37,7 @@ public class BodyPartModelBase extends com.netu.lib.JsonModelObject  {
 	public static final String STR_FLD_BODY_PART_NAME = "BodyPartNAME";
 
 	/** Association constants **/
+	public static final String ASSOC_BODYPART = "BodyPart";
 
 
 	public static final int FLD_BODY_PART_ID = 1;
@@ -48,6 +49,20 @@ public class BodyPartModelBase extends com.netu.lib.JsonModelObject  {
 	private Integer bodyPartId;
 	@MOColumn(fieldName=STR_FLD_BODY_PART_NAME,fieldType=String.class,dbFieldName="body_part_NAME")
 	private String bodyPartNAME;
+
+	// ****** CHILD/PARENT variables ********************
+	@com.fasterxml.jackson.annotation.JsonManagedReference
+	private BodyPart bodyPart=null; // initialize PARENT to null.
+
+	// ****** END CHILD/PARENT variables ********************
+
+	@Override
+	public java.util.HashMap<String, Object> getParents() {
+		java.util.HashMap<String, Object> ret = new java.util.HashMap<String, Object>();
+
+			ret.put(ASSOC_BODYPART,bodyPart);
+		return ret;
+	}
 
     
    /**
@@ -114,6 +129,42 @@ public int getBodyPartIdInt() {
 		return this.getBodyPartId();
 	}
 
+	// ASSOCIATIONS GETTERS/SETTERS BELOW!
+
+	public boolean bodyPartLoaded() {
+	//returns true if associated object or object list has been loaded.
+		return this.bodyPart != null;
+	}
+	public BodyPart createBodyPart() { // association create prnt
+		BodyPart var = new BodyPart();
+		this.setBodyPart(var);
+		return var;
+
+	}
+
+	public void setBodyPart(BodyPart bodyPart) {
+		this.bodyPart = bodyPart;
+		if(bodyPart != null){
+			this.setBodyPartId(bodyPart.getBodyPartId()); //@@check parent->child!!
+		}
+		this.addChild(this.bodyPart, "bodyPart"); // add object to the children collection
+	}
+
+	public BodyPart getBodyPart() {
+		//lazy load!!!!
+		if(this.bodyPart==null) {
+			if (this.getBodyPartId()==null) {
+				return null;
+			} else {
+				this.setBodyPart(
+				BodyPartDBMapper.get("body_part_id=?",
+							new Object[]{this.getBodyPartId()} ));//cardinality 1, parent lazy load.
+			}
+		}
+		return this.bodyPart;
+	}
+
+
 	
 	@Override
 	public void setAttribute(final String fieldKey, final Object val){
@@ -127,6 +178,8 @@ public int getBodyPartIdInt() {
 			}
 		} else if ( fieldKey.equals(STR_FLD_BODY_PART_NAME)){
 			this.setBodyPartNAME((String)val);
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPART)){
+			this.setBodyPart((BodyPart)val);
 
 		}
 	}
@@ -140,6 +193,9 @@ public int getBodyPartIdInt() {
 	@Override
 	public ModelObject createRelatedModelObject(final String relationName) {
 		ModelObject ret = null;
+		if(ASSOC_BODYPART.equalsIgnoreCase(relationName)) {
+			ret = this.createBodyPart();
+		}
 
 		return ret;
 	}
@@ -152,6 +208,9 @@ public int getBodyPartIdInt() {
 	@Override
 	public Class<? extends ModelObject> getRelatedModelObjectDataType(final String relationName) {
 
+		if(ASSOC_BODYPART.equalsIgnoreCase(relationName)) {
+			return BodyPart.class;
+		}
 		return null;
 
 
@@ -187,6 +246,8 @@ public int getBodyPartIdInt() {
 			return this.getBodyPartId();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_BODY_PART_NAME)){
 			return this.getBodyPartNAME();
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPART)){
+			return this.getBodyPart();
 
 		} else {
 			return null;
@@ -220,6 +281,12 @@ public int getBodyPartIdInt() {
 		return BodyPartModelBase.FLD_BODY_PART_ID;
 	}
 
+	@Override
+	public void parentIdChanged(ModelObject parentMo){
+		if(parentMo instanceof BodyPart){
+			this.setBodyPartId(((BodyPart)parentMo).getBodyPartId());
+		}
+	}
 
 	
 	public void copy(final BodyPartModelBase newMo) {

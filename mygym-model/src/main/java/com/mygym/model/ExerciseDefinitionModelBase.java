@@ -2,7 +2,7 @@ package com.mygym.model;
 import com.netu.lib.Model.ModelObject;
 import com.netu.lib.Model.OracleModelObject;
 
-
+import com.netu.lib.Model.ModelObjectList;
 import com.netu.lib.NetuUtils;
 import com.netu.lib.EqualsUtil;
 import com.netu.lib.Model.annotations.KeyField;
@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_definition ",
-        date = "Thu Oct 22 12:40:06 EEST 2020"
+        date = "Tue Jan 19 18:01:34 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseDefinitionDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_definition" , 
@@ -38,6 +38,8 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	public static final String STR_FLD_VIDEO_URL = "VideoUrl";
 
 	/** Association constants **/
+	public static final String ASSOC_BODYPARTSAFFECTED = "BodyPartsAffected";
+	public static final String ASSOC_EXERCISETYPES = "ExerciseTypes";
 
 
 	public static final int FLD_EXERCISE_DEFINITION_ID = 1;
@@ -52,6 +54,21 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	private String name;
 	@MOColumn(fieldName=STR_FLD_VIDEO_URL,fieldType=String.class,dbFieldName="VIDEO_URL")
 	private String videoUrl;
+
+	// ****** CHILD/PARENT variables ********************
+	private ModelObjectList<BodyPartExercise> bodyPartsAffected=null; // initialize CHILD to null.
+	private ModelObjectList<ExerciseTypeLink> exerciseTypes=null; // initialize CHILD to null.
+
+	// ****** END CHILD/PARENT variables ********************
+
+	@Override
+	public java.util.HashMap<String, Object> getChildren() {
+		java.util.HashMap<String, Object> ret = new java.util.HashMap<String, Object>();
+
+			ret.put(ASSOC_BODYPARTSAFFECTED,bodyPartsAffected);
+			ret.put(ASSOC_EXERCISETYPES,exerciseTypes);
+		return ret;
+	}
 
     
    /**
@@ -135,6 +152,84 @@ public int getExerciseDefinitionIdInt() {
 		return this.getExerciseDefinitionId();
 	}
 
+	// ASSOCIATIONS GETTERS/SETTERS BELOW!
+
+	public boolean bodyPartsAffectedLoaded() {
+	//returns true if associated object or object list has been loaded.
+		return this.bodyPartsAffected != null;
+	}
+	public BodyPartExercise createBodyPartsAffected() { // association create child
+		BodyPartExercise var = new BodyPartExercise();
+		this.addBodyPartsAffected(var);
+		return var;
+
+	}
+
+	public void setBodyPartsAffected(ModelObjectList<BodyPartExercise> _bodyPartsAffected) {
+		this.bodyPartsAffected = _bodyPartsAffected;
+		this.addChild(this.bodyPartsAffected, "bodyPartsAffected"); // add object to the children collection
+	}
+
+	public ModelObjectList<BodyPartExercise> getBodyPartsAffected() {
+		//lazy load!!!!
+		if(this.bodyPartsAffected==null) {
+			if (this.isNew()) {
+				this.setBodyPartsAffected(new ModelObjectList<BodyPartExercise>());
+			} else {
+				this.setBodyPartsAffected( 
+					 this.getExerciseDefinitionId()==null ? null :
+					BodyPartExerciseDBMapper.getAll( "exercise_id=?", this.getExerciseDefinitionId() ));//cardinality * lazy load v3
+			}
+		}
+		return this.bodyPartsAffected;
+	}
+
+	public void addBodyPartsAffected(BodyPartExercise _var) {
+		_var.setExerciseId(this.getExerciseDefinitionId());// check@ getterChild @
+		this.getBodyPartsAffected().add(_var);
+	}
+	public void removeBodyPartsAffected(BodyPartExercise _var) {
+		this.getBodyPartsAffected().remove(_var);
+	}
+
+	public boolean exerciseTypesLoaded() {
+	//returns true if associated object or object list has been loaded.
+		return this.exerciseTypes != null;
+	}
+	public ExerciseTypeLink createExerciseTypes() { // association create child
+		ExerciseTypeLink var = new ExerciseTypeLink();
+		this.addExerciseTypes(var);
+		return var;
+
+	}
+
+	public void setExerciseTypes(ModelObjectList<ExerciseTypeLink> _exerciseTypes) {
+		this.exerciseTypes = _exerciseTypes;
+		this.addChild(this.exerciseTypes, "exerciseTypes"); // add object to the children collection
+	}
+
+	public ModelObjectList<ExerciseTypeLink> getExerciseTypes() {
+		//lazy load!!!!
+		if(this.exerciseTypes==null) {
+			if (this.isNew()) {
+				this.setExerciseTypes(new ModelObjectList<ExerciseTypeLink>());
+			} else {
+				this.setExerciseTypes( 
+					 this.getExerciseDefinitionId()==null ? null :
+					ExerciseTypeLinkDBMapper.getAll( "exercise_id=?", this.getExerciseDefinitionId() ));//cardinality * lazy load v3
+			}
+		}
+		return this.exerciseTypes;
+	}
+
+	public void addExerciseTypes(ExerciseTypeLink _var) {
+		_var.setExerciseId(this.getExerciseDefinitionId());// check@ getterChild @
+		this.getExerciseTypes().add(_var);
+	}
+	public void removeExerciseTypes(ExerciseTypeLink _var) {
+		this.getExerciseTypes().remove(_var);
+	}
+
 	
 	@Override
 	public void setAttribute(final String fieldKey, final Object val){
@@ -150,6 +245,10 @@ public int getExerciseDefinitionIdInt() {
 			this.setName((String)val);
 		} else if ( fieldKey.equals(STR_FLD_VIDEO_URL)){
 			this.setVideoUrl((String)val);
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
+			this.setBodyPartsAffected((ModelObjectList<BodyPartExercise>)val);
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
+			this.setExerciseTypes((ModelObjectList<ExerciseTypeLink>)val);
 
 		}
 	}
@@ -163,6 +262,12 @@ public int getExerciseDefinitionIdInt() {
 	@Override
 	public ModelObject createRelatedModelObject(final String relationName) {
 		ModelObject ret = null;
+		if(ASSOC_BODYPARTSAFFECTED.equalsIgnoreCase(relationName)) {
+			ret = this.createBodyPartsAffected();
+		}
+		if(ASSOC_EXERCISETYPES.equalsIgnoreCase(relationName)) {
+			ret = this.createExerciseTypes();
+		}
 
 		return ret;
 	}
@@ -175,6 +280,12 @@ public int getExerciseDefinitionIdInt() {
 	@Override
 	public Class<? extends ModelObject> getRelatedModelObjectDataType(final String relationName) {
 
+		if(ASSOC_BODYPARTSAFFECTED.equalsIgnoreCase(relationName)) {
+			return BodyPartExercise.class;
+		}
+		if(ASSOC_EXERCISETYPES.equalsIgnoreCase(relationName)) {
+			return ExerciseTypeLink.class;
+		}
 		return null;
 
 
@@ -215,6 +326,10 @@ public int getExerciseDefinitionIdInt() {
 			return this.getName();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_VIDEO_URL)){
 			return this.getVideoUrl();
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
+			return this.getBodyPartsAffected();
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
+			return this.getExerciseTypes();
 
 		} else {
 			return null;

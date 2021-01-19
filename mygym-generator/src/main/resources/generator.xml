@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="windows-1253" ?>
 <project  xmlns="ClassGenerator3" 
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-          xsi:schemaLocation="ClassGenerator3 http://www.netu.com.cy/wp-content/themes/netu/Devs/xsds/ClassGenerator3.xsd">
+          xsi:schemaLocation="ClassGenerator3 https://ssc.netu.com.cy/!/#Issrv2/view/head/NetuLibrary-LongPk2015/trunk/Generator-Impl/src/main/resources/com/netu/codeGen/ClassGenerator3.xsd">
 
     <GeneratorVersion>3</GeneratorVersion>
     <projectName>mygym services</projectName>
     <outputDir>../mygym-model/src/main/java</outputDir>
-  
     <junitProjectOutputDir>../mygym-model/src/test/java</junitProjectOutputDir>
     <junitPackage>com.mygym.model</junitPackage>
     <junitClassName>TestMyGymModel</junitClassName>
@@ -25,25 +24,66 @@
             <name>exercise_type</name>
             <package>com.mygym.model</package> 
         </table>
+		
         <table>
             <name>exercise_type_link</name>
             <package>com.mygym.model</package> 
         </table>
-		
+
         <table>
             <name>body_part_exercise</name>
             <package>com.mygym.model</package> 
+			<association>
+				<associationName>BodyPart</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>body_part_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>body_part_id</parentTableLinkFieldName>
+				<datatype>BodyPart</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
         </table>
-		
+
         <table>
             <name>exercise_definition</name>
             <package>com.mygym.model</package> 
-        </table>
 		
+			<association>
+				<associationName>BodyPartsAffected</associationName>
+				<cardinality>*</cardinality>
+				<relationType>CHILD</relationType>
+				<childTableLinkFieldName>exercise_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>EXERCISE_DEFINITION_ID</parentTableLinkFieldName>
+				<datatype>BodyPartExercise</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
+			
+			<association>
+				<associationName>ExerciseTypes</associationName>
+				<cardinality>*</cardinality>
+				<relationType>CHILD</relationType>
+				<childTableLinkFieldName>exercise_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>EXERCISE_DEFINITION_ID</parentTableLinkFieldName>
+				<datatype>ExerciseTypeLink</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
+			
+        </table>
+
         <table>
             <name>body_part</name>
             <package>com.mygym.model</package> 
+			<association>
+				<associationName>BodyPart</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>body_part_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>body_part_id</parentTableLinkFieldName>
+				<datatype>BodyPart</datatype>
+				<fieldAnnotations>@com.fasterxml.jackson.annotation.JsonManagedReference</fieldAnnotations>
+			</association>
         </table>
+
     </tables>
 </project>
 
