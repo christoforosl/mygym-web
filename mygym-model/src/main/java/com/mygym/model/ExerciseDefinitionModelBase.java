@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_definition ",
-        date = "Wed Jan 20 11:11:45 EET 2021"
+        date = "Wed Jan 20 11:24:56 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseDefinitionDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_definition" , 
@@ -37,6 +37,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	public static final String STR_FLD_NAME = "Name";
 	public static final String STR_FLD_VIDEO_URL = "VideoUrl";
 	public static final String STR_FLD_DESCRIPTION = "Description";
+	public static final String STR_FLD_EQUIPMENT_ID = "EquipmentId";
 
 	/** Association constants **/
 	public static final String ASSOC_BODYPARTSAFFECTED = "BodyPartsAffected";
@@ -48,6 +49,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	public static final int FLD_NAME = 2;
 	public static final int FLD_VIDEO_URL = 3;
 	public static final int FLD_DESCRIPTION = 4;
+	public static final int FLD_EQUIPMENT_ID = 5;
 
 
 	@KeyField
@@ -59,11 +61,13 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	private String videoUrl;
 	@MOColumn(fieldName=STR_FLD_DESCRIPTION,fieldType=String.class,dbFieldName="description")
 	private String description;
+	@MOColumn(fieldName=STR_FLD_EQUIPMENT_ID,fieldType=Integer.class,dbFieldName="equipment_id")
+	private Integer equipmentId;
 
 	// ****** CHILD/PARENT variables ********************
 	private ModelObjectList<BodyPartExercise> bodyPartsAffected=null; // initialize CHILD to null.
 	private ModelObjectList<ExerciseTypeLink> exerciseTypes=null; // initialize CHILD to null.
-	private ModelObjectList<EquipmentExercise> equipmentNeeded=null; // initialize CHILD to null.
+	private Equipment equipmentNeeded=null; // initialize PARENT to null.
 
 	// ****** END CHILD/PARENT variables ********************
 
@@ -73,6 +77,13 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 
 			ret.put(ASSOC_BODYPARTSAFFECTED,bodyPartsAffected);
 			ret.put(ASSOC_EXERCISETYPES,exerciseTypes);
+		return ret;
+	}
+
+	@Override
+	public java.util.HashMap<String, Object> getParents() {
+		java.util.HashMap<String, Object> ret = new java.util.HashMap<String, Object>();
+
 			ret.put(ASSOC_EQUIPMENTNEEDED,equipmentNeeded);
 		return ret;
 	}
@@ -162,6 +173,31 @@ public int getExerciseDefinitionIdInt() {
 	@JsonProperty
 	public String getDescription() {
 		return this.description;
+	}
+
+	@JsonProperty
+	public void setEquipmentId(final Integer equipmentId) {
+		if (valueChanged(this.equipmentId,equipmentId)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_EQUIPMENT_ID,ONE);
+			this.equipmentId = equipmentId;
+		}
+	}
+
+	@JsonIgnore
+	public void setEquipmentId(final String equipmentId) {
+		this.setEquipmentId(NetuUtils.parseInt(equipmentId));
+
+	}
+	@JsonProperty
+	public Integer getEquipmentId() {
+		return this.equipmentId;
+	}
+
+	@JsonIgnore
+public int getEquipmentIdInt() {
+		if (this.getEquipmentId()==null){return 0;}
+		return this.getEquipmentId();
 	}
 
 	@Override
@@ -258,39 +294,35 @@ public int getExerciseDefinitionIdInt() {
 	//returns true if associated object or object list has been loaded.
 		return this.equipmentNeeded != null;
 	}
-	public EquipmentExercise createEquipmentNeeded() { // association create child
-		EquipmentExercise var = new EquipmentExercise();
-		this.addEquipmentNeeded(var);
+	public Equipment createEquipmentNeeded() { // association create prnt
+		Equipment var = new Equipment();
+		this.setEquipmentNeeded(var);
 		return var;
 
 	}
 
-	public void setEquipmentNeeded(ModelObjectList<EquipmentExercise> _equipmentNeeded) {
-		this.equipmentNeeded = _equipmentNeeded;
+	public void setEquipmentNeeded(Equipment equipmentNeeded) {
+		this.equipmentNeeded = equipmentNeeded;
+		if(equipmentNeeded != null){
+			this.setEquipmentId(equipmentNeeded.getEquipmentId()); //@@check parent->child!!
+		}
 		this.addChild(this.equipmentNeeded, "equipmentNeeded"); // add object to the children collection
 	}
 
-	public ModelObjectList<EquipmentExercise> getEquipmentNeeded() {
+	public Equipment getEquipmentNeeded() {
 		//lazy load!!!!
 		if(this.equipmentNeeded==null) {
-			if (this.isNew()) {
-				this.setEquipmentNeeded(new ModelObjectList<EquipmentExercise>());
+			if (this.getEquipmentId()==null) {
+				return null;
 			} else {
-				this.setEquipmentNeeded( 
-					 this.getExerciseDefinitionId()==null ? null :
-					EquipmentExerciseDBMapper.getAll( "exercise_id=?", this.getExerciseDefinitionId() ));//cardinality * lazy load v3
+				this.setEquipmentNeeded(
+				EquipmentDBMapper.get("Equipment_id=?",
+							new Object[]{this.getEquipmentId()} ));//cardinality 1, parent lazy load.
 			}
 		}
 		return this.equipmentNeeded;
 	}
 
-	public void addEquipmentNeeded(EquipmentExercise _var) {
-		_var.setExerciseId(this.getExerciseDefinitionId());// check@ getterChild @
-		this.getEquipmentNeeded().add(_var);
-	}
-	public void removeEquipmentNeeded(EquipmentExercise _var) {
-		this.getEquipmentNeeded().remove(_var);
-	}
 
 	
 	@Override
@@ -309,12 +341,18 @@ public int getExerciseDefinitionIdInt() {
 			this.setVideoUrl((String)val);
 		} else if ( fieldKey.equals(STR_FLD_DESCRIPTION)){
 			this.setDescription((String)val);
+		} else if ( fieldKey.equals(STR_FLD_EQUIPMENT_ID)){
+			if(val instanceof String ) {
+				this.setEquipmentId((String)val);
+			} else {
+				this.setEquipmentId((Integer)val);
+			}
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
 			this.setBodyPartsAffected((ModelObjectList<BodyPartExercise>)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
 			this.setExerciseTypes((ModelObjectList<ExerciseTypeLink>)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EQUIPMENTNEEDED)){
-			this.setEquipmentNeeded((ModelObjectList<EquipmentExercise>)val);
+			this.setEquipmentNeeded((Equipment)val);
 
 		}
 	}
@@ -356,7 +394,7 @@ public int getExerciseDefinitionIdInt() {
 			return ExerciseTypeLink.class;
 		}
 		if(ASSOC_EQUIPMENTNEEDED.equalsIgnoreCase(relationName)) {
-			return EquipmentExercise.class;
+			return Equipment.class;
 		}
 		return null;
 
@@ -384,6 +422,13 @@ public int getExerciseDefinitionIdInt() {
 		case FLD_DESCRIPTION:
 			this.setDescription((String)val);
 			break;
+		case FLD_EQUIPMENT_ID:
+			if(val instanceof String ) {
+				this.setEquipmentId((String)val);
+			} else {
+				this.setEquipmentId((Integer)val);
+			}
+			break;
 
 			default:
 	           
@@ -403,6 +448,8 @@ public int getExerciseDefinitionIdInt() {
 			return this.getVideoUrl();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_DESCRIPTION)){
 			return this.getDescription();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EQUIPMENT_ID)){
+			return this.getEquipmentId();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
 			return this.getBodyPartsAffected();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
@@ -429,6 +476,8 @@ public int getExerciseDefinitionIdInt() {
 			return this.getVideoUrl();
 		case FLD_DESCRIPTION:
 			return this.getDescription();
+		case FLD_EQUIPMENT_ID:
+			return this.getEquipmentId();
 
 			default:
 				return null;
@@ -446,6 +495,12 @@ public int getExerciseDefinitionIdInt() {
 		return ExerciseDefinitionModelBase.FLD_EXERCISE_DEFINITION_ID;
 	}
 
+	@Override
+	public void parentIdChanged(ModelObject parentMo){
+		if(parentMo instanceof Equipment){
+			this.setEquipmentId(((Equipment)parentMo).getEquipmentId());
+		}
+	}
 
 	
 	public void copy(final ExerciseDefinitionModelBase newMo) {
@@ -453,6 +508,7 @@ public int getExerciseDefinitionIdInt() {
 newMo.setName(this.getName());
 			newMo.setVideoUrl(this.getVideoUrl());
 			newMo.setDescription(this.getDescription());
+			newMo.setEquipmentId(this.getEquipmentId());
 
 		
 	}
@@ -461,7 +517,8 @@ newMo.setName(this.getName());
     public boolean isEmpty() {
 		return (this.getName() == null  && 
 				this.getVideoUrl() == null  && 
-				this.getDescription() == null );
+				this.getDescription() == null  && 
+				this.getEquipmentId() == null );
  
     }
 	
@@ -488,6 +545,7 @@ newMo.setName(this.getName());
 		return  EqualsUtil.areEqual(this.name, that.name)
 			 && EqualsUtil.areEqual(this.videoUrl, that.videoUrl)
 			 && EqualsUtil.areEqual(this.description, that.description)
+			 && EqualsUtil.areEqual(this.equipmentId, that.equipmentId)
 			;
 
 	  }
@@ -498,6 +556,7 @@ newMo.setName(this.getName());
 	hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
 	hash = 11 * hash + (this.videoUrl != null ? this.videoUrl.hashCode() : 0);
 	hash = 11 * hash + (this.description != null ? this.description.hashCode() : 0);
+	hash = 11 * hash + (this.equipmentId != null ? this.equipmentId.hashCode() : 0);
 
 		return hash;
 	}

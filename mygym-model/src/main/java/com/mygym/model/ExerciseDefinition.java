@@ -19,5 +19,11 @@ public class ExerciseDefinition extends ExerciseDefinitionModelBase  {
 				.map( x -> x.getExerciseType()!=null ? x.getExerciseType().getExerciseType(): null)
 				.collect(Collectors.toList());
 	}
+	
+	public String getEquipment() {
+		return this.getEquipmentNeeded()!=null ? this.getEquipmentNeeded().getEquipmentName(): null;
+	}
+	
+	
   
 }
