@@ -24,7 +24,24 @@
             <name>exercise_type</name>
             <package>com.mygym.model</package> 
         </table>
-		
+		<table>
+            <name>equipment</name>
+            <package>com.mygym.model</package>
+			 
+        </table>
+		<table>
+            <name>equipment_exercise</name>
+            <package>com.mygym.model</package> 
+			<association>
+				<associationName>Equipment</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>equipment_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>equipment_id</parentTableLinkFieldName>
+				<datatype>Equipment</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
+        </table>
         <table>
             <name>exercise_type_link</name>
             <package>com.mygym.model</package> 
@@ -74,6 +91,16 @@
 				<childTableLinkFieldName>exercise_id</childTableLinkFieldName>
 				<parentTableLinkFieldName>EXERCISE_DEFINITION_ID</parentTableLinkFieldName>
 				<datatype>ExerciseTypeLink</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
+			
+			<association>
+				<associationName>EquipmentNeeded</associationName>
+				<cardinality>*</cardinality>
+				<relationType>CHILD</relationType>
+				<childTableLinkFieldName>exercise_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>EXERCISE_DEFINITION_ID</parentTableLinkFieldName>
+				<datatype>EquipmentExercise</datatype>
 				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
 			</association>
 			

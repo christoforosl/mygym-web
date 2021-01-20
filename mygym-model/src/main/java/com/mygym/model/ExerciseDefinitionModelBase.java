@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_definition ",
-        date = "Wed Jan 20 10:00:52 EET 2021"
+        date = "Wed Jan 20 11:11:45 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseDefinitionDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_definition" , 
@@ -41,6 +41,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	/** Association constants **/
 	public static final String ASSOC_BODYPARTSAFFECTED = "BodyPartsAffected";
 	public static final String ASSOC_EXERCISETYPES = "ExerciseTypes";
+	public static final String ASSOC_EQUIPMENTNEEDED = "EquipmentNeeded";
 
 
 	public static final int FLD_EXERCISE_DEFINITION_ID = 1;
@@ -50,7 +51,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 
 
 	@KeyField
-	@MOColumn(fieldName=STR_FLD_EXERCISE_DEFINITION_ID,fieldType=Integer.class,dbFieldName="EXERCISE_DEFINITION_ID")
+	@MOColumn(fieldName=STR_FLD_EXERCISE_DEFINITION_ID,fieldType=Integer.class,dbFieldName="exercise_definition_id")
 	private Integer exerciseDefinitionId;
 	@MOColumn(fieldName=STR_FLD_NAME,fieldType=String.class,dbFieldName="name")
 	private String name;
@@ -62,6 +63,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	// ****** CHILD/PARENT variables ********************
 	private ModelObjectList<BodyPartExercise> bodyPartsAffected=null; // initialize CHILD to null.
 	private ModelObjectList<ExerciseTypeLink> exerciseTypes=null; // initialize CHILD to null.
+	private ModelObjectList<EquipmentExercise> equipmentNeeded=null; // initialize CHILD to null.
 
 	// ****** END CHILD/PARENT variables ********************
 
@@ -71,6 +73,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 
 			ret.put(ASSOC_BODYPARTSAFFECTED,bodyPartsAffected);
 			ret.put(ASSOC_EXERCISETYPES,exerciseTypes);
+			ret.put(ASSOC_EQUIPMENTNEEDED,equipmentNeeded);
 		return ret;
 	}
 
@@ -251,6 +254,44 @@ public int getExerciseDefinitionIdInt() {
 		this.getExerciseTypes().remove(_var);
 	}
 
+	public boolean equipmentNeededLoaded() {
+	//returns true if associated object or object list has been loaded.
+		return this.equipmentNeeded != null;
+	}
+	public EquipmentExercise createEquipmentNeeded() { // association create child
+		EquipmentExercise var = new EquipmentExercise();
+		this.addEquipmentNeeded(var);
+		return var;
+
+	}
+
+	public void setEquipmentNeeded(ModelObjectList<EquipmentExercise> _equipmentNeeded) {
+		this.equipmentNeeded = _equipmentNeeded;
+		this.addChild(this.equipmentNeeded, "equipmentNeeded"); // add object to the children collection
+	}
+
+	public ModelObjectList<EquipmentExercise> getEquipmentNeeded() {
+		//lazy load!!!!
+		if(this.equipmentNeeded==null) {
+			if (this.isNew()) {
+				this.setEquipmentNeeded(new ModelObjectList<EquipmentExercise>());
+			} else {
+				this.setEquipmentNeeded( 
+					 this.getExerciseDefinitionId()==null ? null :
+					EquipmentExerciseDBMapper.getAll( "exercise_id=?", this.getExerciseDefinitionId() ));//cardinality * lazy load v3
+			}
+		}
+		return this.equipmentNeeded;
+	}
+
+	public void addEquipmentNeeded(EquipmentExercise _var) {
+		_var.setExerciseId(this.getExerciseDefinitionId());// check@ getterChild @
+		this.getEquipmentNeeded().add(_var);
+	}
+	public void removeEquipmentNeeded(EquipmentExercise _var) {
+		this.getEquipmentNeeded().remove(_var);
+	}
+
 	
 	@Override
 	public void setAttribute(final String fieldKey, final Object val){
@@ -272,6 +313,8 @@ public int getExerciseDefinitionIdInt() {
 			this.setBodyPartsAffected((ModelObjectList<BodyPartExercise>)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
 			this.setExerciseTypes((ModelObjectList<ExerciseTypeLink>)val);
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EQUIPMENTNEEDED)){
+			this.setEquipmentNeeded((ModelObjectList<EquipmentExercise>)val);
 
 		}
 	}
@@ -291,6 +334,9 @@ public int getExerciseDefinitionIdInt() {
 		if(ASSOC_EXERCISETYPES.equalsIgnoreCase(relationName)) {
 			ret = this.createExerciseTypes();
 		}
+		if(ASSOC_EQUIPMENTNEEDED.equalsIgnoreCase(relationName)) {
+			ret = this.createEquipmentNeeded();
+		}
 
 		return ret;
 	}
@@ -308,6 +354,9 @@ public int getExerciseDefinitionIdInt() {
 		}
 		if(ASSOC_EXERCISETYPES.equalsIgnoreCase(relationName)) {
 			return ExerciseTypeLink.class;
+		}
+		if(ASSOC_EQUIPMENTNEEDED.equalsIgnoreCase(relationName)) {
+			return EquipmentExercise.class;
 		}
 		return null;
 
@@ -358,6 +407,8 @@ public int getExerciseDefinitionIdInt() {
 			return this.getBodyPartsAffected();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
 			return this.getExerciseTypes();
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EQUIPMENTNEEDED)){
+			return this.getEquipmentNeeded();
 
 		} else {
 			return null;
