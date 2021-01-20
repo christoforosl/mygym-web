@@ -25,19 +25,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_definition ",
-        date = "Wed Jan 20 11:24:56 EET 2021"
+        date = "Wed Jan 20 12:07:47 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseDefinitionDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_definition" , 
 							modelObjectIdentifyBy=EnumModelObjectIdentifyBy.INTEGER_PRIMARY_KEY	)
 @JsonIgnoreProperties(value = {"stale","loading","children","parents","initialKeyValue","allowIdChange","empty","keyFieldIndex","validators","selfOrRelatedDirty"},ignoreUnknown = true)
-public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
+public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject implements com.netu.lib.Model.IAuditable  {
 	
 	public static final String STR_FLD_EXERCISE_DEFINITION_ID = "ExerciseDefinitionId";
 	public static final String STR_FLD_NAME = "Name";
 	public static final String STR_FLD_VIDEO_URL = "VideoUrl";
 	public static final String STR_FLD_DESCRIPTION = "Description";
 	public static final String STR_FLD_EQUIPMENT_ID = "EquipmentId";
+	public static final String STR_FLD_CREATE_DATE = "CreateDate";
+	public static final String STR_FLD_UPDATE_DATE = "UpdateDate";
+	public static final String STR_FLD_CREATE_USER = "CreateUser";
+	public static final String STR_FLD_UPDATE_USER = "UpdateUser";
 
 	/** Association constants **/
 	public static final String ASSOC_BODYPARTSAFFECTED = "BodyPartsAffected";
@@ -50,6 +54,10 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	public static final int FLD_VIDEO_URL = 3;
 	public static final int FLD_DESCRIPTION = 4;
 	public static final int FLD_EQUIPMENT_ID = 5;
+	public static final int FLD_CREATE_DATE = 6;
+	public static final int FLD_UPDATE_DATE = 7;
+	public static final int FLD_CREATE_USER = 8;
+	public static final int FLD_UPDATE_USER = 9;
 
 
 	@KeyField
@@ -63,6 +71,14 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	private String description;
 	@MOColumn(fieldName=STR_FLD_EQUIPMENT_ID,fieldType=Integer.class,dbFieldName="equipment_id")
 	private Integer equipmentId;
+	@MOColumn(fieldName=STR_FLD_CREATE_DATE,fieldType=java.util.Date.class,dbFieldName="create_date")
+	private java.util.Date createDate;
+	@MOColumn(fieldName=STR_FLD_UPDATE_DATE,fieldType=java.util.Date.class,dbFieldName="update_date")
+	private java.util.Date updateDate;
+	@MOColumn(fieldName=STR_FLD_CREATE_USER,fieldType=String.class,dbFieldName="create_user")
+	private String createUser;
+	@MOColumn(fieldName=STR_FLD_UPDATE_USER,fieldType=String.class,dbFieldName="update_user")
+	private String updateUser;
 
 	// ****** CHILD/PARENT variables ********************
 	private ModelObjectList<BodyPartExercise> bodyPartsAffected=null; // initialize CHILD to null.
@@ -198,6 +214,86 @@ public int getExerciseDefinitionIdInt() {
 public int getEquipmentIdInt() {
 		if (this.getEquipmentId()==null){return 0;}
 		return this.getEquipmentId();
+	}
+
+	@Override
+	@JsonProperty
+	public void setCreateDate(final java.util.Date createDate) {
+		if (valueChanged(this.createDate,createDate)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_CREATE_DATE,ONE);
+			this.createDate = createDate;
+		}
+	}
+
+	@JsonIgnore
+	public void setCreateDate(final String createDate) {
+		this.setCreateDate(NetuUtils.parseDateTime(createDate));
+
+	}
+	@Override
+	@JsonProperty
+	public java.util.Date getCreateDate() {
+		return this.createDate;
+	}
+
+	@Override
+	@JsonProperty
+	public void setUpdateDate(final java.util.Date updateDate) {
+		if (valueChanged(this.updateDate,updateDate)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_UPDATE_DATE,ONE);
+			this.updateDate = updateDate;
+		}
+	}
+
+	@JsonIgnore
+	public void setUpdateDate(final String updateDate) {
+		this.setUpdateDate(NetuUtils.parseDateTime(updateDate));
+
+	}
+	@Override
+	@JsonProperty
+	public java.util.Date getUpdateDate() {
+		return this.updateDate;
+	}
+
+	@Override
+	@JsonProperty
+	public void setCreateUser(final String createUser) {
+		if (createUser!=null && createUser.length()>50){
+			throw new IllegalArgumentException("Too Large Value for field->CreateUser.  max length:50");
+		}
+		if (valueChanged(this.createUser,createUser)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_CREATE_USER,ONE);
+			this.createUser = createUser;
+		}
+	}
+
+	@Override
+	@JsonProperty
+	public String getCreateUser() {
+		return this.createUser;
+	}
+
+	@Override
+	@JsonProperty
+	public void setUpdateUser(final String updateUser) {
+		if (updateUser!=null && updateUser.length()>50){
+			throw new IllegalArgumentException("Too Large Value for field->UpdateUser.  max length:50");
+		}
+		if (valueChanged(this.updateUser,updateUser)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_UPDATE_USER,ONE);
+			this.updateUser = updateUser;
+		}
+	}
+
+	@Override
+	@JsonProperty
+	public String getUpdateUser() {
+		return this.updateUser;
 	}
 
 	@Override
@@ -347,6 +443,22 @@ public int getEquipmentIdInt() {
 			} else {
 				this.setEquipmentId((Integer)val);
 			}
+		} else if ( fieldKey.equals(STR_FLD_CREATE_DATE)){
+			if(val instanceof String ) {
+				this.setCreateDate((String)val);
+			} else {
+				this.setCreateDate((java.util.Date)val);
+			}
+		} else if ( fieldKey.equals(STR_FLD_UPDATE_DATE)){
+			if(val instanceof String ) {
+				this.setUpdateDate((String)val);
+			} else {
+				this.setUpdateDate((java.util.Date)val);
+			}
+		} else if ( fieldKey.equals(STR_FLD_CREATE_USER)){
+			this.setCreateUser((String)val);
+		} else if ( fieldKey.equals(STR_FLD_UPDATE_USER)){
+			this.setUpdateUser((String)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
 			this.setBodyPartsAffected((ModelObjectList<BodyPartExercise>)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
@@ -429,6 +541,26 @@ public int getEquipmentIdInt() {
 				this.setEquipmentId((Integer)val);
 			}
 			break;
+		case FLD_CREATE_DATE:
+			if(val instanceof String ) {
+				this.setCreateDate((String)val);
+			} else {
+				this.setCreateDate((java.util.Date)val);
+			}
+			break;
+		case FLD_UPDATE_DATE:
+			if(val instanceof String ) {
+				this.setUpdateDate((String)val);
+			} else {
+				this.setUpdateDate((java.util.Date)val);
+			}
+			break;
+		case FLD_CREATE_USER:
+			this.setCreateUser((String)val);
+			break;
+		case FLD_UPDATE_USER:
+			this.setUpdateUser((String)val);
+			break;
 
 			default:
 	           
@@ -450,6 +582,14 @@ public int getEquipmentIdInt() {
 			return this.getDescription();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EQUIPMENT_ID)){
 			return this.getEquipmentId();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_CREATE_DATE)){
+			return this.getCreateDate();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_UPDATE_DATE)){
+			return this.getUpdateDate();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_CREATE_USER)){
+			return this.getCreateUser();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_UPDATE_USER)){
+			return this.getUpdateUser();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
 			return this.getBodyPartsAffected();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
@@ -478,6 +618,14 @@ public int getEquipmentIdInt() {
 			return this.getDescription();
 		case FLD_EQUIPMENT_ID:
 			return this.getEquipmentId();
+		case FLD_CREATE_DATE:
+			return this.getCreateDate();
+		case FLD_UPDATE_DATE:
+			return this.getUpdateDate();
+		case FLD_CREATE_USER:
+			return this.getCreateUser();
+		case FLD_UPDATE_USER:
+			return this.getUpdateUser();
 
 			default:
 				return null;
@@ -509,6 +657,10 @@ newMo.setName(this.getName());
 			newMo.setVideoUrl(this.getVideoUrl());
 			newMo.setDescription(this.getDescription());
 			newMo.setEquipmentId(this.getEquipmentId());
+			newMo.setCreateDate(this.getCreateDate());
+			newMo.setUpdateDate(this.getUpdateDate());
+			newMo.setCreateUser(this.getCreateUser());
+			newMo.setUpdateUser(this.getUpdateUser());
 
 		
 	}
@@ -518,7 +670,11 @@ newMo.setName(this.getName());
 		return (this.getName() == null  && 
 				this.getVideoUrl() == null  && 
 				this.getDescription() == null  && 
-				this.getEquipmentId() == null );
+				this.getEquipmentId() == null  && 
+				this.getCreateDate() == null  && 
+				this.getUpdateDate() == null  && 
+				this.getCreateUser() == null  && 
+				this.getUpdateUser() == null );
  
     }
 	
@@ -546,6 +702,10 @@ newMo.setName(this.getName());
 			 && EqualsUtil.areEqual(this.videoUrl, that.videoUrl)
 			 && EqualsUtil.areEqual(this.description, that.description)
 			 && EqualsUtil.areEqual(this.equipmentId, that.equipmentId)
+			 && EqualsUtil.areEqual(this.createDate, that.createDate)
+			 && EqualsUtil.areEqual(this.updateDate, that.updateDate)
+			 && EqualsUtil.areEqual(this.createUser, that.createUser)
+			 && EqualsUtil.areEqual(this.updateUser, that.updateUser)
 			;
 
 	  }
@@ -557,6 +717,10 @@ newMo.setName(this.getName());
 	hash = 11 * hash + (this.videoUrl != null ? this.videoUrl.hashCode() : 0);
 	hash = 11 * hash + (this.description != null ? this.description.hashCode() : 0);
 	hash = 11 * hash + (this.equipmentId != null ? this.equipmentId.hashCode() : 0);
+	hash = 11 * hash + (this.createDate != null ? this.createDate.hashCode() : 0);
+	hash = 11 * hash + (this.updateDate != null ? this.updateDate.hashCode() : 0);
+	hash = 11 * hash + (this.createUser != null ? this.createUser.hashCode() : 0);
+	hash = 11 * hash + (this.updateUser != null ? this.updateUser.hashCode() : 0);
 
 		return hash;
 	}

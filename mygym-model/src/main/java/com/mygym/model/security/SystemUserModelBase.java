@@ -1,4 +1,4 @@
-package com.mygym.model;
+package com.mygym.model.security;
 import com.netu.lib.Model.ModelObject;
 import com.netu.lib.Model.OracleModelObject;
 
@@ -24,43 +24,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
-        comments = "Model Object mapped to table exercise_type_link ",
+        comments = "Model Object mapped to table system_user ",
         date = "Wed Jan 20 12:07:47 EET 2021"
     )
-@DefaultMapper(mapperclass=ExerciseTypeLinkDBMapper.class)
-@ManagedDatabaseTable(		tableName="exercise_type_link" , 
+@DefaultMapper(mapperclass=SystemUserDBMapper.class)
+@ManagedDatabaseTable(		tableName="system_user" , 
 							modelObjectIdentifyBy=EnumModelObjectIdentifyBy.INTEGER_PRIMARY_KEY	)
 @JsonIgnoreProperties(value = {"stale","loading","children","parents","initialKeyValue","allowIdChange","empty","keyFieldIndex","validators","selfOrRelatedDirty"},ignoreUnknown = true)
-public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject implements com.netu.lib.Model.IAuditable  {
+public class SystemUserModelBase extends com.netu.lib.JsonModelObject implements com.netu.lib.Model.IAuditable  {
 	
-	public static final String STR_FLD_EXERCISE_TYPE_LINK_ID = "ExerciseTypeLinkId";
-	public static final String STR_FLD_EXERCISE_TYPE_ID = "ExerciseTypeId";
-	public static final String STR_FLD_EXERCISE_ID = "ExerciseId";
+	public static final String STR_FLD_SYSTEM_USER_ID = "SystemUserId";
+	public static final String STR_FLD_EMAIL = "Email";
+	public static final String STR_FLD_PASSWORD = "Password";
+	public static final String STR_FLD_IS_ACTIVE = "IsActive";
 	public static final String STR_FLD_CREATE_DATE = "CreateDate";
 	public static final String STR_FLD_UPDATE_DATE = "UpdateDate";
 	public static final String STR_FLD_CREATE_USER = "CreateUser";
 	public static final String STR_FLD_UPDATE_USER = "UpdateUser";
 
 	/** Association constants **/
-	public static final String ASSOC_EXERCISETYPE = "ExerciseType";
 
 
-	public static final int FLD_EXERCISE_TYPE_LINK_ID = 1;
-	public static final int FLD_EXERCISE_TYPE_ID = 2;
-	public static final int FLD_EXERCISE_ID = 3;
-	public static final int FLD_CREATE_DATE = 4;
-	public static final int FLD_UPDATE_DATE = 5;
-	public static final int FLD_CREATE_USER = 6;
-	public static final int FLD_UPDATE_USER = 7;
+	public static final int FLD_SYSTEM_USER_ID = 1;
+	public static final int FLD_EMAIL = 2;
+	public static final int FLD_PASSWORD = 3;
+	public static final int FLD_IS_ACTIVE = 4;
+	public static final int FLD_CREATE_DATE = 5;
+	public static final int FLD_UPDATE_DATE = 6;
+	public static final int FLD_CREATE_USER = 7;
+	public static final int FLD_UPDATE_USER = 8;
 
 
 	@KeyField
-	@MOColumn(fieldName=STR_FLD_EXERCISE_TYPE_LINK_ID,fieldType=Integer.class,dbFieldName="exercise_type_link_id")
-	private Integer exerciseTypeLinkId;
-	@MOColumn(fieldName=STR_FLD_EXERCISE_TYPE_ID,fieldType=Integer.class,dbFieldName="exercise_type_id")
-	private Integer exerciseTypeId;
-	@MOColumn(fieldName=STR_FLD_EXERCISE_ID,fieldType=Integer.class,dbFieldName="exercise_id")
-	private Integer exerciseId;
+	@MOColumn(fieldName=STR_FLD_SYSTEM_USER_ID,fieldType=Integer.class,dbFieldName="system_user_id")
+	private Integer systemUserId;
+	@MOColumn(fieldName=STR_FLD_EMAIL,fieldType=String.class,dbFieldName="email")
+	private String email;
+	@MOColumn(fieldName=STR_FLD_PASSWORD,fieldType=String.class,dbFieldName="password")
+	private String password;
+	@MOColumn(fieldName=STR_FLD_IS_ACTIVE,fieldType=Integer.class,dbFieldName="is_active")
+	private Integer isActive;
 	@MOColumn(fieldName=STR_FLD_CREATE_DATE,fieldType=java.util.Date.class,dbFieldName="create_date")
 	private java.util.Date createDate;
 	@MOColumn(fieldName=STR_FLD_UPDATE_DATE,fieldType=java.util.Date.class,dbFieldName="update_date")
@@ -70,103 +73,99 @@ public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject impl
 	@MOColumn(fieldName=STR_FLD_UPDATE_USER,fieldType=String.class,dbFieldName="update_user")
 	private String updateUser;
 
-	// ****** CHILD/PARENT variables ********************
-	private ExerciseType exerciseType=null; // initialize PARENT to null.
-
-	// ****** END CHILD/PARENT variables ********************
-
-	@Override
-	public java.util.HashMap<String, Object> getParents() {
-		java.util.HashMap<String, Object> ret = new java.util.HashMap<String, Object>();
-
-			ret.put(ASSOC_EXERCISETYPE,exerciseType);
-		return ret;
-	}
-
     
    /**
-    * ExerciseTypeLinkModelBase Constructor
+    * SystemUserModelBase Constructor
     */
-	public ExerciseTypeLinkModelBase() {
+	public SystemUserModelBase() {
         super();
 		this.setId( com.netu.lib.Model.ModelObjectKeyGen.nextId() );
 
 	}
 
 	@JsonProperty
-	public void setExerciseTypeLinkId(final Integer exerciseTypeLinkId) {
-		if (valueChanged(this.exerciseTypeLinkId,exerciseTypeLinkId)){
+	public void setSystemUserId(final Integer systemUserId) {
+		if (valueChanged(this.systemUserId,systemUserId)){
 			this.setDirty(true);
-			this.changedFields.put(STR_FLD_EXERCISE_TYPE_LINK_ID,ONE);
-			this.exerciseTypeLinkId = exerciseTypeLinkId;
+			this.changedFields.put(STR_FLD_SYSTEM_USER_ID,ONE);
+			this.systemUserId = systemUserId;
 		}
 	}
 
 	@JsonIgnore
-	public void setExerciseTypeLinkId(final String exerciseTypeLinkId) {
-		if (org.apache.commons.lang.StringUtils.isBlank(exerciseTypeLinkId)){return;} //we do not want to allow null primary key
-		this.setExerciseTypeLinkId(NetuUtils.parseInt(exerciseTypeLinkId));
+	public void setSystemUserId(final String systemUserId) {
+		if (org.apache.commons.lang.StringUtils.isBlank(systemUserId)){return;} //we do not want to allow null primary key
+		this.setSystemUserId(NetuUtils.parseInt(systemUserId));
 
 	}
 	@JsonProperty
-	public Integer getExerciseTypeLinkId() {
-		return this.exerciseTypeLinkId;
+	public Integer getSystemUserId() {
+		return this.systemUserId;
 	}
 
 	@JsonIgnore
-public int getExerciseTypeLinkIdInt() {
-		if (this.getExerciseTypeLinkId()==null){return 0;}
-		return this.getExerciseTypeLinkId();
+public int getSystemUserIdInt() {
+		if (this.getSystemUserId()==null){return 0;}
+		return this.getSystemUserId();
 	}
 
 	@JsonProperty
-	public void setExerciseTypeId(final Integer exerciseTypeId) {
-		if (valueChanged(this.exerciseTypeId,exerciseTypeId)){
+	public void setEmail(final String email) {
+		if (email!=null && email.length()>50){
+			throw new IllegalArgumentException("Too Large Value for field->Email.  max length:50");
+		}
+		if (valueChanged(this.email,email)){
 			this.setDirty(true);
-			this.changedFields.put(STR_FLD_EXERCISE_TYPE_ID,ONE);
-			this.exerciseTypeId = exerciseTypeId;
+			this.changedFields.put(STR_FLD_EMAIL,ONE);
+			this.email = email;
+		}
+	}
+
+	@JsonProperty
+	public String getEmail() {
+		return this.email;
+	}
+
+	@JsonProperty
+	public void setPassword(final String password) {
+		if (password!=null && password.length()>50){
+			throw new IllegalArgumentException("Too Large Value for field->Password.  max length:50");
+		}
+		if (valueChanged(this.password,password)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_PASSWORD,ONE);
+			this.password = password;
+		}
+	}
+
+	@JsonProperty
+	public String getPassword() {
+		return this.password;
+	}
+
+	@JsonProperty
+	public void setIsActive(final Integer isActive) {
+		if (valueChanged(this.isActive,isActive)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_IS_ACTIVE,ONE);
+			this.isActive = isActive;
 		}
 	}
 
 	@JsonIgnore
-	public void setExerciseTypeId(final String exerciseTypeId) {
-		this.setExerciseTypeId(NetuUtils.parseInt(exerciseTypeId));
+	public void setIsActive(final String isActive) {
+		this.setIsActive(NetuUtils.parseInt(isActive));
 
 	}
 	@JsonProperty
-	public Integer getExerciseTypeId() {
-		return this.exerciseTypeId;
+	public Integer getIsActive() {
+		return this.isActive;
 	}
 
 	@JsonIgnore
-public int getExerciseTypeIdInt() {
-		if (this.getExerciseTypeId()==null){return 0;}
-		return this.getExerciseTypeId();
-	}
-
-	@JsonProperty
-	public void setExerciseId(final Integer exerciseId) {
-		if (valueChanged(this.exerciseId,exerciseId)){
-			this.setDirty(true);
-			this.changedFields.put(STR_FLD_EXERCISE_ID,ONE);
-			this.exerciseId = exerciseId;
-		}
-	}
-
-	@JsonIgnore
-	public void setExerciseId(final String exerciseId) {
-		this.setExerciseId(NetuUtils.parseInt(exerciseId));
-
-	}
-	@JsonProperty
-	public Integer getExerciseId() {
-		return this.exerciseId;
-	}
-
-	@JsonIgnore
-public int getExerciseIdInt() {
-		if (this.getExerciseId()==null){return 0;}
-		return this.getExerciseId();
+public int getIsActiveInt() {
+		if (this.getIsActive()==null){return 0;}
+		return this.getIsActive();
 	}
 
 	@Override
@@ -252,73 +251,35 @@ public int getExerciseIdInt() {
 	@Override
 	@JsonIgnore
 	public final void setId(final Object val) {
-		this.setExerciseTypeLinkId(((Long)val).intValue());
+		this.setSystemUserId(((Long)val).intValue());
 		this.broadcastIdChange(); //also broadcast id changed to children objects
 	}
 	@Override
 	@JsonProperty
 	public Object getId() {
-		return this.getExerciseTypeLinkId();
+		return this.getSystemUserId();
 	}
-
-	// ASSOCIATIONS GETTERS/SETTERS BELOW!
-
-	public boolean exerciseTypeLoaded() {
-	//returns true if associated object or object list has been loaded.
-		return this.exerciseType != null;
-	}
-	public ExerciseType createExerciseType() { // association create prnt
-		ExerciseType var = new ExerciseType();
-		this.setExerciseType(var);
-		return var;
-
-	}
-
-	public void setExerciseType(ExerciseType exerciseType) {
-		this.exerciseType = exerciseType;
-		if(exerciseType != null){
-			this.setExerciseTypeId(exerciseType.getExerciseTypeId()); //@@check parent->child!!
-		}
-		this.addChild(this.exerciseType, "exerciseType"); // add object to the children collection
-	}
-
-	public ExerciseType getExerciseType() {
-		//lazy load!!!!
-		if(this.exerciseType==null) {
-			if (this.getExerciseTypeId()==null) {
-				return null;
-			} else {
-				this.setExerciseType(
-				ExerciseTypeDBMapper.get("exercise_type_id=?",
-							new Object[]{this.getExerciseTypeId()} ));//cardinality 1, parent lazy load.
-			}
-		}
-		return this.exerciseType;
-	}
-
 
 	
 	@Override
 	public void setAttribute(final String fieldKey, final Object val){
 		if (fieldKey==null) {
 			
-		} else if ( fieldKey.equals(STR_FLD_EXERCISE_TYPE_LINK_ID)){
+		} else if ( fieldKey.equals(STR_FLD_SYSTEM_USER_ID)){
 			if(val instanceof String ) {
-				this.setExerciseTypeLinkId((String)val);
+				this.setSystemUserId((String)val);
 			} else {
-				this.setExerciseTypeLinkId((Integer)val);
+				this.setSystemUserId((Integer)val);
 			}
-		} else if ( fieldKey.equals(STR_FLD_EXERCISE_TYPE_ID)){
+		} else if ( fieldKey.equals(STR_FLD_EMAIL)){
+			this.setEmail((String)val);
+		} else if ( fieldKey.equals(STR_FLD_PASSWORD)){
+			this.setPassword((String)val);
+		} else if ( fieldKey.equals(STR_FLD_IS_ACTIVE)){
 			if(val instanceof String ) {
-				this.setExerciseTypeId((String)val);
+				this.setIsActive((String)val);
 			} else {
-				this.setExerciseTypeId((Integer)val);
-			}
-		} else if ( fieldKey.equals(STR_FLD_EXERCISE_ID)){
-			if(val instanceof String ) {
-				this.setExerciseId((String)val);
-			} else {
-				this.setExerciseId((Integer)val);
+				this.setIsActive((Integer)val);
 			}
 		} else if ( fieldKey.equals(STR_FLD_CREATE_DATE)){
 			if(val instanceof String ) {
@@ -336,8 +297,6 @@ public int getExerciseIdInt() {
 			this.setCreateUser((String)val);
 		} else if ( fieldKey.equals(STR_FLD_UPDATE_USER)){
 			this.setUpdateUser((String)val);
-		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPE)){
-			this.setExerciseType((ExerciseType)val);
 
 		}
 	}
@@ -351,9 +310,6 @@ public int getExerciseIdInt() {
 	@Override
 	public ModelObject createRelatedModelObject(final String relationName) {
 		ModelObject ret = null;
-		if(ASSOC_EXERCISETYPE.equalsIgnoreCase(relationName)) {
-			ret = this.createExerciseType();
-		}
 
 		return ret;
 	}
@@ -366,9 +322,6 @@ public int getExerciseIdInt() {
 	@Override
 	public Class<? extends ModelObject> getRelatedModelObjectDataType(final String relationName) {
 
-		if(ASSOC_EXERCISETYPE.equalsIgnoreCase(relationName)) {
-			return ExerciseType.class;
-		}
 		return null;
 
 
@@ -379,25 +332,24 @@ public int getExerciseIdInt() {
 	public void setAttribute(final int fieldKey, final Object val){
 	
 	    switch (fieldKey) {
-		case FLD_EXERCISE_TYPE_LINK_ID:
+		case FLD_SYSTEM_USER_ID:
 			if(val instanceof String ) {
-				this.setExerciseTypeLinkId((String)val);
+				this.setSystemUserId((String)val);
 			} else {
-				this.setExerciseTypeLinkId((Integer)val);
+				this.setSystemUserId((Integer)val);
 			}
 			break;
-		case FLD_EXERCISE_TYPE_ID:
-			if(val instanceof String ) {
-				this.setExerciseTypeId((String)val);
-			} else {
-				this.setExerciseTypeId((Integer)val);
-			}
+		case FLD_EMAIL:
+			this.setEmail((String)val);
 			break;
-		case FLD_EXERCISE_ID:
+		case FLD_PASSWORD:
+			this.setPassword((String)val);
+			break;
+		case FLD_IS_ACTIVE:
 			if(val instanceof String ) {
-				this.setExerciseId((String)val);
+				this.setIsActive((String)val);
 			} else {
-				this.setExerciseId((Integer)val);
+				this.setIsActive((Integer)val);
 			}
 			break;
 		case FLD_CREATE_DATE:
@@ -431,12 +383,14 @@ public int getExerciseIdInt() {
 		if (fieldKey==null) {
 			return null;
 
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_TYPE_LINK_ID)){
-			return this.getExerciseTypeLinkId();
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_TYPE_ID)){
-			return this.getExerciseTypeId();
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_ID)){
-			return this.getExerciseId();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_SYSTEM_USER_ID)){
+			return this.getSystemUserId();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EMAIL)){
+			return this.getEmail();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_PASSWORD)){
+			return this.getPassword();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_IS_ACTIVE)){
+			return this.getIsActive();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_CREATE_DATE)){
 			return this.getCreateDate();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_UPDATE_DATE)){
@@ -445,8 +399,6 @@ public int getExerciseIdInt() {
 			return this.getCreateUser();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_UPDATE_USER)){
 			return this.getUpdateUser();
-		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPE)){
-			return this.getExerciseType();
 
 		} else {
 			return null;
@@ -459,12 +411,14 @@ public int getExerciseIdInt() {
 		
 		switch (fieldKey) {
             
-		case FLD_EXERCISE_TYPE_LINK_ID:
-			return this.getExerciseTypeLinkId();
-		case FLD_EXERCISE_TYPE_ID:
-			return this.getExerciseTypeId();
-		case FLD_EXERCISE_ID:
-			return this.getExerciseId();
+		case FLD_SYSTEM_USER_ID:
+			return this.getSystemUserId();
+		case FLD_EMAIL:
+			return this.getEmail();
+		case FLD_PASSWORD:
+			return this.getPassword();
+		case FLD_IS_ACTIVE:
+			return this.getIsActive();
 		case FLD_CREATE_DATE:
 			return this.getCreateDate();
 		case FLD_UPDATE_DATE:
@@ -487,21 +441,16 @@ public int getExerciseIdInt() {
 	 */
 	 @Override
 	public int getKeyFieldIndex() {
-		return ExerciseTypeLinkModelBase.FLD_EXERCISE_TYPE_LINK_ID;
+		return SystemUserModelBase.FLD_SYSTEM_USER_ID;
 	}
 
-	@Override
-	public void parentIdChanged(ModelObject parentMo){
-		if(parentMo instanceof ExerciseType){
-			this.setExerciseTypeId(((ExerciseType)parentMo).getExerciseTypeId());
-		}
-	}
 
 	
-	public void copy(final ExerciseTypeLinkModelBase newMo) {
+	public void copy(final SystemUserModelBase newMo) {
 		
-newMo.setExerciseTypeId(this.getExerciseTypeId());
-			newMo.setExerciseId(this.getExerciseId());
+newMo.setEmail(this.getEmail());
+			newMo.setPassword(this.getPassword());
+			newMo.setIsActive(this.getIsActive());
 			newMo.setCreateDate(this.getCreateDate());
 			newMo.setUpdateDate(this.getUpdateDate());
 			newMo.setCreateUser(this.getCreateUser());
@@ -512,8 +461,9 @@ newMo.setExerciseTypeId(this.getExerciseTypeId());
 	
    @Override
     public boolean isEmpty() {
-		return (this.getExerciseTypeId() == null  && 
-				this.getExerciseId() == null  && 
+		return (this.getEmail() == null  && 
+				this.getPassword() == null  && 
+				this.getIsActive() == null  && 
 				this.getCreateDate() == null  && 
 				this.getUpdateDate() == null  && 
 				this.getCreateUser() == null  && 
@@ -531,18 +481,19 @@ newMo.setExerciseTypeId(this.getExerciseTypeId());
 		//2. it renders an explict check for "that == null" redundant, since
 		//it does the check for null already - "null instanceof [type]" always
 		//returns false. (See Effective Java by Joshua Bloch.)
-		if (  !(aThat instanceof ExerciseTypeLink)  && !(aThat instanceof ExerciseTypeLinkModelBase) ) {
+		if (  !(aThat instanceof SystemUser)  && !(aThat instanceof SystemUserModelBase) ) {
 			return false;
 		}
 		//Alternative to the above line :
 		//if ( aThat == null || aThat.getClass() != this.getClass() ) return false;
 
 		//cast to native object is now safe
-		ExerciseTypeLinkModelBase that = (ExerciseTypeLinkModelBase)aThat;
+		SystemUserModelBase that = (SystemUserModelBase)aThat;
 		
 		// below we do a field-by-field evaluation, including array lists
-		return  EqualsUtil.areEqual(this.exerciseTypeId, that.exerciseTypeId)
-			 && EqualsUtil.areEqual(this.exerciseId, that.exerciseId)
+		return  EqualsUtil.areEqual(this.email, that.email)
+			 && EqualsUtil.areEqual(this.password, that.password)
+			 && EqualsUtil.areEqual(this.isActive, that.isActive)
 			 && EqualsUtil.areEqual(this.createDate, that.createDate)
 			 && EqualsUtil.areEqual(this.updateDate, that.updateDate)
 			 && EqualsUtil.areEqual(this.createUser, that.createUser)
@@ -554,8 +505,9 @@ newMo.setExerciseTypeId(this.getExerciseTypeId());
 	@Override
 	public int hashCode() {
 		int hash = 5;
-	hash = 11 * hash + (this.exerciseTypeId != null ? this.exerciseTypeId.hashCode() : 0);
-	hash = 11 * hash + (this.exerciseId != null ? this.exerciseId.hashCode() : 0);
+	hash = 11 * hash + (this.email != null ? this.email.hashCode() : 0);
+	hash = 11 * hash + (this.password != null ? this.password.hashCode() : 0);
+	hash = 11 * hash + (this.isActive != null ? this.isActive.hashCode() : 0);
 	hash = 11 * hash + (this.createDate != null ? this.createDate.hashCode() : 0);
 	hash = 11 * hash + (this.updateDate != null ? this.updateDate.hashCode() : 0);
 	hash = 11 * hash + (this.createUser != null ? this.createUser.hashCode() : 0);

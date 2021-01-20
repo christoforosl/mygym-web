@@ -1,4 +1,4 @@
-package com.mygym.model;
+package com.mygym.model.workout;
 import com.netu.lib.Model.ModelObject;
 import com.netu.lib.Model.OracleModelObject;
 
@@ -24,30 +24,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
-        comments = "Model Object mapped to table exercise_type_link ",
+        comments = "Model Object mapped to table workout_definition ",
         date = "Wed Jan 20 12:07:47 EET 2021"
     )
-@DefaultMapper(mapperclass=ExerciseTypeLinkDBMapper.class)
-@ManagedDatabaseTable(		tableName="exercise_type_link" , 
+@DefaultMapper(mapperclass=WorkoutDefinitionDBMapper.class)
+@ManagedDatabaseTable(		tableName="workout_definition" , 
 							modelObjectIdentifyBy=EnumModelObjectIdentifyBy.INTEGER_PRIMARY_KEY	)
 @JsonIgnoreProperties(value = {"stale","loading","children","parents","initialKeyValue","allowIdChange","empty","keyFieldIndex","validators","selfOrRelatedDirty"},ignoreUnknown = true)
-public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject implements com.netu.lib.Model.IAuditable  {
+public class WorkoutDefinitionModelBase extends com.netu.lib.JsonModelObject implements com.netu.lib.Model.IAuditable  {
 	
-	public static final String STR_FLD_EXERCISE_TYPE_LINK_ID = "ExerciseTypeLinkId";
-	public static final String STR_FLD_EXERCISE_TYPE_ID = "ExerciseTypeId";
-	public static final String STR_FLD_EXERCISE_ID = "ExerciseId";
+	public static final String STR_FLD_WORKOUT_DEFINITION_ID = "WorkoutDefinitionId";
+	public static final String STR_FLD_NAME = "Name";
+	public static final String STR_FLD_DESCRIPTION = "Description";
 	public static final String STR_FLD_CREATE_DATE = "CreateDate";
 	public static final String STR_FLD_UPDATE_DATE = "UpdateDate";
 	public static final String STR_FLD_CREATE_USER = "CreateUser";
 	public static final String STR_FLD_UPDATE_USER = "UpdateUser";
 
 	/** Association constants **/
-	public static final String ASSOC_EXERCISETYPE = "ExerciseType";
 
 
-	public static final int FLD_EXERCISE_TYPE_LINK_ID = 1;
-	public static final int FLD_EXERCISE_TYPE_ID = 2;
-	public static final int FLD_EXERCISE_ID = 3;
+	public static final int FLD_WORKOUT_DEFINITION_ID = 1;
+	public static final int FLD_NAME = 2;
+	public static final int FLD_DESCRIPTION = 3;
 	public static final int FLD_CREATE_DATE = 4;
 	public static final int FLD_UPDATE_DATE = 5;
 	public static final int FLD_CREATE_USER = 6;
@@ -55,12 +54,12 @@ public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject impl
 
 
 	@KeyField
-	@MOColumn(fieldName=STR_FLD_EXERCISE_TYPE_LINK_ID,fieldType=Integer.class,dbFieldName="exercise_type_link_id")
-	private Integer exerciseTypeLinkId;
-	@MOColumn(fieldName=STR_FLD_EXERCISE_TYPE_ID,fieldType=Integer.class,dbFieldName="exercise_type_id")
-	private Integer exerciseTypeId;
-	@MOColumn(fieldName=STR_FLD_EXERCISE_ID,fieldType=Integer.class,dbFieldName="exercise_id")
-	private Integer exerciseId;
+	@MOColumn(fieldName=STR_FLD_WORKOUT_DEFINITION_ID,fieldType=Integer.class,dbFieldName="WORKOUT_DEFINITION_ID")
+	private Integer workoutDefinitionId;
+	@MOColumn(fieldName=STR_FLD_NAME,fieldType=String.class,dbFieldName="name")
+	private String name;
+	@MOColumn(fieldName=STR_FLD_DESCRIPTION,fieldType=String.class,dbFieldName="description")
+	private String description;
 	@MOColumn(fieldName=STR_FLD_CREATE_DATE,fieldType=java.util.Date.class,dbFieldName="create_date")
 	private java.util.Date createDate;
 	@MOColumn(fieldName=STR_FLD_UPDATE_DATE,fieldType=java.util.Date.class,dbFieldName="update_date")
@@ -70,103 +69,74 @@ public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject impl
 	@MOColumn(fieldName=STR_FLD_UPDATE_USER,fieldType=String.class,dbFieldName="update_user")
 	private String updateUser;
 
-	// ****** CHILD/PARENT variables ********************
-	private ExerciseType exerciseType=null; // initialize PARENT to null.
-
-	// ****** END CHILD/PARENT variables ********************
-
-	@Override
-	public java.util.HashMap<String, Object> getParents() {
-		java.util.HashMap<String, Object> ret = new java.util.HashMap<String, Object>();
-
-			ret.put(ASSOC_EXERCISETYPE,exerciseType);
-		return ret;
-	}
-
     
    /**
-    * ExerciseTypeLinkModelBase Constructor
+    * WorkoutDefinitionModelBase Constructor
     */
-	public ExerciseTypeLinkModelBase() {
+	public WorkoutDefinitionModelBase() {
         super();
 		this.setId( com.netu.lib.Model.ModelObjectKeyGen.nextId() );
 
 	}
 
 	@JsonProperty
-	public void setExerciseTypeLinkId(final Integer exerciseTypeLinkId) {
-		if (valueChanged(this.exerciseTypeLinkId,exerciseTypeLinkId)){
+	public void setWorkoutDefinitionId(final Integer workoutDefinitionId) {
+		if (valueChanged(this.workoutDefinitionId,workoutDefinitionId)){
 			this.setDirty(true);
-			this.changedFields.put(STR_FLD_EXERCISE_TYPE_LINK_ID,ONE);
-			this.exerciseTypeLinkId = exerciseTypeLinkId;
+			this.changedFields.put(STR_FLD_WORKOUT_DEFINITION_ID,ONE);
+			this.workoutDefinitionId = workoutDefinitionId;
 		}
 	}
 
 	@JsonIgnore
-	public void setExerciseTypeLinkId(final String exerciseTypeLinkId) {
-		if (org.apache.commons.lang.StringUtils.isBlank(exerciseTypeLinkId)){return;} //we do not want to allow null primary key
-		this.setExerciseTypeLinkId(NetuUtils.parseInt(exerciseTypeLinkId));
+	public void setWorkoutDefinitionId(final String workoutDefinitionId) {
+		if (org.apache.commons.lang.StringUtils.isBlank(workoutDefinitionId)){return;} //we do not want to allow null primary key
+		this.setWorkoutDefinitionId(NetuUtils.parseInt(workoutDefinitionId));
 
 	}
 	@JsonProperty
-	public Integer getExerciseTypeLinkId() {
-		return this.exerciseTypeLinkId;
+	public Integer getWorkoutDefinitionId() {
+		return this.workoutDefinitionId;
 	}
 
 	@JsonIgnore
-public int getExerciseTypeLinkIdInt() {
-		if (this.getExerciseTypeLinkId()==null){return 0;}
-		return this.getExerciseTypeLinkId();
+public int getWorkoutDefinitionIdInt() {
+		if (this.getWorkoutDefinitionId()==null){return 0;}
+		return this.getWorkoutDefinitionId();
 	}
 
 	@JsonProperty
-	public void setExerciseTypeId(final Integer exerciseTypeId) {
-		if (valueChanged(this.exerciseTypeId,exerciseTypeId)){
+	public void setName(final String name) {
+		if (name!=null && name.length()>100){
+			throw new IllegalArgumentException("Too Large Value for field->Name.  max length:100");
+		}
+		if (valueChanged(this.name,name)){
 			this.setDirty(true);
-			this.changedFields.put(STR_FLD_EXERCISE_TYPE_ID,ONE);
-			this.exerciseTypeId = exerciseTypeId;
+			this.changedFields.put(STR_FLD_NAME,ONE);
+			this.name = name;
 		}
 	}
 
-	@JsonIgnore
-	public void setExerciseTypeId(final String exerciseTypeId) {
-		this.setExerciseTypeId(NetuUtils.parseInt(exerciseTypeId));
-
-	}
 	@JsonProperty
-	public Integer getExerciseTypeId() {
-		return this.exerciseTypeId;
-	}
-
-	@JsonIgnore
-public int getExerciseTypeIdInt() {
-		if (this.getExerciseTypeId()==null){return 0;}
-		return this.getExerciseTypeId();
+	public String getName() {
+		return this.name;
 	}
 
 	@JsonProperty
-	public void setExerciseId(final Integer exerciseId) {
-		if (valueChanged(this.exerciseId,exerciseId)){
+	public void setDescription(final String description) {
+		if (description!=null && description.length()>1500){
+			throw new IllegalArgumentException("Too Large Value for field->Description.  max length:1500");
+		}
+		if (valueChanged(this.description,description)){
 			this.setDirty(true);
-			this.changedFields.put(STR_FLD_EXERCISE_ID,ONE);
-			this.exerciseId = exerciseId;
+			this.changedFields.put(STR_FLD_DESCRIPTION,ONE);
+			this.description = description;
 		}
 	}
 
-	@JsonIgnore
-	public void setExerciseId(final String exerciseId) {
-		this.setExerciseId(NetuUtils.parseInt(exerciseId));
-
-	}
 	@JsonProperty
-	public Integer getExerciseId() {
-		return this.exerciseId;
-	}
-
-	@JsonIgnore
-public int getExerciseIdInt() {
-		if (this.getExerciseId()==null){return 0;}
-		return this.getExerciseId();
+	public String getDescription() {
+		return this.description;
 	}
 
 	@Override
@@ -252,74 +222,30 @@ public int getExerciseIdInt() {
 	@Override
 	@JsonIgnore
 	public final void setId(final Object val) {
-		this.setExerciseTypeLinkId(((Long)val).intValue());
+		this.setWorkoutDefinitionId(((Long)val).intValue());
 		this.broadcastIdChange(); //also broadcast id changed to children objects
 	}
 	@Override
 	@JsonProperty
 	public Object getId() {
-		return this.getExerciseTypeLinkId();
+		return this.getWorkoutDefinitionId();
 	}
-
-	// ASSOCIATIONS GETTERS/SETTERS BELOW!
-
-	public boolean exerciseTypeLoaded() {
-	//returns true if associated object or object list has been loaded.
-		return this.exerciseType != null;
-	}
-	public ExerciseType createExerciseType() { // association create prnt
-		ExerciseType var = new ExerciseType();
-		this.setExerciseType(var);
-		return var;
-
-	}
-
-	public void setExerciseType(ExerciseType exerciseType) {
-		this.exerciseType = exerciseType;
-		if(exerciseType != null){
-			this.setExerciseTypeId(exerciseType.getExerciseTypeId()); //@@check parent->child!!
-		}
-		this.addChild(this.exerciseType, "exerciseType"); // add object to the children collection
-	}
-
-	public ExerciseType getExerciseType() {
-		//lazy load!!!!
-		if(this.exerciseType==null) {
-			if (this.getExerciseTypeId()==null) {
-				return null;
-			} else {
-				this.setExerciseType(
-				ExerciseTypeDBMapper.get("exercise_type_id=?",
-							new Object[]{this.getExerciseTypeId()} ));//cardinality 1, parent lazy load.
-			}
-		}
-		return this.exerciseType;
-	}
-
 
 	
 	@Override
 	public void setAttribute(final String fieldKey, final Object val){
 		if (fieldKey==null) {
 			
-		} else if ( fieldKey.equals(STR_FLD_EXERCISE_TYPE_LINK_ID)){
+		} else if ( fieldKey.equals(STR_FLD_WORKOUT_DEFINITION_ID)){
 			if(val instanceof String ) {
-				this.setExerciseTypeLinkId((String)val);
+				this.setWorkoutDefinitionId((String)val);
 			} else {
-				this.setExerciseTypeLinkId((Integer)val);
+				this.setWorkoutDefinitionId((Integer)val);
 			}
-		} else if ( fieldKey.equals(STR_FLD_EXERCISE_TYPE_ID)){
-			if(val instanceof String ) {
-				this.setExerciseTypeId((String)val);
-			} else {
-				this.setExerciseTypeId((Integer)val);
-			}
-		} else if ( fieldKey.equals(STR_FLD_EXERCISE_ID)){
-			if(val instanceof String ) {
-				this.setExerciseId((String)val);
-			} else {
-				this.setExerciseId((Integer)val);
-			}
+		} else if ( fieldKey.equals(STR_FLD_NAME)){
+			this.setName((String)val);
+		} else if ( fieldKey.equals(STR_FLD_DESCRIPTION)){
+			this.setDescription((String)val);
 		} else if ( fieldKey.equals(STR_FLD_CREATE_DATE)){
 			if(val instanceof String ) {
 				this.setCreateDate((String)val);
@@ -336,8 +262,6 @@ public int getExerciseIdInt() {
 			this.setCreateUser((String)val);
 		} else if ( fieldKey.equals(STR_FLD_UPDATE_USER)){
 			this.setUpdateUser((String)val);
-		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPE)){
-			this.setExerciseType((ExerciseType)val);
 
 		}
 	}
@@ -351,9 +275,6 @@ public int getExerciseIdInt() {
 	@Override
 	public ModelObject createRelatedModelObject(final String relationName) {
 		ModelObject ret = null;
-		if(ASSOC_EXERCISETYPE.equalsIgnoreCase(relationName)) {
-			ret = this.createExerciseType();
-		}
 
 		return ret;
 	}
@@ -366,9 +287,6 @@ public int getExerciseIdInt() {
 	@Override
 	public Class<? extends ModelObject> getRelatedModelObjectDataType(final String relationName) {
 
-		if(ASSOC_EXERCISETYPE.equalsIgnoreCase(relationName)) {
-			return ExerciseType.class;
-		}
 		return null;
 
 
@@ -379,26 +297,18 @@ public int getExerciseIdInt() {
 	public void setAttribute(final int fieldKey, final Object val){
 	
 	    switch (fieldKey) {
-		case FLD_EXERCISE_TYPE_LINK_ID:
+		case FLD_WORKOUT_DEFINITION_ID:
 			if(val instanceof String ) {
-				this.setExerciseTypeLinkId((String)val);
+				this.setWorkoutDefinitionId((String)val);
 			} else {
-				this.setExerciseTypeLinkId((Integer)val);
+				this.setWorkoutDefinitionId((Integer)val);
 			}
 			break;
-		case FLD_EXERCISE_TYPE_ID:
-			if(val instanceof String ) {
-				this.setExerciseTypeId((String)val);
-			} else {
-				this.setExerciseTypeId((Integer)val);
-			}
+		case FLD_NAME:
+			this.setName((String)val);
 			break;
-		case FLD_EXERCISE_ID:
-			if(val instanceof String ) {
-				this.setExerciseId((String)val);
-			} else {
-				this.setExerciseId((Integer)val);
-			}
+		case FLD_DESCRIPTION:
+			this.setDescription((String)val);
 			break;
 		case FLD_CREATE_DATE:
 			if(val instanceof String ) {
@@ -431,12 +341,12 @@ public int getExerciseIdInt() {
 		if (fieldKey==null) {
 			return null;
 
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_TYPE_LINK_ID)){
-			return this.getExerciseTypeLinkId();
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_TYPE_ID)){
-			return this.getExerciseTypeId();
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_ID)){
-			return this.getExerciseId();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_WORKOUT_DEFINITION_ID)){
+			return this.getWorkoutDefinitionId();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_NAME)){
+			return this.getName();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_DESCRIPTION)){
+			return this.getDescription();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_CREATE_DATE)){
 			return this.getCreateDate();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_UPDATE_DATE)){
@@ -445,8 +355,6 @@ public int getExerciseIdInt() {
 			return this.getCreateUser();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_UPDATE_USER)){
 			return this.getUpdateUser();
-		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPE)){
-			return this.getExerciseType();
 
 		} else {
 			return null;
@@ -459,12 +367,12 @@ public int getExerciseIdInt() {
 		
 		switch (fieldKey) {
             
-		case FLD_EXERCISE_TYPE_LINK_ID:
-			return this.getExerciseTypeLinkId();
-		case FLD_EXERCISE_TYPE_ID:
-			return this.getExerciseTypeId();
-		case FLD_EXERCISE_ID:
-			return this.getExerciseId();
+		case FLD_WORKOUT_DEFINITION_ID:
+			return this.getWorkoutDefinitionId();
+		case FLD_NAME:
+			return this.getName();
+		case FLD_DESCRIPTION:
+			return this.getDescription();
 		case FLD_CREATE_DATE:
 			return this.getCreateDate();
 		case FLD_UPDATE_DATE:
@@ -487,21 +395,15 @@ public int getExerciseIdInt() {
 	 */
 	 @Override
 	public int getKeyFieldIndex() {
-		return ExerciseTypeLinkModelBase.FLD_EXERCISE_TYPE_LINK_ID;
+		return WorkoutDefinitionModelBase.FLD_WORKOUT_DEFINITION_ID;
 	}
 
-	@Override
-	public void parentIdChanged(ModelObject parentMo){
-		if(parentMo instanceof ExerciseType){
-			this.setExerciseTypeId(((ExerciseType)parentMo).getExerciseTypeId());
-		}
-	}
 
 	
-	public void copy(final ExerciseTypeLinkModelBase newMo) {
+	public void copy(final WorkoutDefinitionModelBase newMo) {
 		
-newMo.setExerciseTypeId(this.getExerciseTypeId());
-			newMo.setExerciseId(this.getExerciseId());
+newMo.setName(this.getName());
+			newMo.setDescription(this.getDescription());
 			newMo.setCreateDate(this.getCreateDate());
 			newMo.setUpdateDate(this.getUpdateDate());
 			newMo.setCreateUser(this.getCreateUser());
@@ -512,8 +414,8 @@ newMo.setExerciseTypeId(this.getExerciseTypeId());
 	
    @Override
     public boolean isEmpty() {
-		return (this.getExerciseTypeId() == null  && 
-				this.getExerciseId() == null  && 
+		return (this.getName() == null  && 
+				this.getDescription() == null  && 
 				this.getCreateDate() == null  && 
 				this.getUpdateDate() == null  && 
 				this.getCreateUser() == null  && 
@@ -531,18 +433,18 @@ newMo.setExerciseTypeId(this.getExerciseTypeId());
 		//2. it renders an explict check for "that == null" redundant, since
 		//it does the check for null already - "null instanceof [type]" always
 		//returns false. (See Effective Java by Joshua Bloch.)
-		if (  !(aThat instanceof ExerciseTypeLink)  && !(aThat instanceof ExerciseTypeLinkModelBase) ) {
+		if (  !(aThat instanceof WorkoutDefinition)  && !(aThat instanceof WorkoutDefinitionModelBase) ) {
 			return false;
 		}
 		//Alternative to the above line :
 		//if ( aThat == null || aThat.getClass() != this.getClass() ) return false;
 
 		//cast to native object is now safe
-		ExerciseTypeLinkModelBase that = (ExerciseTypeLinkModelBase)aThat;
+		WorkoutDefinitionModelBase that = (WorkoutDefinitionModelBase)aThat;
 		
 		// below we do a field-by-field evaluation, including array lists
-		return  EqualsUtil.areEqual(this.exerciseTypeId, that.exerciseTypeId)
-			 && EqualsUtil.areEqual(this.exerciseId, that.exerciseId)
+		return  EqualsUtil.areEqual(this.name, that.name)
+			 && EqualsUtil.areEqual(this.description, that.description)
 			 && EqualsUtil.areEqual(this.createDate, that.createDate)
 			 && EqualsUtil.areEqual(this.updateDate, that.updateDate)
 			 && EqualsUtil.areEqual(this.createUser, that.createUser)
@@ -554,8 +456,8 @@ newMo.setExerciseTypeId(this.getExerciseTypeId());
 	@Override
 	public int hashCode() {
 		int hash = 5;
-	hash = 11 * hash + (this.exerciseTypeId != null ? this.exerciseTypeId.hashCode() : 0);
-	hash = 11 * hash + (this.exerciseId != null ? this.exerciseId.hashCode() : 0);
+	hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
+	hash = 11 * hash + (this.description != null ? this.description.hashCode() : 0);
 	hash = 11 * hash + (this.createDate != null ? this.createDate.hashCode() : 0);
 	hash = 11 * hash + (this.updateDate != null ? this.updateDate.hashCode() : 0);
 	hash = 11 * hash + (this.createUser != null ? this.createUser.hashCode() : 0);

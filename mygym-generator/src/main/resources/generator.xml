@@ -19,7 +19,27 @@
     <modelBaseClass>com.netu.lib.JsonModelObject</modelBaseClass>
 	
     <tables>
-				
+		
+		<table>
+            <name>system_user</name>
+            <package>com.mygym.model.security</package>
+        </table>
+
+		 <table>
+			<name>workout</name>
+            <classname>ExecutedWorkout</classname>
+            <package>com.mygym.model.workout</package> 
+        </table>
+		
+		<table>
+            <name>workout_definition</name>
+            <package>com.mygym.model.workout</package> 
+        </table>
+		<table>
+            <name>workout_exercise</name>
+            <package>com.mygym.model.workout</package> 
+        </table>
+		
         <table>
             <name>exercise_type</name>
             <package>com.mygym.model</package> 
@@ -27,8 +47,8 @@
 		<table>
             <name>equipment</name>
             <package>com.mygym.model</package>
-			 
         </table>
+		
 		
         <table>
             <name>exercise_type_link</name>
