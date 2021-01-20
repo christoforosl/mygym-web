@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_type_link ",
-        date = "Thu Oct 22 12:40:06 EEST 2020"
+        date = "Wed Jan 20 09:45:09 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseTypeLinkDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_type_link" , 
@@ -38,6 +38,7 @@ public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject  {
 	public static final String STR_FLD_EXERCISE_ID = "ExerciseId";
 
 	/** Association constants **/
+	public static final String ASSOC_EXERCISETYPE = "ExerciseType";
 
 
 	public static final int FLD_EXERCISE_TYPE_LINK_ID = 1;
@@ -52,6 +53,19 @@ public class ExerciseTypeLinkModelBase extends com.netu.lib.JsonModelObject  {
 	private Integer exerciseTypeId;
 	@MOColumn(fieldName=STR_FLD_EXERCISE_ID,fieldType=Integer.class,dbFieldName="exercise_id")
 	private Integer exerciseId;
+
+	// ****** CHILD/PARENT variables ********************
+	private ExerciseType exerciseType=null; // initialize PARENT to null.
+
+	// ****** END CHILD/PARENT variables ********************
+
+	@Override
+	public java.util.HashMap<String, Object> getParents() {
+		java.util.HashMap<String, Object> ret = new java.util.HashMap<String, Object>();
+
+			ret.put(ASSOC_EXERCISETYPE,exerciseType);
+		return ret;
+	}
 
     
    /**
@@ -151,6 +165,42 @@ public int getExerciseIdInt() {
 		return this.getExerciseTypeLinkId();
 	}
 
+	// ASSOCIATIONS GETTERS/SETTERS BELOW!
+
+	public boolean exerciseTypeLoaded() {
+	//returns true if associated object or object list has been loaded.
+		return this.exerciseType != null;
+	}
+	public ExerciseType createExerciseType() { // association create prnt
+		ExerciseType var = new ExerciseType();
+		this.setExerciseType(var);
+		return var;
+
+	}
+
+	public void setExerciseType(ExerciseType exerciseType) {
+		this.exerciseType = exerciseType;
+		if(exerciseType != null){
+			this.setExerciseTypeId(exerciseType.getExerciseTypeId()); //@@check parent->child!!
+		}
+		this.addChild(this.exerciseType, "exerciseType"); // add object to the children collection
+	}
+
+	public ExerciseType getExerciseType() {
+		//lazy load!!!!
+		if(this.exerciseType==null) {
+			if (this.getExerciseTypeId()==null) {
+				return null;
+			} else {
+				this.setExerciseType(
+				ExerciseTypeDBMapper.get("exercise_type_id=?",
+							new Object[]{this.getExerciseTypeId()} ));//cardinality 1, parent lazy load.
+			}
+		}
+		return this.exerciseType;
+	}
+
+
 	
 	@Override
 	public void setAttribute(final String fieldKey, final Object val){
@@ -174,6 +224,8 @@ public int getExerciseIdInt() {
 			} else {
 				this.setExerciseId((Integer)val);
 			}
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPE)){
+			this.setExerciseType((ExerciseType)val);
 
 		}
 	}
@@ -187,6 +239,9 @@ public int getExerciseIdInt() {
 	@Override
 	public ModelObject createRelatedModelObject(final String relationName) {
 		ModelObject ret = null;
+		if(ASSOC_EXERCISETYPE.equalsIgnoreCase(relationName)) {
+			ret = this.createExerciseType();
+		}
 
 		return ret;
 	}
@@ -199,6 +254,9 @@ public int getExerciseIdInt() {
 	@Override
 	public Class<? extends ModelObject> getRelatedModelObjectDataType(final String relationName) {
 
+		if(ASSOC_EXERCISETYPE.equalsIgnoreCase(relationName)) {
+			return ExerciseType.class;
+		}
 		return null;
 
 
@@ -247,6 +305,8 @@ public int getExerciseIdInt() {
 			return this.getExerciseTypeId();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_EXERCISE_ID)){
 			return this.getExerciseId();
+		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPE)){
+			return this.getExerciseType();
 
 		} else {
 			return null;
@@ -282,6 +342,12 @@ public int getExerciseIdInt() {
 		return ExerciseTypeLinkModelBase.FLD_EXERCISE_TYPE_LINK_ID;
 	}
 
+	@Override
+	public void parentIdChanged(ModelObject parentMo){
+		if(parentMo instanceof ExerciseType){
+			this.setExerciseTypeId(((ExerciseType)parentMo).getExerciseTypeId());
+		}
+	}
 
 	
 	public void copy(final ExerciseTypeLinkModelBase newMo) {

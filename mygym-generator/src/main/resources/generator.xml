@@ -28,6 +28,15 @@
         <table>
             <name>exercise_type_link</name>
             <package>com.mygym.model</package> 
+			<association>
+				<associationName>ExerciseType</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>exercise_type_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>exercise_type_id</parentTableLinkFieldName>
+				<datatype>ExerciseType</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
         </table>
 
         <table>
