@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_definition ",
-        date = "Tue Jan 19 18:01:34 EET 2021"
+        date = "Wed Jan 20 10:00:52 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseDefinitionDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_definition" , 
@@ -36,6 +36,7 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	public static final String STR_FLD_EXERCISE_DEFINITION_ID = "ExerciseDefinitionId";
 	public static final String STR_FLD_NAME = "Name";
 	public static final String STR_FLD_VIDEO_URL = "VideoUrl";
+	public static final String STR_FLD_DESCRIPTION = "Description";
 
 	/** Association constants **/
 	public static final String ASSOC_BODYPARTSAFFECTED = "BodyPartsAffected";
@@ -45,15 +46,18 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject  {
 	public static final int FLD_EXERCISE_DEFINITION_ID = 1;
 	public static final int FLD_NAME = 2;
 	public static final int FLD_VIDEO_URL = 3;
+	public static final int FLD_DESCRIPTION = 4;
 
 
 	@KeyField
 	@MOColumn(fieldName=STR_FLD_EXERCISE_DEFINITION_ID,fieldType=Integer.class,dbFieldName="EXERCISE_DEFINITION_ID")
 	private Integer exerciseDefinitionId;
-	@MOColumn(fieldName=STR_FLD_NAME,fieldType=String.class,dbFieldName="NAME")
+	@MOColumn(fieldName=STR_FLD_NAME,fieldType=String.class,dbFieldName="name")
 	private String name;
-	@MOColumn(fieldName=STR_FLD_VIDEO_URL,fieldType=String.class,dbFieldName="VIDEO_URL")
+	@MOColumn(fieldName=STR_FLD_VIDEO_URL,fieldType=String.class,dbFieldName="video_url")
 	private String videoUrl;
+	@MOColumn(fieldName=STR_FLD_DESCRIPTION,fieldType=String.class,dbFieldName="description")
+	private String description;
 
 	// ****** CHILD/PARENT variables ********************
 	private ModelObjectList<BodyPartExercise> bodyPartsAffected=null; // initialize CHILD to null.
@@ -138,6 +142,23 @@ public int getExerciseDefinitionIdInt() {
 	@JsonProperty
 	public String getVideoUrl() {
 		return this.videoUrl;
+	}
+
+	@JsonProperty
+	public void setDescription(final String description) {
+		if (description!=null && description.length()>1500){
+			throw new IllegalArgumentException("Too Large Value for field->Description.  max length:1500");
+		}
+		if (valueChanged(this.description,description)){
+			this.setDirty(true);
+			this.changedFields.put(STR_FLD_DESCRIPTION,ONE);
+			this.description = description;
+		}
+	}
+
+	@JsonProperty
+	public String getDescription() {
+		return this.description;
 	}
 
 	@Override
@@ -245,6 +266,8 @@ public int getExerciseDefinitionIdInt() {
 			this.setName((String)val);
 		} else if ( fieldKey.equals(STR_FLD_VIDEO_URL)){
 			this.setVideoUrl((String)val);
+		} else if ( fieldKey.equals(STR_FLD_DESCRIPTION)){
+			this.setDescription((String)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
 			this.setBodyPartsAffected((ModelObjectList<BodyPartExercise>)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
@@ -309,6 +332,9 @@ public int getExerciseDefinitionIdInt() {
 		case FLD_VIDEO_URL:
 			this.setVideoUrl((String)val);
 			break;
+		case FLD_DESCRIPTION:
+			this.setDescription((String)val);
+			break;
 
 			default:
 	           
@@ -326,6 +352,8 @@ public int getExerciseDefinitionIdInt() {
 			return this.getName();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_VIDEO_URL)){
 			return this.getVideoUrl();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_DESCRIPTION)){
+			return this.getDescription();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPARTSAFFECTED)){
 			return this.getBodyPartsAffected();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_EXERCISETYPES)){
@@ -348,6 +376,8 @@ public int getExerciseDefinitionIdInt() {
 			return this.getName();
 		case FLD_VIDEO_URL:
 			return this.getVideoUrl();
+		case FLD_DESCRIPTION:
+			return this.getDescription();
 
 			default:
 				return null;
@@ -371,6 +401,7 @@ public int getExerciseDefinitionIdInt() {
 		
 newMo.setName(this.getName());
 			newMo.setVideoUrl(this.getVideoUrl());
+			newMo.setDescription(this.getDescription());
 
 		
 	}
@@ -378,7 +409,8 @@ newMo.setName(this.getName());
    @Override
     public boolean isEmpty() {
 		return (this.getName() == null  && 
-				this.getVideoUrl() == null );
+				this.getVideoUrl() == null  && 
+				this.getDescription() == null );
  
     }
 	
@@ -404,6 +436,7 @@ newMo.setName(this.getName());
 		// below we do a field-by-field evaluation, including array lists
 		return  EqualsUtil.areEqual(this.name, that.name)
 			 && EqualsUtil.areEqual(this.videoUrl, that.videoUrl)
+			 && EqualsUtil.areEqual(this.description, that.description)
 			;
 
 	  }
@@ -413,6 +446,7 @@ newMo.setName(this.getName());
 		int hash = 5;
 	hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
 	hash = 11 * hash + (this.videoUrl != null ? this.videoUrl.hashCode() : 0);
+	hash = 11 * hash + (this.description != null ? this.description.hashCode() : 0);
 
 		return hash;
 	}

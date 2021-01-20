@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table body_part ",
-        date = "Tue Jan 19 17:57:29 EET 2021"
+        date = "Wed Jan 20 10:01:54 EET 2021"
     )
 @DefaultMapper(mapperclass=BodyPartDBMapper.class)
 @ManagedDatabaseTable(		tableName="body_part" , 
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BodyPartModelBase extends com.netu.lib.JsonModelObject  {
 	
 	public static final String STR_FLD_BODY_PART_ID = "BodyPartId";
-	public static final String STR_FLD_BODY_PART_NAME = "BodyPartNAME";
+	public static final String STR_FLD_BODY_PART_NAME = "BodyPartName";
 
 	/** Association constants **/
 	public static final String ASSOC_BODYPART = "BodyPart";
@@ -47,8 +47,8 @@ public class BodyPartModelBase extends com.netu.lib.JsonModelObject  {
 	@KeyField
 	@MOColumn(fieldName=STR_FLD_BODY_PART_ID,fieldType=Integer.class,dbFieldName="body_part_id")
 	private Integer bodyPartId;
-	@MOColumn(fieldName=STR_FLD_BODY_PART_NAME,fieldType=String.class,dbFieldName="body_part_NAME")
-	private String bodyPartNAME;
+	@MOColumn(fieldName=STR_FLD_BODY_PART_NAME,fieldType=String.class,dbFieldName="body_part_name")
+	private String bodyPartName;
 
 	// ****** CHILD/PARENT variables ********************
 	@com.fasterxml.jackson.annotation.JsonManagedReference
@@ -101,20 +101,20 @@ public int getBodyPartIdInt() {
 	}
 
 	@JsonProperty
-	public void setBodyPartNAME(final String bodyPartNAME) {
-		if (bodyPartNAME!=null && bodyPartNAME.length()>500){
-			throw new IllegalArgumentException("Too Large Value for field->BodyPartNAME.  max length:500");
+	public void setBodyPartName(final String bodyPartName) {
+		if (bodyPartName!=null && bodyPartName.length()>500){
+			throw new IllegalArgumentException("Too Large Value for field->BodyPartName.  max length:500");
 		}
-		if (valueChanged(this.bodyPartNAME,bodyPartNAME)){
+		if (valueChanged(this.bodyPartName,bodyPartName)){
 			this.setDirty(true);
 			this.changedFields.put(STR_FLD_BODY_PART_NAME,ONE);
-			this.bodyPartNAME = bodyPartNAME;
+			this.bodyPartName = bodyPartName;
 		}
 	}
 
 	@JsonProperty
-	public String getBodyPartNAME() {
-		return this.bodyPartNAME;
+	public String getBodyPartName() {
+		return this.bodyPartName;
 	}
 
 	@Override
@@ -177,7 +177,7 @@ public int getBodyPartIdInt() {
 				this.setBodyPartId((Integer)val);
 			}
 		} else if ( fieldKey.equals(STR_FLD_BODY_PART_NAME)){
-			this.setBodyPartNAME((String)val);
+			this.setBodyPartName((String)val);
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPART)){
 			this.setBodyPart((BodyPart)val);
 
@@ -229,7 +229,7 @@ public int getBodyPartIdInt() {
 			}
 			break;
 		case FLD_BODY_PART_NAME:
-			this.setBodyPartNAME((String)val);
+			this.setBodyPartName((String)val);
 			break;
 
 			default:
@@ -245,7 +245,7 @@ public int getBodyPartIdInt() {
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_BODY_PART_ID)){
 			return this.getBodyPartId();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_BODY_PART_NAME)){
-			return this.getBodyPartNAME();
+			return this.getBodyPartName();
 		} else if ( fieldKey.equalsIgnoreCase(ASSOC_BODYPART)){
 			return this.getBodyPart();
 
@@ -263,7 +263,7 @@ public int getBodyPartIdInt() {
 		case FLD_BODY_PART_ID:
 			return this.getBodyPartId();
 		case FLD_BODY_PART_NAME:
-			return this.getBodyPartNAME();
+			return this.getBodyPartName();
 
 			default:
 				return null;
@@ -291,14 +291,14 @@ public int getBodyPartIdInt() {
 	
 	public void copy(final BodyPartModelBase newMo) {
 		
-newMo.setBodyPartNAME(this.getBodyPartNAME());
+newMo.setBodyPartName(this.getBodyPartName());
 
 		
 	}
 	
    @Override
     public boolean isEmpty() {
-		return (this.getBodyPartNAME() == null );
+		return (this.getBodyPartName() == null );
  
     }
 	
@@ -322,7 +322,7 @@ newMo.setBodyPartNAME(this.getBodyPartNAME());
 		BodyPartModelBase that = (BodyPartModelBase)aThat;
 		
 		// below we do a field-by-field evaluation, including array lists
-		return  EqualsUtil.areEqual(this.bodyPartNAME, that.bodyPartNAME)
+		return  EqualsUtil.areEqual(this.bodyPartName, that.bodyPartName)
 			;
 
 	  }
@@ -330,7 +330,7 @@ newMo.setBodyPartNAME(this.getBodyPartNAME());
 	@Override
 	public int hashCode() {
 		int hash = 5;
-	hash = 11 * hash + (this.bodyPartNAME != null ? this.bodyPartNAME.hashCode() : 0);
+	hash = 11 * hash + (this.bodyPartName != null ? this.bodyPartName.hashCode() : 0);
 
 		return hash;
 	}
