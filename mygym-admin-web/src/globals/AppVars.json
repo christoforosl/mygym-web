@@ -1,0 +1,10 @@
+{
+    "apiEndPoints": 
+        {
+            "getExerciseList": {
+                "method": "GET",
+                "url": "http://mygym-web.herokuapp.com/api/services/model/exercisedefinition-mongo-query"
+            }
+        }
+    
+}

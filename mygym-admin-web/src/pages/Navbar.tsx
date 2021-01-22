@@ -1,26 +1,32 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 // import AuthContext from '../../context/auth/authContext';
 // import ContactContext from '../../context/contact/contactContext';
-
-
 
 const Navbar = () => {
   //const authContext = useContext(AuthContext);
   //const contactContext = useContext(ContactContext);
 
-    const isAuthenticated = false;
-    const user: IUser = {name:"Christoforos"};
-    const onLogout = function() {
-
-    };
+  const isAuthenticated = true;
+  const user: IUser = { name: "Christoforos" };
+  const onLogout = function () {};
 
   const authLinks = (
     <Fragment>
-      <li>Hello {user && user.name}</li>
+      <li>
+        
+        <Link to='/home'>Home</Link>
+      </li>
+      <li>
+        <Link to='/exercises'>Exercises</Link>
+      </li>
+      <li>
+        <Link to='/workouts'>Workouts</Link>
+      </li>
       <li>
         <a onClick={onLogout} href='#!'>
-          <i className='fas fa-sign-out-alt' />{' '}
+        User: {user && user.name}{" | "}
+          <i className='fas fa-sign-out-alt' />{" "}
           <span className='hide-sm'>Logout</span>
         </a>
       </li>
@@ -50,13 +56,17 @@ const Navbar = () => {
   );
 };
 
-interface IAppProperties {title: string, icon: string}
-interface IUser {name: string}
+interface IAppProperties {
+  title: string;
+  icon: string;
+}
+interface IUser {
+  name: string;
+}
 
 const appProperties: IAppProperties = {
-  
-  title: 'Contact Keeper',
-  icon: 'fas fa-id-card-alt'
+  title: "MyGym-X Administration",
+  icon: "fas fa-heartbeat",
 };
 
 export default Navbar;

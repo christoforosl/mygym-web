@@ -1,5 +1,5 @@
-
+import Navbar from "./Navbar";
 
 export default function Header() {
-    return <div className="App-header">Header</div>
+    return <Navbar />
 }
