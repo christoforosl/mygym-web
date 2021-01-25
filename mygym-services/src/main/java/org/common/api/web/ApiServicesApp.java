@@ -1,5 +1,6 @@
 package org.common.api.web;
 
+import com.netu.lib.DBUtils;
 import com.netu.lib.Encryptor2;
 import com.netu.lib.db.ConnectionPool;
 import com.netu.lib.db.IConnectionProvider;
@@ -38,7 +39,8 @@ public class ApiServicesApp {
 	private static final Logger LOGGER = Logger.getLogger(ApiServicesApp.class.getName());
 	private static final String KEY_ENVIRONMENT = "ENVIRONMENT";
 	
-	private static final PropertiesByEnvironmentPrefix props = (PropertiesByEnvironmentPrefix) new PropertiesByEnvironmentPrefix().setPropertiesResourceName("/generic-api-server.properties");
+	private static final PropertiesByEnvironmentPrefix props = (PropertiesByEnvironmentPrefix) 
+				new PropertiesByEnvironmentPrefix().setPropertiesResourceName("/generic-api-server.properties");
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -78,13 +80,14 @@ public class ApiServicesApp {
 		context.addEventListener(new org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap());
 		context.setWelcomeFiles(new String[]{ "index.html" }); 
 		
-		final String appsConnString = new Encryptor2().decrypt( props.getMandatoryProperty("jdbcurl"));
-		final String appsConnDriver = props.getMandatoryProperty("jdbcurl.driver");
+		final String appsConnString = props.getMandatoryProperty("jdbcurl");
+		//final String appsConnDriver = props.getMandatoryProperty("jdbcurl.driver");
+		DBUtils.setupConnection(appsConnString);
 		
-		JDBCPooledConnProvider.setSystemJdbcDriver(appsConnDriver); 
-		IConnectionProvider ocpapps = new JDBCPooledConnProvider();
-		ocpapps.setConnString(appsConnString);
-		ConnectionPool.setConnectionProvider(ocpapps);
+//		JDBCPooledConnProvider.setSystemJdbcDriver(appsConnDriver); 
+//		IConnectionProvider ocpapps = new JDBCPooledConnProvider();
+//		ocpapps.setConnString(appsConnString);
+//		ConnectionPool.setConnectionProvider(ocpapps);
 		
 //		final int dbVersion = DBVersion.DB_VERSION;
 //		DBUpgrader.createMySQLDBUpgrader().setJdbcUrlString(appsConnString).

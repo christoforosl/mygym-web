@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 const axios = require('axios').default;
 
 /** object returned by all our api calls */
-interface apiResults {
+export interface apiResults {
     error:string,
     results:any,
     status:string,
@@ -16,12 +16,14 @@ interface apiResults {
 const APICallerUtils = {
     get: (url:string) => {
         return axios.get(url)
-        .then( (response: apiResults) => {
+        .then( (response: any) => {
             // handle success
             if (response.status==='ERROR') {
                 throw response.error;
             }
-            return response.results;
+            //console.log( response.data );
+            const ret: apiResults  = response.data;
+            return ret.results;
 
         })
         .catch( (error: AxiosError) => {
