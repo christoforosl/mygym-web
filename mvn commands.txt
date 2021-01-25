@@ -46,6 +46,9 @@ export version=1.0.0
 export artifactId=PropertyUtils
 export version=1.0.2
 
+export artifactId=netulibs
+export version=4.0.81
+
 mvn deploy:deploy-file \
 	-Durl=file:///$USERPROFILE/java/projects/mygym-web/repo \
 	-Dfile=$USERPROFILE/java/projects/$artifactId-$version.jar \

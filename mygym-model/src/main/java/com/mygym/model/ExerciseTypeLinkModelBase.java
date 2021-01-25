@@ -15,6 +15,7 @@ import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.netu.lib.Model.annotations.MOParentGetter;
 
 
 /**
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_type_link ",
-        date = "Wed Jan 20 12:07:47 EET 2021"
+        date = "Mon Jan 25 15:04:43 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseTypeLinkDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_type_link" , 
@@ -282,6 +283,7 @@ public int getExerciseIdInt() {
 		this.addChild(this.exerciseType, "exerciseType"); // add object to the children collection
 	}
 
+	@MOParentGetter
 	public ExerciseType getExerciseType() {
 		//lazy load!!!!
 		if(this.exerciseType==null) {

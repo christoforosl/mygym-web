@@ -32,25 +32,21 @@
             <artifactId>netulibs</artifactId>
            
         </dependency>
-        <dependency>
-            <groupId>netu</groupId>
-            <artifactId>Generator-api</artifactId>
-        </dependency>
+		       
 		
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-<!--			<version>20171018</version>-->
 		</dependency>
         <dependency>
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>
-            <version>1.6</version>
+            
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
+            
         </dependency>
     </dependencies>
 	

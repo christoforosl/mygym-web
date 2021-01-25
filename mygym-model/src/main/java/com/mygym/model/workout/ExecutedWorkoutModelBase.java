@@ -25,16 +25,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table workout ",
-        date = "Wed Jan 20 12:07:47 EET 2021"
+        date = "Wed Jan 20 15:35:51 EET 2021"
     )
 @DefaultMapper(mapperclass=ExecutedWorkoutDBMapper.class)
 @ManagedDatabaseTable(		tableName="workout" , 
 							modelObjectIdentifyBy=EnumModelObjectIdentifyBy.INTEGER_PRIMARY_KEY	)
 @JsonIgnoreProperties(value = {"stale","loading","children","parents","initialKeyValue","allowIdChange","empty","keyFieldIndex","validators","selfOrRelatedDirty"},ignoreUnknown = true)
 public class ExecutedWorkoutModelBase extends com.netu.lib.JsonModelObject implements com.netu.lib.Model.IAuditable  {
-	
+
 	public static final String STR_FLD_WORKOUT_ID = "WorkoutId";
-	public static final String STR_FLD_USER_ID = "UserId";
+	public static final String STR_FLD_SYSTEM_USER_ID = "SystemUserId";
 	public static final String STR_FLD_WORKOUT_START = "WorkoutStart";
 	public static final String STR_FLD_WORKOUT_END = "WorkoutEnd";
 	public static final String STR_FLD_NOTES = "Notes";
@@ -49,7 +49,7 @@ public class ExecutedWorkoutModelBase extends com.netu.lib.JsonModelObject imple
 
 
 	public static final int FLD_WORKOUT_ID = 1;
-	public static final int FLD_USER_ID = 2;
+	public static final int FLD_SYSTEM_USER_ID = 2;
 	public static final int FLD_WORKOUT_START = 3;
 	public static final int FLD_WORKOUT_END = 4;
 	public static final int FLD_NOTES = 5;
@@ -64,8 +64,8 @@ public class ExecutedWorkoutModelBase extends com.netu.lib.JsonModelObject imple
 	@KeyField
 	@MOColumn(fieldName=STR_FLD_WORKOUT_ID,fieldType=Integer.class,dbFieldName="workout_id")
 	private Integer workoutId;
-	@MOColumn(fieldName=STR_FLD_USER_ID,fieldType=Integer.class,dbFieldName="user_id")
-	private Integer userId;
+	@MOColumn(fieldName=STR_FLD_SYSTEM_USER_ID,fieldType=Integer.class,dbFieldName="system_user_id")
+	private Integer systemUserId;
 	@MOColumn(fieldName=STR_FLD_WORKOUT_START,fieldType=java.util.Date.class,dbFieldName="workout_start")
 	private java.util.Date workoutStart;
 	@MOColumn(fieldName=STR_FLD_WORKOUT_END,fieldType=java.util.Date.class,dbFieldName="workout_end")
@@ -122,28 +122,28 @@ public int getWorkoutIdInt() {
 	}
 
 	@JsonProperty
-	public void setUserId(final Integer userId) {
-		if (valueChanged(this.userId,userId)){
+	public void setSystemUserId(final Integer systemUserId) {
+		if (valueChanged(this.systemUserId,systemUserId)){
 			this.setDirty(true);
-			this.changedFields.put(STR_FLD_USER_ID,ONE);
-			this.userId = userId;
+			this.changedFields.put(STR_FLD_SYSTEM_USER_ID,ONE);
+			this.systemUserId = systemUserId;
 		}
 	}
 
 	@JsonIgnore
-	public void setUserId(final String userId) {
-		this.setUserId(NetuUtils.parseInt(userId));
+	public void setSystemUserId(final String systemUserId) {
+		this.setSystemUserId(NetuUtils.parseInt(systemUserId));
 
 	}
 	@JsonProperty
-	public Integer getUserId() {
-		return this.userId;
+	public Integer getSystemUserId() {
+		return this.systemUserId;
 	}
 
 	@JsonIgnore
-public int getUserIdInt() {
-		if (this.getUserId()==null){return 0;}
-		return this.getUserId();
+public int getSystemUserIdInt() {
+		if (this.getSystemUserId()==null){return 0;}
+		return this.getSystemUserId();
 	}
 
 	@JsonProperty
@@ -354,11 +354,11 @@ public int getWorkoutDefinitionIdInt() {
 			} else {
 				this.setWorkoutId((Integer)val);
 			}
-		} else if ( fieldKey.equals(STR_FLD_USER_ID)){
+		} else if ( fieldKey.equals(STR_FLD_SYSTEM_USER_ID)){
 			if(val instanceof String ) {
-				this.setUserId((String)val);
+				this.setSystemUserId((String)val);
 			} else {
-				this.setUserId((Integer)val);
+				this.setSystemUserId((Integer)val);
 			}
 		} else if ( fieldKey.equals(STR_FLD_WORKOUT_START)){
 			if(val instanceof String ) {
@@ -444,11 +444,11 @@ public int getWorkoutDefinitionIdInt() {
 				this.setWorkoutId((Integer)val);
 			}
 			break;
-		case FLD_USER_ID:
+		case FLD_SYSTEM_USER_ID:
 			if(val instanceof String ) {
-				this.setUserId((String)val);
+				this.setSystemUserId((String)val);
 			} else {
-				this.setUserId((Integer)val);
+				this.setSystemUserId((Integer)val);
 			}
 			break;
 		case FLD_WORKOUT_START:
@@ -515,8 +515,8 @@ public int getWorkoutDefinitionIdInt() {
 
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_WORKOUT_ID)){
 			return this.getWorkoutId();
-		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_USER_ID)){
-			return this.getUserId();
+		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_SYSTEM_USER_ID)){
+			return this.getSystemUserId();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_WORKOUT_START)){
 			return this.getWorkoutStart();
 		} else if ( fieldKey.equalsIgnoreCase(STR_FLD_WORKOUT_END)){
@@ -549,8 +549,8 @@ public int getWorkoutDefinitionIdInt() {
             
 		case FLD_WORKOUT_ID:
 			return this.getWorkoutId();
-		case FLD_USER_ID:
-			return this.getUserId();
+		case FLD_SYSTEM_USER_ID:
+			return this.getSystemUserId();
 		case FLD_WORKOUT_START:
 			return this.getWorkoutStart();
 		case FLD_WORKOUT_END:
@@ -590,7 +590,7 @@ public int getWorkoutDefinitionIdInt() {
 	
 	public void copy(final ExecutedWorkoutModelBase newMo) {
 		
-newMo.setUserId(this.getUserId());
+newMo.setSystemUserId(this.getSystemUserId());
 			newMo.setWorkoutStart(this.getWorkoutStart());
 			newMo.setWorkoutEnd(this.getWorkoutEnd());
 			newMo.setNotes(this.getNotes());
@@ -606,7 +606,7 @@ newMo.setUserId(this.getUserId());
 	
    @Override
     public boolean isEmpty() {
-		return (this.getUserId() == null  && 
+		return (this.getSystemUserId() == null  && 
 				this.getWorkoutStart() == null  && 
 				this.getWorkoutEnd() == null  && 
 				this.getNotes() == null  && 
@@ -639,7 +639,7 @@ newMo.setUserId(this.getUserId());
 		ExecutedWorkoutModelBase that = (ExecutedWorkoutModelBase)aThat;
 		
 		// below we do a field-by-field evaluation, including array lists
-		return  EqualsUtil.areEqual(this.userId, that.userId)
+		return  EqualsUtil.areEqual(this.systemUserId, that.systemUserId)
 			 && EqualsUtil.areEqual(this.workoutStart, that.workoutStart)
 			 && EqualsUtil.areEqual(this.workoutEnd, that.workoutEnd)
 			 && EqualsUtil.areEqual(this.notes, that.notes)
@@ -656,7 +656,7 @@ newMo.setUserId(this.getUserId());
 	@Override
 	public int hashCode() {
 		int hash = 5;
-	hash = 11 * hash + (this.userId != null ? this.userId.hashCode() : 0);
+	hash = 11 * hash + (this.systemUserId != null ? this.systemUserId.hashCode() : 0);
 	hash = 11 * hash + (this.workoutStart != null ? this.workoutStart.hashCode() : 0);
 	hash = 11 * hash + (this.workoutEnd != null ? this.workoutEnd.hashCode() : 0);
 	hash = 11 * hash + (this.notes != null ? this.notes.hashCode() : 0);

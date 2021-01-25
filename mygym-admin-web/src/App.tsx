@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Header from "./pages/Header";
-import ExercisesListPage from "./pages/ExercisesListPage";
+import ExercisesListPage from "./pages/exercises/ExercisesListPage";
 import HomePage from "./pages/HomePage";
 import {I18nextProvider} from "react-i18next";
 import i18n from "./i18n"

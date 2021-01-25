@@ -15,6 +15,8 @@ import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.netu.lib.Model.annotations.MOManyChildGetter;
+import com.netu.lib.Model.annotations.MOParentGetter;
 
 
 /**
@@ -25,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Generated(
         value = {"com.netu.codeGen.XMLModelGenerator, Version 3"},
         comments = "Model Object mapped to table exercise_definition ",
-        date = "Wed Jan 20 12:07:47 EET 2021"
+        date = "Mon Jan 25 15:04:43 EET 2021"
     )
 @DefaultMapper(mapperclass=ExerciseDefinitionDBMapper.class)
 @ManagedDatabaseTable(		tableName="exercise_definition" , 
@@ -81,8 +83,11 @@ public class ExerciseDefinitionModelBase extends com.netu.lib.JsonModelObject im
 	private String updateUser;
 
 	// ****** CHILD/PARENT variables ********************
+	@JsonIgnore
 	private ModelObjectList<BodyPartExercise> bodyPartsAffected=null; // initialize CHILD to null.
+	@JsonIgnore
 	private ModelObjectList<ExerciseTypeLink> exerciseTypes=null; // initialize CHILD to null.
+	@JsonIgnore
 	private Equipment equipmentNeeded=null; // initialize PARENT to null.
 
 	// ****** END CHILD/PARENT variables ********************
@@ -326,6 +331,7 @@ public int getEquipmentIdInt() {
 		this.addChild(this.bodyPartsAffected, "bodyPartsAffected"); // add object to the children collection
 	}
 
+	@MOManyChildGetter
 	public ModelObjectList<BodyPartExercise> getBodyPartsAffected() {
 		//lazy load!!!!
 		if(this.bodyPartsAffected==null) {
@@ -364,6 +370,7 @@ public int getEquipmentIdInt() {
 		this.addChild(this.exerciseTypes, "exerciseTypes"); // add object to the children collection
 	}
 
+	@MOManyChildGetter
 	public ModelObjectList<ExerciseTypeLink> getExerciseTypes() {
 		//lazy load!!!!
 		if(this.exerciseTypes==null) {
@@ -405,6 +412,7 @@ public int getEquipmentIdInt() {
 		this.addChild(this.equipmentNeeded, "equipmentNeeded"); // add object to the children collection
 	}
 
+	@MOParentGetter
 	public Equipment getEquipmentNeeded() {
 		//lazy load!!!!
 		if(this.equipmentNeeded==null) {

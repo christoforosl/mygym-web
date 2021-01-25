@@ -10,7 +10,6 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-DJAWSDB_URL_FULL=jdbc:mysql://uwo8j7fg4e3sq82o:s6nk5zje7suj7q3p@k3xio06abqa902qt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lm26uio74mv84l73?useSSL=false&amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
@@ -24,7 +23,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -DJAWSDB_URL_FULL=jdbc:mysql://uwo8j7fg4e3sq82o:s6nk5zje7suj7q3p@k3xio06abqa902qt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lm26uio74mv84l73?useSSL=false&amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true -classpath %classpath ${packageClassName}</exec.args>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
             </properties>
@@ -39,7 +38,6 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-DJAWSDB_URL_FULL=jdbc:mysql://uwo8j7fg4e3sq82o:s6nk5zje7suj7q3p@k3xio06abqa902qt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lm26uio74mv84l73?useSSL=false&amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
