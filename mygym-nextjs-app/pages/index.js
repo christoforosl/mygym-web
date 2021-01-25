@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Layout, { siteTitle } from '../components/layout'
+import utilStyles from '../styles/utils.module.css'
+
 
 export default function Home() {
   return (
+    <Layout home>
     <div className="container">
       <Head>
         <title>Create Next App</title>
@@ -11,7 +15,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to MyGym
+          Welcome to MyGymX
         </h1>
 
         <p className="description">
@@ -193,5 +197,6 @@ export default function Home() {
         }
       `}</style>
     </div>
+    </Layout>
   )
 }
