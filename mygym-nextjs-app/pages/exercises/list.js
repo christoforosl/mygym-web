@@ -10,11 +10,6 @@ export default function exerciseList() {
         <title>Exercise List</title>
       </Head>
       <h1>Exercise List</h1>
-      <h2>
-        <Link href="/">
-          <a>Back to home</a>
-        </Link>
-      </h2>
       </Layout>
       </>
 
