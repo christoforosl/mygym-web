@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="windows-1253" ?>
 <project  xmlns="ClassGenerator3" 
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-          xsi:schemaLocation="ClassGenerator3 http://www.netu.com.cy/wp-content/themes/netu/Devs/xsds/ClassGenerator3.xsd">
+          xsi:schemaLocation="ClassGenerator3 https://ssc.netu.com.cy/svn/Issrv2/NetuLibrary-LongPk2015/trunk/Generator-Impl/src/main/resources/com/netu/codeGen/ClassGenerator3.xsd">
 
     <GeneratorVersion>3</GeneratorVersion>
     <projectName>mygym services</projectName>
     <outputDir>../mygym-model/src/main/java</outputDir>
-  
     <junitProjectOutputDir>../mygym-model/src/test/java</junitProjectOutputDir>
     <junitPackage>com.mygym.model</junitPackage>
     <junitClassName>TestMyGymModel</junitClassName>
     <ColumnCustomizer>com.mygym.model.generator.ColumnCustomizerAndGenerator</ColumnCustomizer>
-    <!--dbConnectionString>jdbc:mysql://qv08fxqff2yfycaj:p2mp7move0hyv30c@localhost:3306/vrv7s17lfgmhud3t?useSSL=false&amp;amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true&amp;serverTimezone=UTC</dbConnectionString-->
-    <dbConnectionString>jdbc:mysql://drpskrhz840bqf1w:b7s9lu10yaqy7w4a@zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/e6edpymv83gonwa5?useSSL=false&amp;zeroDateTimeBehavior=convertToNull&amp;useOldAliasMetadataBehavior=true&amp;allowMultiQueries=true&amp;serverTimezone=UTC</dbConnectionString>
+    
+    <dbConnectionString>H4sIAAAAAAAAAAEAAf/+rmFUihXzZisu8h3XyY2saVmVmCE4QMRtlq4cX6XpcG0j/Ywb9IDlnfL750/GX0SqMe5CtdqeiKR+NL/Lyl5jAo/j+hNDug1RBpT+bODWfKqfFBYD1wJaA30m6EA04Ef+2uWnDLg/zskmYE9aSO13/OV0y8hTlkUhTrJmJ8KxYH3zHL8dqf5tNBmP/RWhMz/WnaULPFxowj5/4tNHuVkAjpdJsBh5+/YgwpQxKbkcOU+MaquEqW0VhTukcRkSC0ZSM8uYPlbNCMdmTrAR1kCX5BRuTVMYZWNET3QtmxfPGxO5srI/TRq7gJEMeM4nXdxMVKaKFujG9Vb+jZGKb9X1DDo8PM8AAQAA</dbConnectionString>
     <DBType>MYSQL</DBType>	
 	
     <addJsonAnnotations>1</addJsonAnnotations>
@@ -20,30 +19,116 @@
     <modelBaseClass>com.netu.lib.JsonModelObject</modelBaseClass>
 	
     <tables>
-				
+		
+		<table>
+            <name>system_user</name>
+            <package>com.mygym.model.security</package>
+		
+        </table>
+
+		 <table>
+			<name>workout</name>
+            <classname>ExecutedWorkout</classname>
+            <package>com.mygym.model.workout</package> 
+        </table>
+		
+		<table>
+            <name>workout_definition</name>
+            <package>com.mygym.model.workout</package> 
+        </table>
+		<table>
+            <name>workout_exercise</name>
+            <package>com.mygym.model.workout</package> 
+        </table>
+		
         <table>
             <name>exercise_type</name>
             <package>com.mygym.model</package> 
         </table>
+		<table>
+            <name>equipment</name>
+            <package>com.mygym.model</package>
+        </table>
+		
+		
         <table>
             <name>exercise_type_link</name>
             <package>com.mygym.model</package> 
+			<association>
+				<associationName>ExerciseType</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>exercise_type_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>exercise_type_id</parentTableLinkFieldName>
+				<datatype>ExerciseType</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
         </table>
-		
+
         <table>
             <name>body_part_exercise</name>
             <package>com.mygym.model</package> 
+			<association>
+				<associationName>BodyPart</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>body_part_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>body_part_id</parentTableLinkFieldName>
+				<datatype>BodyPart</datatype>
+				<!--fieldAnnotations>@org.codehaus.jackson.annotate.JsonManagedReference</fieldAnnotations-->
+			</association>
         </table>
-		
+
         <table>
             <name>exercise_definition</name>
             <package>com.mygym.model</package> 
-        </table>
 		
+			<association>
+				<associationName>BodyPartsAffected</associationName>
+				<cardinality>*</cardinality>
+				<relationType>CHILD</relationType>
+				<childTableLinkFieldName>exercise_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>EXERCISE_DEFINITION_ID</parentTableLinkFieldName>
+				<datatype>BodyPartExercise</datatype>
+				<fieldAnnotations>@JsonIgnore</fieldAnnotations>
+			</association>
+			
+			<association>
+				<associationName>ExerciseTypes</associationName>
+				<cardinality>*</cardinality>
+				<relationType>CHILD</relationType>
+				<childTableLinkFieldName>exercise_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>EXERCISE_DEFINITION_ID</parentTableLinkFieldName>
+				<datatype>ExerciseTypeLink</datatype>
+				<fieldAnnotations>@JsonIgnore</fieldAnnotations>
+			</association>
+			
+			<association>
+				<associationName>EquipmentNeeded</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>Equipment_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>Equipment_id</parentTableLinkFieldName>
+				<datatype>Equipment</datatype>
+				<fieldAnnotations>@JsonIgnore</fieldAnnotations>
+			</association>
+			
+        </table>
+
         <table>
             <name>body_part</name>
             <package>com.mygym.model</package> 
+			<association>
+				<associationName>BodyPart</associationName>
+				<cardinality>1</cardinality>
+				<relationType>PARENT</relationType>
+				<childTableLinkFieldName>body_part_id</childTableLinkFieldName>
+				<parentTableLinkFieldName>body_part_id</parentTableLinkFieldName>
+				<datatype>BodyPart</datatype>
+				<fieldAnnotations>@com.fasterxml.jackson.annotation.JsonManagedReference</fieldAnnotations>
+			</association>
         </table>
+
     </tables>
 </project>
 

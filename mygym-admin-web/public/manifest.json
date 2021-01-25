@@ -1,0 +1,8 @@
+{
+  "short_name": "MyGym-X Admin App",
+  "name": "MyGym-X Administration Web Application",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

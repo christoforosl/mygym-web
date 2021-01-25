@@ -130,9 +130,7 @@ public class ServicesWebFilter implements Filter {
 
 	
 	private String getTokenUsername(final HttpServletRequest req) throws Exception {
-		
 		return "eugenia";
-		
 	}
 	
 	
