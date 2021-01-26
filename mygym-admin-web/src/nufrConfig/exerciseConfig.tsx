@@ -4,6 +4,7 @@ import {IConfig} from '../nufR/pages/ListPage';
 import {DateTimeFormatter, EditButtonsFormatter} from '../nufR/pages/NufUtils';
 
 export const config:IConfig = {
+
     name:"Exercise",
     pageTitle:"Exercise List",
     getListDataUrl : process.env.REACT_APP_API_ROOT+appVars.apiEndPoints.getExerciseList.url,
@@ -25,3 +26,4 @@ export const config:IConfig = {
 
 };
 
+export default config;

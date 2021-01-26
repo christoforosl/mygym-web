@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Header from "./pages/Header";
-import ExercisesListPage from "./pages/exercises/ExercisesListPage";
+import ListPage from "./nufR/pages/ListPage"
 import HomePage from "./pages/HomePage";
 import {I18nextProvider} from "react-i18next";
 import i18n from "./i18n"
@@ -19,7 +19,7 @@ function App() {
               <Header />
               <Switch>
                 <Route path='/exercises'>
-                  <ExercisesListPage />
+                  <ListPage configname="exercise" />
                 </Route>
                 <Route path='/'>
                   <HomePage />
