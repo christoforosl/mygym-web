@@ -8,11 +8,9 @@ import {DateTimeFormatter, EditButtonsFormatter} from '../../nufR/components/Nuf
 
 const axios = require('axios').default;
 
-
-
 const columns = [
     { key: 'exerciseDefinitionId', name: 'ID', width: 1 },
-    { key: 'editButtons', name: '', width: 1, formatter: EditButtonsFormatter},
+    { key: 'editButtons', name: '', width: 1, formatter(props:any) { return <EditButtonsFormatter id={props.row.id}></EditButtonsFormatter>}},
     { key: 'name', name: 'Name' },
     { key: 'description', name: 'Description' },
     { key: 'equipment', name: 'Equipment' },

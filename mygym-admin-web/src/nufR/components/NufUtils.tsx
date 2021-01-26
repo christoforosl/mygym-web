@@ -4,8 +4,13 @@ interface IDateProps {
   dateVal: string;
 }
 
-export const EditButtonsFormatter = ({ props }: any ) => {
-  return <Fragment><i id={props.row.id} className="far fa-trash-alt"></i> &nbsp; <i id={props.rows.id} className="far fa-edit"></i> </Fragment>
+interface IDProps {
+  id: string;
+}
+
+
+export const EditButtonsFormatter = ({ id }: IDProps ) => {
+  return <Fragment><i id={id} className="far fa-trash-alt"></i> &nbsp; <i id={id} className="far fa-edit"></i> </Fragment>
 };
 
 
