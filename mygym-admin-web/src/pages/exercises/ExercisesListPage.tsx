@@ -2,16 +2,28 @@
 import config from "../../globals/AppVars.json"
 
 import ReactDataGrid from 'react-data-grid';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import Spinner from '../../layout/Spinner';
+import {DateTimeFormatter, EditButtonsFormatter} from '../../nufR/components/NufUtils';
 
 const axios = require('axios').default;
 
 
+
 const columns = [
-    { key: 'exerciseDefinitionId', name: 'ID', width:5 },
+    { key: 'exerciseDefinitionId', name: 'ID', width: 1 },
+    { key: 'editButtons', name: '', width: 1, formatter: EditButtonsFormatter},
     { key: 'name', name: 'Name' },
-    { key: 'description', name: 'Description' } ];
+    { key: 'description', name: 'Description' },
+    { key: 'equipment', name: 'Equipment' },
+    { key: 'createDate', name: 'Created' , formatter(props:any) {
+            return <DateTimeFormatter dateVal={props.row.createDate} />;
+        }},
+    { key: 'updateDate', name: 'Updated' , formatter(props:any) {
+            return <DateTimeFormatter dateVal={props.row.createDate} />;
+        }}
+    
+     ];
 
 export default function ExercisesListPage() {
 
@@ -23,7 +35,7 @@ export default function ExercisesListPage() {
           const result = await axios( url );
           setData(result.data.results);
         };
-     
+    
         fetchData();
     }, [url]);
         
@@ -31,9 +43,7 @@ export default function ExercisesListPage() {
         data.length > 0 ? 
         <ReactDataGrid
                 columns={columns}
-                rows={data}
-                
-                 /> : <Spinner message="loading exercises" ></Spinner>);
+                rows={data} /> : <Spinner message="Loading Exercises ..." ></Spinner>);
 
             
 }
