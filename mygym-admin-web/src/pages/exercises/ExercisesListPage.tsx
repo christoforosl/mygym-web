@@ -2,8 +2,8 @@
 import config from "../../globals/AppVars.json"
 
 import ReactDataGrid from 'react-data-grid';
-import { Fragment } from 'react';
 import { useState, useEffect } from 'react';
+import Spinner from '../../layout/Spinner';
 
 const axios = require('axios').default;
 
@@ -33,7 +33,7 @@ export default function ExercisesListPage() {
                 columns={columns}
                 rows={data}
                 
-                 /> : <Fragment>Loading...</Fragment>);
+                 /> : <Spinner message="loading exercises" ></Spinner>);
 
             
 }
