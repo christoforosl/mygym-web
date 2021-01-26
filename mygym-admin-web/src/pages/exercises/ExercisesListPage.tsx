@@ -9,7 +9,7 @@ const axios = require('axios').default;
 
 
 const columns = [
-    { key: 'exerciseDefinitionId', name: 'ID' },
+    { key: 'exerciseDefinitionId', name: 'ID', width:5 },
     { key: 'name', name: 'Name' },
     { key: 'description', name: 'Description' } ];
 
@@ -21,23 +21,12 @@ export default function ExercisesListPage() {
     useEffect(() => {
         const fetchData = async () => {
           const result = await axios( url );
-          console.log("data length:" + JSON.stringify( result.data.results.length) ) ;
           setData(result.data.results);
         };
      
         fetchData();
     }, [url]);
-    
-    // return (
-    // <ul>
-    //     {data.map(item => (
-    //       <li key={item.exerciseDefinitionId}>
-    //         {item.name}
-    //       </li>
-    //     ))}
-    //   </ul>);
-
-    
+        
     return (
         data.length > 0 ? 
         <ReactDataGrid
