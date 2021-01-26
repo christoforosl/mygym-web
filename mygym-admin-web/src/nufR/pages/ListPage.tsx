@@ -1,4 +1,4 @@
-
+import {Toolbar} from 'react-data-grid-addons';
 import ReactDataGrid from 'react-data-grid';
 import { useState, useEffect, Fragment } from 'react';
 import Spinner from '../../layout/Spinner';
@@ -55,7 +55,8 @@ export const ListPage = (props:IListPageProps) => {
                 <div id={config.name+"pageTitle"} className="h1">{config.pageTitle}</div>
                 <div id={ config.name+"datagrid"}>
                     { data.length > 0  ? 
-                        <ReactDataGrid columns={config.columns} rows={data} /> 
+                        
+                        <ReactDataGrid columns={config.columns} rows={data}  /> 
                         :
                         <Spinner message={config.spinnerMessage || "Loading ..."} ></Spinner> 
                     }
