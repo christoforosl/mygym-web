@@ -42,8 +42,8 @@ export default function ExercisesListPage() {
         data.length > 0 ? 
         <ReactDataGrid
                 columns={columns}
-                rowGetter={i => data[i]}
-                rowsCount={data.length}
+                rows={data}
+                
                  /> : <Fragment>Loading...</Fragment>);
 
             
