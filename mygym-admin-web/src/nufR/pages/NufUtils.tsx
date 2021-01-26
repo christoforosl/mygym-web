@@ -1,13 +1,12 @@
 import {Fragment} from 'react';
 
-interface IDateProps {
+export interface IDateProps {
   dateVal: string;
 }
 
-interface IDProps {
+export interface IDProps {
   id: string;
 }
-
 
 export const EditButtonsFormatter = ({ id }: IDProps ) => {
   return <Fragment><i id={id} className="far fa-trash-alt"></i> &nbsp; <i id={id} className="far fa-edit"></i> </Fragment>

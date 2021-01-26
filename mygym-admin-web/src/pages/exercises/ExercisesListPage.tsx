@@ -4,7 +4,6 @@ import config from "../../globals/AppVars.json"
 import ReactDataGrid from 'react-data-grid';
 import { useState, useEffect, Fragment } from 'react';
 import Spinner from '../../layout/Spinner';
-import {DateTimeFormatter, EditButtonsFormatter} from '../../nufR/components/NufUtils';
 
 const axios = require('axios').default;
 
@@ -38,10 +37,14 @@ export default function ExercisesListPage() {
     }, [url]);
         
     return (
-        data.length > 0 ? 
-        <ReactDataGrid
-                columns={columns}
-                rows={data} /> : <Spinner message="Loading Exercises ..." ></Spinner>);
+        <Fragment>
+        <div className="pageTitle">{pageTitle}</div>
+        <Fragment> {data.length > 0 } ? 
+            <ReactDataGrid
+                    columns={columns}
+                    rows={data} /> : <Spinner message="Loading Exercises ..." ></Spinner> </Fragment>
+        </Fragment>
+        ); 
 
             
 }
