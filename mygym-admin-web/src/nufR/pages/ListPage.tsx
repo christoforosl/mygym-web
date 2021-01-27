@@ -53,10 +53,9 @@ export const ListPage = (props:IListPageProps) => {
         return (
             <Fragment>
                 <div id={config.name+"pageTitle"} className="h1">{config.pageTitle}</div>
-                <div id={ config.name+"datagrid"}>
+                <div id={ config.name+"datagrid"} className="grid-wrapper">
                     { data.length > 0  ? 
-                        
-                        <ReactDataGrid columns={config.columns} rows={data}  /> 
+                        <ReactDataGrid columns={config.columns} rows={data} className="fill-grid" style={{ resize: 'both' }} /> 
                         :
                         <Spinner message={config.spinnerMessage || "Loading ..."} ></Spinner> 
                     }

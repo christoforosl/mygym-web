@@ -28,7 +28,10 @@ i18n
 
     resources: {
       en: {
-        common: common_en               // 'common' is our custom namespace
+        common:common_en               // 'common' is our custom namespace
+      },
+      "en-US": {
+        common:common_en               // 'common' is our custom namespace
       },
       el: {
         common: common_el
@@ -39,6 +42,8 @@ i18n
     react: {
       wait: true,
     },
+
+    
   });
 
 export default i18n;

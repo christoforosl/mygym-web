@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
+import PrimarySearchAppBar from "../layout/PrimarySearchAppBar";
 
 export default function Header() {
-    return <Navbar />
+    return <PrimarySearchAppBar />
 }
