@@ -26,4 +26,4 @@ localm2*
 
 **/target/*
 **/.settings/*
-mygym-admin-web/.eslintcache
+**/.eslintcache
