@@ -1,5 +1,7 @@
 {
     "system": {
         "title": "MyGym Admin Web"
-    }
+    },
+    "system.title": "MyGym Admin Web"
+    
 }

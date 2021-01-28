@@ -7,14 +7,14 @@
     
 }
 
-.rdg.fill-grid {
+.fill-grid {
   height: 100%;
 }
 
-.rdg.small-grid {
+.small-grid {
   height: 300px;
 }
 
-.rdg.big-grid {
+.big-grid {
   height: 600px;
 }
