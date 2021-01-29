@@ -42,11 +42,10 @@ export default function Spinner({ message, altText }: ISpinnerArgs) {
 
   return (
     <>
-      <div className={classes.root}>
+      <div id="spinner" className={classes.root}>
         <div className={progressClass.root}>
           <LinearProgress color="primary" />
-           
-           <Typography variant="h6" color='error' gutterBottom>{message}</Typography> 
+           <Typography variant="h6" color='error' gutterBottom id="spinnerMessage">{message}</Typography> 
         </div>
       </div>
 
