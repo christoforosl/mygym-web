@@ -1,8 +1,12 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import EditPage from './EditPage';
+import { Link } from 'react-router-dom';
+import { IConfig } from './ListPage';
+import {defaultConfig} from './EditPage';
+
 
 export interface IDateProps {
   dateVal: string;
@@ -12,22 +16,15 @@ export interface IDProps {
   id: string;
 }
 
-const editRow = (id:number) => {
-  <>
-      <h2>Edit</h2>
-      <EditPage config={config!} id={id}/>
-  </>
-
-};
-
 export const EditButtonsFormatter = ({ id }: IDProps ) => {
-  return <Fragment>
-          <IconButton id={"btnEdit_" +id } size="small" aria-label="edit"color="primary"  
-                onClick={() => {
-                            editRow(id)
-                        }} ><EditIcon /></IconButton> 
-          <IconButton id={"btnDelete_" +id } size="small" aria-label="delete" color="secondary"><DeleteIcon /></IconButton>
-          </Fragment>;
+  
+  const [config, setConfig] = useState<IConfig>(defaultConfig);
+  console.log("config" + config.key);
+  return (
+        <>
+          <Link id={"btnEdit_" +id } to={`${config.key}/edit/${id}`} ><IconButton size="small" color="primary"><EditIcon /></IconButton></Link>
+          <Link id={"btnDelete_" +id } to={`${config.key}/delete/${id}`} ><IconButton size="small" color="secondary"><DeleteIcon /></IconButton></Link>
+          </>);
 };
 
 

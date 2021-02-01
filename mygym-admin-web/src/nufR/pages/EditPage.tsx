@@ -12,27 +12,29 @@ const defaultModelObject : IModelObjectRecord = {
     "dirty":false
 }
 
+export const defaultConfig = new IConfig();
+
 interface IEditPageProps {
-    config:IConfig, 
-    id:number
+    id:string
 }
 
 const EditPage = (props:IEditPageProps) => {
 
+    const [config, setConfig] = useState<IConfig>(defaultConfig);
     const [loading, setLoading] = useState(true);
     const [currentRecord, setCurrentRecord] = useState<IModelObjectRecord>(defaultModelObject);
     
     useEffect(() => {
         setLoading(true);
         const fetchData = async () => {
-            const result = await axios(props.config.getEditAPIUrl(props.id));
+            const result = await axios(config.getEditAPIUrl(props.id));
             setCurrentRecord(result.data.results);
             setLoading(false);
         };
         fetchData();
         return;
         // eslint-disable-next-line
-    }, []);
+    }, [config]);
 
 
     const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
@@ -42,10 +44,10 @@ const EditPage = (props:IEditPageProps) => {
 
     return (
         <>
-        <Spinner loading={loading} message={props.config.spinnerMessage} ></Spinner>
+        <Spinner loading={loading} message={config.spinnerMessage} ></Spinner>
         <form>
             <label>Id</label>
-            <input type="text" name="id" value={currentRecord!.id} onChange={handleInputChange}/>
+            <input type="text" name="id" value={currentRecord.id} onChange={handleInputChange}/>
             
             <button className="button muted-button">
                 Cancel

@@ -126,8 +126,8 @@ public class CommonResourceHandler extends BaseResource {
 	}
 
 	/**
-	 * example test url: http://localhost:9001/api/services/model/MarbylCategory-mongo-query?pq=category.topLevel&s=%7BCategoryNameEn%3A1%7D&f=Id%2CCategoryNameEn Support mongo
-	 * style queries as per https://docs.mongodb.com/v3.2/reference/operator/query/ and http://docs.mlab.com/data-api/#list-documents
+	 * example test url: http://localhost:9001/api/services/model/MarbylCategory-mongo-query?pq=category.topLevel&s=%7BCategoryNameEn%3A1%7D&f=Id%2CCategoryNameEn 
+	 * Support mongo style queries as per https://docs.mongodb.com/v3.2/reference/operator/query/ and http://docs.mlab.com/data-api/#list-documents
 	 *
 	 * @param modelObjectKey the modelobject key
 	 * @param q restrict results by the specified JSON query
@@ -142,6 +142,7 @@ public class CommonResourceHandler extends BaseResource {
 	 * @throws Exception
 	 */
 	@GET
+	@POST
 	@Path("model/{modelObjectKey}-mongo-query")
 	public SearchResults getQueryResults2(@PathParam(MODEL_OBJECT_KEY) final String modelObjectKey,
 			@DefaultValue("") @QueryParam("q") String q,

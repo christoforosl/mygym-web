@@ -47,7 +47,7 @@ export class IConfig {
     };
 
     /** api end point to get a signle record for this model object */
-    getEditAPIUrl = (id:number): string => {
+    getEditAPIUrl = (id:string): string => {
         return this.apiRoot+'api/services/model/'+this.key +'/'+id;
     };
     
