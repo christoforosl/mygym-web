@@ -5,7 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 interface ISpinnerArgs {
   message: string,
-  altText?: string
+  loading?: boolean
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,16 +36,22 @@ const useProgressStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Spinner({ message, altText }: ISpinnerArgs) {
+export default function Spinner({ message, loading }: ISpinnerArgs) {
   const classes = useStyles();
   const progressClass = useProgressStyles();
+  
+  const getLoading = () => {
+    return loading === undefined ? true : loading; 
+  } 
+  console.log("loading:" + getLoading() );
+  if(getLoading()===false)return <></>
 
   return (
     <>
       <div id="spinner" className={classes.root}>
         <div className={progressClass.root}>
           <LinearProgress color="primary" />
-           <Typography variant="h6" color='error' gutterBottom id="spinnerMessage">{message}</Typography> 
+           <Typography variant="h6" color='error' gutterBottom id="spinnerMessage">{message || "Loading ..."}</Typography> 
         </div>
       </div>
 

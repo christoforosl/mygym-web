@@ -1,5 +1,5 @@
 import ReactDataGrid from 'react-data-grid';
-import { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Spinner from '../../layout/Spinner';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -7,6 +7,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
 import { useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import EditPage from './EditPage';
 
 const axios = require('axios').default;
 
@@ -22,12 +23,41 @@ export interface IListPageProps {
     configname: string
 }
 
-export interface IConfig {
-    name: string,
-    getListDataUrl: string,
-    pageTitle: string,
-    spinnerMessage?: string
-    columns: [any, any, any, any, any, any, any]
+export interface IModelObjectRecord {
+    id:number,
+    loadtime:number,
+    dirty:boolean
+}
+
+export class IConfig {
+    
+    readonly apiRoot = process.env.REACT_APP_API_ROOT;
+
+    /** key: must be unique and is the cononicalized name of the model object so we can access the api end points */
+    key: string  = '';
+
+    name: string = '';
+    
+    /** api end point to get records for lists of model objects */
+    getListAPIUrl = () => {
+        if(!this.key) {
+            throw new Error('Key not set');
+        }
+        return this.apiRoot+'api/services/model/'+this.key +'-mongo-query';
+    };
+
+    /** api end point to get a signle record for this model object */
+    getEditAPIUrl = (id:number): string => {
+        return this.apiRoot+'api/services/model/'+this.key +'/'+id;
+    };
+    
+    postSaveApiUrl = (record:IModelObjectRecord): string  => {
+        return this.apiRoot+'api/services/model/'+record.id;
+    };
+    
+    pageTitle: string = '';
+    spinnerMessage: string = 'Loading ... Please wait';
+    columns: [any, any, any, any, any, any, any] = [null,null,null,null,null,null,null];
 }
 
 export interface IListPageProps {
@@ -50,11 +80,11 @@ export const ListPage = (props: IListPageProps) => {
         };
 
         import("../../nufrConfig/" + props.configname + "Config").then(c => {
-
+            setLoading(true);
             setConfig(c.default);
             if (config != null) {
                 console.log("config" + config);
-                fetchData(config.getListDataUrl);
+                fetchData(config.getListAPIUrl());
             }
         });
 
@@ -62,8 +92,10 @@ export const ListPage = (props: IListPageProps) => {
         // eslint-disable-next-line
     }, [config]);
 
+   
+
     if (loading || !config) {
-        return <Spinner message={"Loading ..."} ></Spinner>;
+        return <Spinner loading={loading} message={"Loading ..."} ></Spinner>;
     } else {
         return (
             <Fragment>
@@ -86,15 +118,13 @@ export const ListPage = (props: IListPageProps) => {
                         {t('button.addnew')}
                         </Button>
 
-                    {loading === false ?
-
                         <div id={config.name + "datagrid"} className="grid-wrapper">
                             <ReactDataGrid columns={config.columns} rows={data} className="fill-grid" style={{ resize: 'both' }} />
                         </div>
 
                         :
-                        <Spinner message={config.spinnerMessage || "Loading ..."} ></Spinner>
-                    }
+                        <Spinner loading={loading} message={config.spinnerMessage} ></Spinner>
+                    
                 </Box>
             </Fragment>
 
