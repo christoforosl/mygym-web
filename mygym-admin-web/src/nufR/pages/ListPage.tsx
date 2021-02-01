@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import EditPage from './EditPage';
+import { useConfig } from '../Hooks';
 
 const axios = require('axios').default;
 
@@ -36,6 +37,7 @@ export class IConfig {
     /** key: must be unique and is the cononicalized name of the model object so we can access the api end points */
     key: string  = '';
 
+    /** must match name of file that the configuation is saved at */
     name: string = '';
     
     /** api end point to get records for lists of model objects */
@@ -48,61 +50,62 @@ export class IConfig {
 
     /** api end point to get a signle record for this model object */
     getEditAPIUrl = (id:string): string => {
+        if(!this.key) {
+            throw new Error('Key not set');
+        }
         return this.apiRoot+'api/services/model/'+this.key +'/'+id;
     };
     
     postSaveApiUrl = (record:IModelObjectRecord): string  => {
-        return this.apiRoot+'api/services/model/'+record.id;
+        if(!this.key) {
+            throw new Error('Key not set');
+        }
+        return this.apiRoot+'api/services/model/'+this.key;
     };
     
     pageTitle: string = '';
     spinnerMessage: string = 'Loading ... Please wait';
     columns: [any, any, any, any, any, any, any] = [null,null,null,null,null,null,null];
 }
-
+export const defaultConfig = new IConfig();
 export interface IListPageProps {
     configname: string
 }
 
 export const ListPage = (props: IListPageProps) => {
+    
     const { t } = useTranslation();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [config, setConfig] = useState<IConfig | null>(null);
+    const configHookRes = useConfig( props.configname );
     const classes = useStyles();
 
     useEffect(() => {
+
         setLoading(true);
         const fetchData = async (url: string) => {
             const result = await axios(url);
             setData(result.data.results);
             setLoading(false);
         };
-
-        import("../../nufrConfig/" + props.configname + "Config").then(c => {
-            setLoading(true);
-            setConfig(c.default);
-            if (config != null) {
-                console.log("config" + config);
-                fetchData(config.getListAPIUrl());
-            }
-        });
-
+        if ( configHookRes.loading == false) {
+            fetchData(configHookRes.config.getListAPIUrl());
+        }
         return;
         // eslint-disable-next-line
-    }, [config]);
+    }, []);
+    
+    
+    if (loading || configHookRes.loading) {
+        return <Spinner loading={loading || configHookRes.loading} message={"Loading ..."} ></Spinner>;
 
-   
-
-    if (loading || !config) {
-        return <Spinner loading={loading} message={"Loading ..."} ></Spinner>;
     } else {
         return (
             <Fragment>
 
-                <div id={config.name + "pageTitle"} >
+                <div id={configHookRes.config.name + "pageTitle"} >
                     <Typography variant="h4" gutterBottom>
-                        {config.pageTitle}
+                        {configHookRes.config.pageTitle}
                     </Typography>
                 </div>
 
@@ -118,12 +121,12 @@ export const ListPage = (props: IListPageProps) => {
                         {t('button.addnew')}
                         </Button>
 
-                        <div id={config.name + "datagrid"} className="grid-wrapper">
-                            <ReactDataGrid columns={config.columns} rows={data} className="fill-grid" style={{ resize: 'both' }} />
+                        <div id={configHookRes.config.name + "datagrid"} className="grid-wrapper">
+                            <ReactDataGrid columns={configHookRes.config.columns} rows={data} className="fill-grid" style={{ resize: 'both' }} />
                         </div>
 
                         :
-                        <Spinner loading={loading} message={config.spinnerMessage} ></Spinner>
+                        <Spinner loading={loading} message={configHookRes.config.spinnerMessage} ></Spinner>
                     
                 </Box>
             </Fragment>

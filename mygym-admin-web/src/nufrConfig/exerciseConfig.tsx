@@ -7,12 +7,12 @@ class Config extends IConfig {
     constructor() {
         super();
         this.key = "exercisedefinition";
-        this.name = "Exercise";
+        this.name = "Exercise"; // must match name of file, case sensistive!!!
         this.pageTitle ="Exercise List";
         
         this.columns = [
             { key: 'exerciseDefinitionId', name: 'ID', width: 1 },
-            { key: 'editButtons', name: '', width: 1, formatter(props:any) { return <EditButtonsFormatter id={props.row.id}></EditButtonsFormatter>}},
+            { key: 'editButtons', name: '', width: 1, formatter(props:any) { return <EditButtonsFormatter configname={this.name} id={props.row.id}></EditButtonsFormatter>}},
             { key: 'name', name: 'Name' },
             { key: 'description', name: 'Description' },
             { key: 'equipment', name: 'Equipment' },

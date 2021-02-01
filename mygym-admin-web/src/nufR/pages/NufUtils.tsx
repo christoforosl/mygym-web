@@ -4,9 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import EditPage from './EditPage';
 import { Link } from 'react-router-dom';
-import { IConfig } from './ListPage';
-import {defaultConfig} from './EditPage';
-
+import { defaultConfig, IConfig } from './ListPage';
 
 export interface IDateProps {
   dateVal: string;
@@ -14,12 +12,13 @@ export interface IDateProps {
 
 export interface IDProps {
   id: string;
+  configname:string
 }
 
 export const EditButtonsFormatter = ({ id }: IDProps ) => {
   
   const [config, setConfig] = useState<IConfig>(defaultConfig);
-  console.log("config" + config.key);
+  console.log(" EditButtonsFormatter config:" + config.key);
   return (
         <>
           <Link id={"btnEdit_" +id } to={`${config.key}/edit/${id}`} ><IconButton size="small" color="primary"><EditIcon /></IconButton></Link>

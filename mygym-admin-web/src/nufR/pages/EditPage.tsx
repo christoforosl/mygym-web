@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import Spinner from '../../layout/Spinner';
+import { useConfig } from '../Hooks';
 import { IConfig, IModelObjectRecord } from './ListPage';
 
 /**
@@ -12,29 +13,28 @@ const defaultModelObject : IModelObjectRecord = {
     "dirty":false
 }
 
-export const defaultConfig = new IConfig();
-
 interface IEditPageProps {
-    id:string
+    id:string,
+    configname:string
 }
 
 const EditPage = (props:IEditPageProps) => {
 
-    const [config, setConfig] = useState<IConfig>(defaultConfig);
+    const configHookRes = useConfig( props.configname );
     const [loading, setLoading] = useState(true);
     const [currentRecord, setCurrentRecord] = useState<IModelObjectRecord>(defaultModelObject);
     
     useEffect(() => {
         setLoading(true);
         const fetchData = async () => {
-            const result = await axios(config.getEditAPIUrl(props.id));
+            const result = await axios(configHookRes.config.getEditAPIUrl(props.id));
             setCurrentRecord(result.data.results);
             setLoading(false);
         };
         fetchData();
         return;
         // eslint-disable-next-line
-    }, [config]);
+    }, [configHookRes]);
 
 
     const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
@@ -44,7 +44,7 @@ const EditPage = (props:IEditPageProps) => {
 
     return (
         <>
-        <Spinner loading={loading} message={config.spinnerMessage} ></Spinner>
+        <Spinner loading={loading||configHookRes.loading} message={configHookRes.config.spinnerMessage} ></Spinner>
         <form>
             <label>Id</label>
             <input type="text" name="id" value={currentRecord.id} onChange={handleInputChange}/>

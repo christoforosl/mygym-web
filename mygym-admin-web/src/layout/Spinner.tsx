@@ -43,7 +43,7 @@ export default function Spinner({ message, loading }: ISpinnerArgs) {
   const getLoading = () => {
     return loading === undefined ? true : loading; 
   } 
-  console.log("loading:" + getLoading() );
+  //console.log("loading:" + getLoading() );
   if(getLoading()===false)return <></>
 
   return (
