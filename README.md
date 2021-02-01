@@ -13,6 +13,7 @@ In this file, you will see property
 modelPackageForRestAPI=com.mygym.model
 ```
 For each model object the following end points are exposed:
+( The {modelObjectKey} below is the Canonicalized model object name, which is Model Object class, all lower case and with package removed. ) 
   1. POST "model/{modelObjectKey}" Save model object. Updates or Inserts, based on the id value
   2. GET "model/{modelObjectKey}-lastUpdate" returns a date with the latest update date of any records in the table
   3. GET "model/{modelObjectKey}/{Id}  delete a model object by id
