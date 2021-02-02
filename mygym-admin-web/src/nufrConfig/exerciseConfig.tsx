@@ -4,6 +4,7 @@ import {DateTimeFormatter, EditButtonsFormatter} from '../nufR/pages/NufUtils';
 
 class Config extends IConfig {
 
+    
     constructor() {
         super();
         this.key = "exercisedefinition";
