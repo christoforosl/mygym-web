@@ -88,12 +88,13 @@ export const ListPage = (props: IListPageProps) => {
             setData(result.data.results);
             setLoading(false);
         };
+        
         if ( configHookRes.loading == false) {
             fetchData(configHookRes.config.getListAPIUrl());
         }
         return;
         // eslint-disable-next-line
-    }, []);
+    }, [configHookRes.loading]);
     
     
     if (loading || configHookRes.loading) {

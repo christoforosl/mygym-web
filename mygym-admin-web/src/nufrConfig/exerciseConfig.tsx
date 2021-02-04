@@ -4,7 +4,7 @@ import {DateTimeFormatter, EditButtonsFormatter} from '../nufR/pages/NufUtils';
 
 class Config extends IConfig {
 
-    
+
     constructor() {
         super();
         this.key = "exercisedefinition";
@@ -13,7 +13,7 @@ class Config extends IConfig {
         
         this.columns = [
             { key: 'exerciseDefinitionId', name: 'ID', width: 1 },
-            { key: 'editButtons', name: '', width: 1, formatter(props:any) { return <EditButtonsFormatter configname={this.name} id={props.row.id}></EditButtonsFormatter>}},
+            { key: 'editButtons', name: '', width: 1, formatter(props:any) { return <EditButtonsFormatter id={props.row.id}></EditButtonsFormatter>}},
             { key: 'name', name: 'Name' },
             { key: 'description', name: 'Description' },
             { key: 'equipment', name: 'Equipment' },

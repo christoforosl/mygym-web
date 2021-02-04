@@ -12,7 +12,6 @@ export interface IDateProps {
 
 export interface IDProps {
   id: string;
-  configname:string
 }
 
 export const EditButtonsFormatter = ({ id }: IDProps ) => {
