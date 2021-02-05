@@ -30,7 +30,7 @@ export interface IModelObjectRecord {
     dirty:boolean
 }
 
-export class IConfig {
+export class INUFRConfig {
     
     readonly apiRoot = process.env.REACT_APP_API_ROOT;
 
@@ -67,7 +67,7 @@ export class IConfig {
     spinnerMessage: string = 'Loading ... Please wait';
     columns: [any, any, any, any, any, any, any] = [null,null,null,null,null,null,null];
 }
-export const defaultConfig = new IConfig();
+export const defaultConfig = new INUFRConfig();
 export interface IListPageProps {
     configname: string
 }

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { defaultConfig } from "./pages/ListPage";
-import { IConfig } from "./pages/ListPage";
+import { INUFRConfig } from "./pages/ListPage";
 
 export function useNUFRConfig(configname: string) {
 
     const [loading, setLoading] = useState(true);
-    const [config, setConfig] = useState<IConfig>(defaultConfig);
+    const [config, setConfig] = useState<INUFRConfig>(defaultConfig);
 
     useEffect(() => {
         const fetchData = async () => {

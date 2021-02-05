@@ -1,12 +1,12 @@
 
-import {IConfig} from '../nufR/pages/ListPage';
+import {INUFRConfig} from '../nufR/pages/ListPage';
 import {DateTimeFormatter, EditButtonsFormatter} from '../nufR/pages/NufUtils';
 
-class NUFRConfig extends IConfig {
+class NUFRConfig extends INUFRConfig {
 
     constructor() {
         super();
-        this.key = "exercisedefinition";
+        this.key = "exercisedefinition"; // api route
         this.name = "Exercise"; // must match name of file, case sensistive!!!
         this.pageTitle ="Exercise List";
         
