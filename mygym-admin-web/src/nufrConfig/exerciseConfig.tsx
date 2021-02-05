@@ -2,8 +2,7 @@
 import {IConfig} from '../nufR/pages/ListPage';
 import {DateTimeFormatter, EditButtonsFormatter} from '../nufR/pages/NufUtils';
 
-class Config extends IConfig {
-
+class NUFRConfig extends IConfig {
 
     constructor() {
         super();
@@ -30,5 +29,5 @@ class Config extends IConfig {
 
 
 };
-const myConfig = new Config();
+const myConfig = new NUFRConfig();
 export default myConfig;

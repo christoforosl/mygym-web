@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { defaultConfig } from "./pages/ListPage";
 import { IConfig } from "./pages/ListPage";
 
-export function useConfig(configname: string) {
+export function useNUFRConfig(configname: string) {
 
     const [loading, setLoading] = useState(true);
     const [config, setConfig] = useState<IConfig>(defaultConfig);

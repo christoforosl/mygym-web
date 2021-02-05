@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import Spinner from '../../layout/Spinner';
-import { useConfig } from '../Hooks';
+import { useNUFRConfig } from '../Hooks';
 import { IConfig, IModelObjectRecord } from './ListPage';
 
 /**
@@ -20,7 +20,7 @@ interface IEditPageProps {
 
 const EditPage = (props:IEditPageProps) => {
 
-    const configHookRes = useConfig( props.configname );
+    const configHookRes = useNUFRConfig( props.configname );
     const [loading, setLoading] = useState(true);
     const [currentRecord, setCurrentRecord] = useState<IModelObjectRecord>(defaultModelObject);
     

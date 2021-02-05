@@ -7,8 +7,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
 import { useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import EditPage from './EditPage';
-import { useConfig } from '../Hooks';
+import { useNUFRConfig } from '../Hooks';
+import { createStrictContext } from '../context/strictContext';
 
 const axios = require('axios').default;
 
@@ -72,12 +72,14 @@ export interface IListPageProps {
     configname: string
 }
 
+export const IConfigContext = React.createContext(defaultConfig);
+
 export const ListPage = (props: IListPageProps) => {
     
     const { t } = useTranslation();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const configHookRes = useConfig( props.configname );
+    const configHookRes = useNUFRConfig( props.configname );
     const classes = useStyles();
 
     useEffect(() => {
@@ -89,7 +91,7 @@ export const ListPage = (props: IListPageProps) => {
             setLoading(false);
         };
         
-        if ( configHookRes.loading == false) {
+        if ( configHookRes.loading === false) {
             fetchData(configHookRes.config.getListAPIUrl());
         }
         return;
@@ -102,7 +104,7 @@ export const ListPage = (props: IListPageProps) => {
 
     } else {
         return (
-            <Fragment>
+            <IConfigContext.Provider value={configHookRes.config}>
 
                 <div id={configHookRes.config.name + "pageTitle"} >
                     <Typography variant="h4" gutterBottom>
@@ -130,7 +132,7 @@ export const ListPage = (props: IListPageProps) => {
                         <Spinner loading={loading} message={configHookRes.config.spinnerMessage} ></Spinner>
                     
                 </Box>
-            </Fragment>
+            </IConfigContext.Provider>
 
         );
     }
