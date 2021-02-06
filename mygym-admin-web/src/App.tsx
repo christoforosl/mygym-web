@@ -5,11 +5,12 @@ import "./styles/GridStyles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./pages/Header";
-import ListPage from "./nufR/pages/ListPage";
+
 import HomePage from "./pages/HomePage";
 import {I18nextProvider} from "react-i18next";
 import i18n from "./i18n"
 import Container from '@material-ui/core/Container';
+import NUFRRoute from "./nufR/NUFRRoute";
 
 function App() {
   
@@ -21,11 +22,10 @@ function App() {
             
               <Header />
               <Switch>
-                <Route path='/exercises'>
-                  <ListPage configname="Exercise" />
-                </Route>
                 
-                <NUFRRoute configname="Exercise" />
+                <NUFRRoute configname="ExerciseDefinition" />
+                <NUFRRoute configname="Workout" />
+                <NUFRRoute configname="Users" />
 
                 <Route path='/'>
                   <HomePage />

@@ -9,6 +9,7 @@ export function useNUFRConfig(configname: string) {
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log("loading config for:" + configname)
             setLoading(true);
             import("../nufrConfig/" + configname + "Config").then(c => {
                 setConfig(c.default);
@@ -17,7 +18,7 @@ export function useNUFRConfig(configname: string) {
             });
         };
         fetchData();
-    }, []);
+    }, [configname]);
 
     return { config, loading } as const;
 }

@@ -7,7 +7,7 @@ class NUFRConfig extends INUFRConfig {
     constructor() {
         super();
         this.key = "exercisedefinition"; // api route
-        this.name = "Exercise"; // must match name of file, case sensistive!!!
+        this.name = "ExerciseDefinitionConfig"; // must match name of file, case sensistive!!!
         this.pageTitle ="Exercise List";
         
         this.columns = [

@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import { useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useNUFRConfig } from '../Hooks';
-import { createStrictContext } from '../context/strictContext';
+
 
 const axios = require('axios').default;
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export interface IListPageProps {
+export interface INUFRConfigNameProps {
     configname: string
 }
 
@@ -68,13 +68,13 @@ export class INUFRConfig {
     columns: [any, any, any, any, any, any, any] = [null,null,null,null,null,null,null];
 }
 export const defaultConfig = new INUFRConfig();
-export interface IListPageProps {
+export interface INUFRConfigNameProps {
     configname: string
 }
 
 export const IConfigContext = React.createContext(defaultConfig);
 
-export const ListPage = (props: IListPageProps) => {
+export const ListPage = (props: INUFRConfigNameProps) => {
     
     const { t } = useTranslation();
     const [data, setData] = useState([]);
