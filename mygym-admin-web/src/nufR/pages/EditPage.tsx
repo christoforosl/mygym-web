@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import Spinner from '../../layout/Spinner';
 import { useNUFRConfig } from '../Hooks';
-import { INUFRConfig, IModelObjectRecord } from './ListPage';
+import {  IModelObjectRecord } from './ListPage';
 
 /**
  * defaulty values model object

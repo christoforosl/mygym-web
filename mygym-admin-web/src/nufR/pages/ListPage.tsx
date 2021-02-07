@@ -1,5 +1,5 @@
 import ReactDataGrid from 'react-data-grid';
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from '../../layout/Spinner';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';

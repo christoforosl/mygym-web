@@ -15,6 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { useTranslation } from "react-i18next";
+import NUFRBarLinks from '../nufR/NUFRBarLinks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -135,6 +136,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
@@ -194,6 +196,9 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <div className={classes.grow} />
+          
+          <NUFRBarLinks/>
+
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
