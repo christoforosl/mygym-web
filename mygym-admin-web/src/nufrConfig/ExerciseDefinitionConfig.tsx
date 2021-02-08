@@ -11,7 +11,7 @@ class NUFRConfig extends INUFRConfig {
         this.name = "ExerciseDefinition"; // must match name of file, case sensistive!!!
         this.pageTitle ="Exercise List";
         
-        this.columns = [
+        this.gridColumns = [
             { key: 'exerciseDefinitionId', name: 'ID', width: 1 },
             { key: 'editButtons', name: '', width: 1, formatter(props:any) { return <EditButtonsFormatter id={props.row.id}></EditButtonsFormatter>}},
             { key: 'name', name: 'Name' },

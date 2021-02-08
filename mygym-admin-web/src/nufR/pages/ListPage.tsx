@@ -1,7 +1,7 @@
 import ReactDataGrid from 'react-data-grid';
 import React, { useState, useEffect } from 'react';
 import Spinner from '../../layout/Spinner';
-import Typography from '@material-ui/core/Typography';
+
 import Box from '@material-ui/core/Box';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
@@ -85,7 +85,7 @@ export const ListPage = (props: INUFRConfigNameProps) => {
                         </Button>
 
                         <div id={configHookRes.config.name + "datagrid"} className="grid-wrapper">
-                            <ReactDataGrid columns={configHookRes.config.columns} rows={data} className="fill-grid" style={{ resize: 'both' }} />
+                            <ReactDataGrid columns={configHookRes.config.gridColumns} rows={data} className="fill-grid" style={{ resize: 'both' }} />
                         </div>
 
                         :
