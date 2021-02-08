@@ -10,6 +10,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useNUFRConfig } from '../Hooks';
 import { defaultConfig } from './INUFRConfig';
 import PageTitle from './PageTitle';
+import { Link } from 'react-router-dom'
 
 
 const axios = require('axios').default;
@@ -71,10 +72,11 @@ export const ListPage = (props: INUFRConfigNameProps) => {
         return (
             <IConfigContext.Provider value={configHookRes.config}>
 
-                <PageTitle config={configHookRes.config}/>
+                <PageTitle config={configHookRes.config} labelKey="List"/>
                 
                 <Box height="100%" bgcolor="grey.50" mx={1} width={1} display="inline-block">
                     <Button
+                        component={Link} to={`/${configHookRes.config.key}/add`}
                         variant="contained"
                         color="primary"
                         size="large"

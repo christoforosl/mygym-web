@@ -26,7 +26,7 @@ export class INUFRConfig {
         return this.apiRoot + 'api/services/model/' + this.key + '/' + id;
     };
 
-    postSaveApiUrl = (record: IModelObjectRecord): string => {
+    getSaveApiUrl = (): string => {
         if (!this.key) {
             throw new Error('Key not set');
         }
