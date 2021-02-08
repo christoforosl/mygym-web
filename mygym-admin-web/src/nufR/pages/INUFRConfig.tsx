@@ -36,6 +36,8 @@ export class INUFRConfig {
     pageTitle: string = '';
     spinnerMessage: string = 'Loading ... Please wait';
     gridColumns: [any, any, any, any, any, any, any] = [null, null, null, null, null, null, null];
+
+    formSchema:object = {};
 }
 
 export const defaultConfig = new INUFRConfig();

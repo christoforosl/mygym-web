@@ -1,6 +1,7 @@
 package com.mygym.model;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -9,15 +10,39 @@ import java.util.stream.Collectors;
  */
 public class ExerciseDefinition extends ExerciseDefinitionModelBase  {
 	
+	private static final Logger logger = Logger.getLogger(ExerciseDefinition.class.getName());
+	
 	public List<String> getBodyParts() {
 		return this.getBodyPartsAffected().stream()
 				.map( x -> x.getBodyPart()!=null ? x.getBodyPart().getBodyPartName(): null)
 				.collect(Collectors.toList());
 	}
+	
+	public List<Integer> getBodyPartIds() {
+		return this.getBodyPartsAffected().stream()
+				.map( x -> x.getBodyPart()!=null ? x.getBodyPart().getBodyPartId(): null)
+				.collect(Collectors.toList());
+	}
+	
 	public List<String> getTypes() {
 		return this.getExerciseTypes().stream()
 				.map( x -> x.getExerciseType()!=null ? x.getExerciseType().getExerciseType(): null)
 				.collect(Collectors.toList());
+	}
+	
+	
+	public List<Integer> getTypeIds() {
+		return this.getExerciseTypes().stream()
+				.map( x -> x.getExerciseType()!=null ? x.getExerciseType().getExerciseTypeId(): null)
+				.collect(Collectors.toList());
+	}
+	
+	public void setTypeIds( List<Integer> vals) {
+		logger.info("Set type ids top new collection");
+	}
+	
+	public void setBodyPartIds( List<Integer> vals) {
+		logger.info("Set BodyParts ids top new collection");
 	}
 	
 	public String getEquipment() {

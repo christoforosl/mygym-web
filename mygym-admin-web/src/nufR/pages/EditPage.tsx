@@ -7,6 +7,8 @@ import { useParams } from "react-router";
 import { validateTruthy } from "validation-utils";
 import PageTitle from './PageTitle';
 
+import Form from "@rjsf/material-ui";
+
 /**
  * defaulty values model object
  */
@@ -55,24 +57,23 @@ const EditPage = (props:IEditPageProps) => {
         // eslint-disable-next-line
     }, [configHookRes.config]);
 
-
-    const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
-        const {name, value} = event.target;
-        setCurrentRecord({...currentRecord, [name]: value});
-    }
-
+ 
     return (
         <>
         <Spinner loading={loading||configHookRes.loading} message={configHookRes.config.spinnerMessage} ></Spinner>
-        <PageTitle config={configHookRes.config}/>
-        <form>
-            <label>Id</label>
-            <input type="text" name="id" value={currentRecord.id} onChange={handleInputChange}/>
+        <PageTitle config={configHookRes.config}  />
+        <Form id="`frm_{configHookRes.config.key}`" liveValidate={true} 
+                    showErrorList={true}
+                    noHtml5Validate={false} schema={configHookRes.config.formSchema} formData={currentRecord}
+                    onChange={e => setCurrentRecord(e.formData)} >
             
-            <button className="button muted-button">
-                Cancel
-            </button>
-        </form>
+            
+        </Form>
+        <div>
+            {JSON.stringify(currentRecord)}
+
+        </div>
+
         </>
     )
 }
