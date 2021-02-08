@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { defaultConfig } from "./pages/ListPage";
-import { INUFRConfig } from "./pages/ListPage";
+
+import { defaultConfig, INUFRConfig } from "./pages/INUFRConfig";
 
 export function useNUFRConfig(configname: string) {
 

@@ -1,5 +1,6 @@
 
-import {INUFRConfig} from '../nufR/pages/ListPage';
+
+import { INUFRConfig } from "../nufR/pages/INUFRConfig";
 import {DateTimeFormatter, EditButtonsFormatter} from '../nufR/pages/NufUtils';
 
 class NUFRConfig extends INUFRConfig {

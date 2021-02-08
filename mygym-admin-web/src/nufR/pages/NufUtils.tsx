@@ -21,8 +21,8 @@ export const EditButtonsFormatter = ({ id }: IDProps ) => {
       <IConfigContext.Consumer>
          {value => 
             <>
-            <Link id={"btnEdit_" +id } to={`${value.key}/edit/${id}`} ><IconButton size="small" color="primary"><EditIcon /></IconButton></Link>
-            <Link id={"btnDelete_" +id } to={`${value.key}/delete/${id}`} ><IconButton size="small" color="secondary"><DeleteIcon /></IconButton></Link>
+            <Link id={"btnEdit_" +id } to={`/${value.key}/edit/${id}`} ><IconButton size="small" color="primary"><EditIcon /></IconButton></Link>
+            <Link id={"btnDelete_" +id } to={`/${value.key}/delete/${id}`} ><IconButton size="small" color="secondary"><DeleteIcon /></IconButton></Link>
             </>
          }
       </IConfigContext.Consumer>
