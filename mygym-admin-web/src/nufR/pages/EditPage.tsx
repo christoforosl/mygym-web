@@ -17,7 +17,8 @@ import { useTranslation } from 'react-i18next';
 const defaultModelObject : IModelObjectRecord = {
     "id": -1 , 
     "loadtime":0, 
-    "dirty":false
+    "dirty":false,
+    "jsonDirty":false
 }
 
 interface IEditPageProps {
@@ -38,7 +39,7 @@ const EditPage = (props:IEditPageProps) => {
     const idParam:string = idParams.id;
 
     const saveRecord = async (formData:IModelObjectRecord) => {
-        await axios(configHookRes.config.getSaveApiUrl(), { method:"POST" } ).then(function(result){
+        await axios(configHookRes.config.getSaveApiUrl(), { method:"POST", data: currentRecord  } ).then(function(result){
             setCurrentRecord(result.data.results);
             enqueueSnackbar( t('save.success') , { 
                 variant: 'success',
@@ -83,7 +84,7 @@ const EditPage = (props:IEditPageProps) => {
 
         <>
         <Spinner loading={loading||configHookRes.loading} message={configHookRes.config.spinnerMessage} ></Spinner>
-        <PageTitle config={configHookRes.config} labelKey={props.mode} />
+        <PageTitle config={configHookRes.config} suffixLabelKey={props.mode} />
         {loading===false &&
             <>
             <Form id={`frm_${configHookRes.config.key}`} 
@@ -92,8 +93,8 @@ const EditPage = (props:IEditPageProps) => {
                         noHtml5Validate={true} 
                         schema={configHookRes.config.formSchema} 
                         formData={currentRecord}
-                        onSubmit={e => { e.formData.dirty = true && saveRecord(e.formData)  } }
-                        onChange={e => { e.formData.dirty = true; setCurrentRecord(e.formData);  }} >
+                        onSubmit={e => { e.formData.jsonDirty && saveRecord(e.formData)  } }
+                        onChange={e => { e.formData.jsonDirty=true; setCurrentRecord(e.formData);  }} >
                 
             </Form>
             <div>

@@ -5,12 +5,13 @@ import Spinner from '../../layout/Spinner';
 import Box from '@material-ui/core/Box';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useNUFRConfig } from '../Hooks';
 import { defaultConfig } from './INUFRConfig';
 import PageTitle from './PageTitle';
 import { Link } from 'react-router-dom'
+import NUFRAlertDialog from './NUFRAlertDialog';
 
 
 const axios = require('axios').default;
@@ -30,7 +31,8 @@ export interface INUFRConfigNameProps {
 export interface IModelObjectRecord {
     id:number,
     loadtime:number,
-    dirty:boolean
+    dirty:boolean,
+    jsonDirty:boolean
 }
 
 
@@ -72,7 +74,7 @@ export const ListPage = (props: INUFRConfigNameProps) => {
         return (
             <IConfigContext.Provider value={configHookRes.config}>
 
-                <PageTitle config={configHookRes.config} labelKey="List"/>
+                <PageTitle config={configHookRes.config} suffixLabelKey="List"/>
                 
                 <Box height="100%" bgcolor="grey.50" mx={1} width={1} display="inline-block">
                     <Button
@@ -94,6 +96,7 @@ export const ListPage = (props: INUFRConfigNameProps) => {
                         <Spinner loading={loading} message={configHookRes.config.spinnerMessage} ></Spinner>
                     
                 </Box>
+                
             </IConfigContext.Provider>
 
         );
