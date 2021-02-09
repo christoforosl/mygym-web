@@ -8,8 +8,8 @@ import { validateTruthy } from "validation-utils";
 import PageTitle from './PageTitle';
 
 import Form from "@rjsf/material-ui";
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-import { Snackbar } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 /**
  * defaulty values model object
@@ -25,28 +25,32 @@ interface IEditPageProps {
     mode:string // add or edit
 }
 
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 const EditPage = (props:IEditPageProps) => {
 
-    // load nuf , the config name is in the props
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { t } = useTranslation();
+    
     const configHookRes = useNUFRConfig( props.configname );
     const [loading, setLoading] = useState(true);
-    const [openSnack, setOpenSnack] = useState(false);
+    
     const [currentRecord, setCurrentRecord] = useState<IModelObjectRecord>(defaultModelObject);
     const idParams:any  = useParams(); // get the id parameter from the URL, which is in the form /:id
     const idParam:string = idParams.id;
 
     const saveRecord = async (formData:IModelObjectRecord) => {
-        const result = await axios(configHookRes.config.getSaveApiUrl(), { method:"POST" } );
-        setCurrentRecord(result.data.results);
+        await axios(configHookRes.config.getSaveApiUrl(), { method:"POST" } ).then(function(result){
+            setCurrentRecord(result.data.results);
+            enqueueSnackbar( t('save.success') , { 
+                variant: 'success',
+            });
+        }).catch(function(){
+            enqueueSnackbar( t('save.failed') , { 
+                variant: 'error',
+            });
+        });
+        
+        
     } 
-
-    const doOpenSnack = () => {
-        setOpenSnack(true);
-      };
 
     useEffect(() => {
         console.log("useEffect of edit page:" + configHookRes.config);
@@ -60,7 +64,6 @@ const EditPage = (props:IEditPageProps) => {
             const fetchData = async () => {
                 const result = await axios(configHookRes.config.getEditAPIUrl(idParam));
                 setCurrentRecord(result.data.results);
-                doOpenSnack();  
             };
 
             if (idParam) { // if id param was passed as a parameter, load the record
@@ -96,11 +99,7 @@ const EditPage = (props:IEditPageProps) => {
             <div>
                 {JSON.stringify(currentRecord)}
             </div>
-            <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                This is a success message!
-                </Alert>
-            </Snackbar>
+            
             </>
         }       
 

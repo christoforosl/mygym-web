@@ -1,4 +1,3 @@
-import { IModelObjectRecord } from './ListPage';
 
 export class INUFRConfig {
 
