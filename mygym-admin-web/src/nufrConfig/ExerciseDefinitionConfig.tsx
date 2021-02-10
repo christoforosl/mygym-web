@@ -28,7 +28,6 @@ class NUFRConfig extends INUFRConfig {
              ];
 
         this.formSchema = {
-                
                 "type": "object",
                 "required": [
                   "name",
