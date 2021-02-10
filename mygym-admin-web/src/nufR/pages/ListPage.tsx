@@ -5,13 +5,12 @@ import Spinner from '../../layout/Spinner';
 import Box from '@material-ui/core/Box';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
-import { Trans, useTranslation } from "react-i18next";
+import {  useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useNUFRConfig } from '../Hooks';
 import { defaultConfig } from './INUFRConfig';
 import PageTitle from './PageTitle';
 import { Link } from 'react-router-dom'
-import NUFRAlertDialog from './NUFRAlertDialog';
 
 
 const axios = require('axios').default;
@@ -22,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
     },
   }),
+  
 );
 
 export interface INUFRConfigNameProps {

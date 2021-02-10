@@ -7,9 +7,12 @@ import { useParams } from "react-router";
 import { validateTruthy } from "validation-utils";
 import PageTitle from './PageTitle';
 
-import Form from "@rjsf/material-ui";
+import { AutoForm } from 'uniforms-material';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
+import { Bridge } from 'uniforms';
+import createBride from '../uniformsSchemaValidator';
+import { Box } from '@material-ui/core';
 
 /**
  * defaulty values model object
@@ -28,12 +31,13 @@ interface IEditPageProps {
 
 const EditPage = (props:IEditPageProps) => {
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
     const { t } = useTranslation();
     
     const configHookRes = useNUFRConfig( props.configname );
     const [loading, setLoading] = useState(true);
-    
+    const [bridgedSchema, setBridgedSchema] = useState<Bridge | null>(null);
+
     const [currentRecord, setCurrentRecord] = useState<IModelObjectRecord>(defaultModelObject);
     const idParams:any  = useParams(); // get the id parameter from the URL, which is in the form /:id
     const idParam:string = idParams.id;
@@ -73,34 +77,32 @@ const EditPage = (props:IEditPageProps) => {
                 // this is add new mode. lets just set the current obejct to the default model object
                 setCurrentRecord(defaultModelObject);
             }
+            setBridgedSchema(createBride(configHookRes.config.formSchema));
             setLoading(false);
+            console.log( "bridgedSchema: "  + JSON.stringify( bridgedSchema) );
         }
         return;
         // eslint-disable-next-line
     }, [configHookRes.config]);
-
-    console.log("rendering.... xxx ");
+    
     return (
-
         <>
         <Spinner loading={loading||configHookRes.loading} message={configHookRes.config.spinnerMessage} ></Spinner>
         <PageTitle config={configHookRes.config} suffixLabelKey={props.mode} />
-        {loading===false &&
+        {loading===false && bridgedSchema &&
             <>
-            <Form id={`frm_${configHookRes.config.key}`} 
-                        liveValidate={false } 
-                        showErrorList={true}
-                        noHtml5Validate={true} 
-                        schema={configHookRes.config.formSchema} 
-                        formData={currentRecord}
-                        onSubmit={e => { e.formData.jsonDirty && saveRecord(e.formData)  } }
-                        onChange={e => { e.formData.jsonDirty=true; setCurrentRecord(e.formData);  }} >
+            <Box height="100%" bgcolor="grey.50" mx={1} width={0.75} display="inline-block">
+            <AutoForm id={`frm_${configHookRes.config.key}`} 
+                        schema={bridgedSchema} 
+                        model={currentRecord}
+                        onSubmit={(model:IModelObjectRecord) => saveRecord(model)  } 
+                        onChangeModel={(model:IModelObjectRecord) => model.jsonDirty=true}>
                 
-            </Form>
+            </AutoForm>
             <div>
                 {JSON.stringify(currentRecord)}
             </div>
-            
+            </Box>
             </>
         }       
 
