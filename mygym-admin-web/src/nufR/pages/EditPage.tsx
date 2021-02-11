@@ -28,7 +28,7 @@ interface IEditPageProps {
 
 const EditPage = (props:IEditPageProps) => {
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
     const { t } = useTranslation();
     
     const configHookRes = useNUFRConfig( props.configname );
